@@ -1,18 +1,28 @@
-# Phase Entanglement RC
+# REZON: Coherent-Phase Computing
 
-Phase-reservoir computing experiments focused on coherent phase states and CNOT-like mapping.
+Lightweight experiments in phase-reservoir dynamics for CNOT-like behavior.
 
-## Scope
+## What This Repo Contains
 
-This repo is intentionally minimal and public-safe. It contains:
-- `reservoir_phase_cnot_pure.py` - **pure emergent PoC** (unstable, typically ~1-2/4)
-- `cnot_rls.py` - **RC + RLS readout** (stable CNOT truth-table mapping)
-- tests and reporting utilities
+- `reservoir_phase_cnot_pure.py`
+  - pure emergent phase dynamics
+  - research proof-of-concept
+  - currently unstable for strict 4/4 CNOT
+- `cnot_rls.py`
+  - phase reservoir + RLS readout
+  - stable CNOT truth-table mapping (4/4 in current setup)
+- `cnot_variant_audit.py`
+  - side-by-side audit: `pure` vs `xor_driven`
+- `sweep_pure_cnot.py`
+  - parameter sweep for pure mode (multi-seed)
+- `cnot_report_table.py`
+  - JSON -> markdown table for report output
 
-## Physics Constraints
+## Core Constraints
 
 - Anchor frequency is immutable: `200.0 Hz`
-- Core mechanism is physical phase dynamics (coupling + synchronization), not transformer attention
+- Model is classical phase dynamics (coupling, synchronization, leakage)
+- This is quantum-inspired, not a quantum computer
 
 ## Install
 
@@ -20,40 +30,46 @@ This repo is intentionally minimal and public-safe. It contains:
 python -m pip install -r requirements.txt
 ```
 
-## Run
+## Quick Start
 
-### 1) Pure phase CNOT PoC (unstable)
+### 1) Pure phase mode (research, unstable)
 
 ```bash
-python3 reservoir_phase_cnot_pure.py --seed 42 --eval-seeds 20 --out-json results/cnot_pure_report.json
+python3 reservoir_phase_cnot_pure.py \
+  --seed 42 \
+  --eval-seeds 20 \
+  --out-json results/cnot_pure_report.json
 ```
 
-Interpretation:
-- proof-of-concept only
-- usually `~1-2/4` cases correct across seeds (current reference run: mean 1.5/4)
-
-### 2) RC + RLS CNOT (stable)
+### 2) Phase reservoir + RLS (stable CNOT mapping)
 
 ```bash
 python3 cnot_rls.py --seed 42 --out-json results/cnot_rls_report.json
 python3 cnot_report_table.py --in-json results/cnot_rls_report.json --out-md results/cnot_rls_table.md
 ```
 
-Expected:
-- `score=4/4`
-- markdown table in `results/cnot_rls_table.md`
+### 3) Audit both variants on the same parameters
+
+```bash
+python3 cnot_variant_audit.py --eval-seeds 50 --out-json results/cnot_variant_audit.json
+```
 
 ## Tests
 
 ```bash
-pytest -q test_cnot_rls.py
+pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 ```
 
-## Notes
+## Current Findings
 
-This is a quantum-inspired classical system with continuous phase states, not a quantum computer.
+- Pure mode can show phase-coherent conditional behavior, but is not reliably 4/4 across seeds.
+- RLS readout on top of phase reservoir gives stable, reproducible 4/4 CNOT truth-table output.
+- Practical takeaway: use pure mode for dynamics research, RLS mode for stable execution.
 
-Latest pure-sweep result (`results/pure_cnot_sweep.json`):
-- 120 parameter trials, 60 seeds per trial, 600 steps
-- best pure configuration reached `pass_rate_4of4 = 0.083` (8.3%), far below 95%
-- conclusion: stable full CNOT currently requires readout learning (RLS) in this setup
+## Output Files
+
+- `results/cnot_pure_report.json`
+- `results/cnot_rls_report.json`
+- `results/cnot_rls_table.md`
+- `results/cnot_variant_audit.json`
+- `results/pure_cnot_sweep.json`
