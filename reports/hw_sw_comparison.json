@@ -1,0 +1,17 @@
+{
+  "rows": [
+    {
+      "problem": "maxcut",
+      "method": "hw_rc_anchor",
+      "hw_quality_mean": 0.0,
+      "sw_quality_mean": 8.87046472233135,
+      "quality_delta_hw_minus_sw": -8.87046472233135,
+      "hw_time_mean_s": 0.0,
+      "sw_time_mean_s": 1.045360401752987,
+      "time_ratio_hw_over_sw": 0.0,
+      "hw_energy_mean_j": 0.0,
+      "sw_energy_mean_j": 15.680406026294804,
+      "energy_ratio_hw_over_sw": 0.0
+    }
+  ]
+}

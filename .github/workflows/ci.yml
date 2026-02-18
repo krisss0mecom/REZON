@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pytest numpy scipy
+      - name: Unit tests
+        run: |
+          pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
+      - name: Benchmark smoke
+        run: |
+          python bench/standard_suite.py --instances 2 --seeds 2 --fast-mode 1 --out-json reports/ci_standard_suite.json --out-md reports/ci_standard_suite.md
+          python bench/topk_ranker_wrapper.py --keys 4096 --k 128 --out reports/ci_topk.txt

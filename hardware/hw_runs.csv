@@ -1,0 +1,2 @@
+timestamp_utc,instance_id,problem,seed,method,quality,runtime_s,power_w,energy_j,stability_tag
+2026-02-18T12:00:00Z,0,maxcut,0,hw_rc_anchor,0.0,0.0,0.0,0.0,stable

@@ -23,6 +23,7 @@ Lightweight experiments in phase-reservoir dynamics for CNOT-like behavior.
 - Anchor frequency is immutable: `200.0 Hz`
 - Model is classical phase dynamics (coupling, synchronization, leakage)
 - This is quantum-inspired, not a quantum computer
+- Claim scope: **quantum-inspired analog search heuristic**, not QC replacement
 
 ## Install
 
@@ -119,6 +120,35 @@ python3 benchmark_encrypted_folder_autorc.py \
   --out-md reports/encrypted_folder_autorc_benchmark.md
 ```
 
+### 10) Standard instances suite (QUBO / Max-Cut / SAT + ablation + stats)
+
+```bash
+python3 bench/standard_suite.py \
+  --instances 6 \
+  --seeds 6 \
+  --out-json reports/standard_suite_report.json \
+  --out-md reports/standard_suite_report.md
+```
+
+### 11) Top-K C++ ranking (no full sort)
+
+```bash
+python3 bench/topk_ranker_wrapper.py --keys 65536 --k 1024 --out reports/topk_ranker_smoke.txt
+```
+
+### 12) Hardware protocol (80 oscillators)
+
+```bash
+# Read protocol:
+cat hardware/HARDWARE_PROTOCOL.md
+
+# Fill hardware/hw_runs.csv from template and compare:
+python3 hardware/compare_hw_sw.py \
+  --sw reports/standard_suite_report.json \
+  --hw hardware/hw_runs.csv \
+  --out reports/hw_sw_comparison.json
+```
+
 ## Tests
 
 ```bash
@@ -165,3 +195,6 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/encrypted_samples/`
 - `reports/encrypted_folder_autorc_benchmark.json`
 - `reports/encrypted_folder_autorc_benchmark.md`
+- `reports/standard_suite_report.json`
+- `reports/standard_suite_report.md`
+- `reports/hw_sw_comparison.json`
