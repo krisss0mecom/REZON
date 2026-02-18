@@ -1,0 +1,99 @@
+{
+  "config": {
+    "bits": [
+      8,
+      10,
+      12,
+      14,
+      16
+    ],
+    "reps": 3
+  },
+  "rows": [
+    {
+      "bits": 8,
+      "keyspace": 256,
+      "reps": 3,
+      "keys_tested": [
+        51,
+        128,
+        204
+      ],
+      "bruteforce_avg_attempts": 128.66666666666666,
+      "rc_autonomous_avg_attempts": 1.0,
+      "attempt_gain_x": 128.66666666666666,
+      "bruteforce_avg_time_s": 0.0014149213287358482,
+      "rc_autonomous_avg_time_s": 0.10882834267492096,
+      "time_gain_x": 0.013001404725626782,
+      "grover_ideal_queries": 16.0
+    },
+    {
+      "bits": 10,
+      "keyspace": 1024,
+      "reps": 3,
+      "keys_tested": [
+        204,
+        512,
+        819
+      ],
+      "bruteforce_avg_attempts": 512.6666666666666,
+      "rc_autonomous_avg_attempts": 1.0,
+      "attempt_gain_x": 512.6666666666666,
+      "bruteforce_avg_time_s": 0.0031741943676024675,
+      "rc_autonomous_avg_time_s": 0.43143477065799135,
+      "time_gain_x": 0.0073572984457451794,
+      "grover_ideal_queries": 32.0
+    },
+    {
+      "bits": 12,
+      "keyspace": 4096,
+      "reps": 3,
+      "keys_tested": [
+        819,
+        2048,
+        3276
+      ],
+      "bruteforce_avg_attempts": 2048.6666666666665,
+      "rc_autonomous_avg_attempts": 1.6666666666666667,
+      "attempt_gain_x": 1229.1999999999998,
+      "bruteforce_avg_time_s": 0.010290436330251396,
+      "rc_autonomous_avg_time_s": 1.7253396566569184,
+      "time_gain_x": 0.005964295952131839,
+      "grover_ideal_queries": 64.0
+    },
+    {
+      "bits": 14,
+      "keyspace": 16384,
+      "reps": 3,
+      "keys_tested": [
+        3276,
+        8192,
+        13107
+      ],
+      "bruteforce_avg_attempts": 8192.666666666666,
+      "rc_autonomous_avg_attempts": 5.0,
+      "attempt_gain_x": 1638.5333333333333,
+      "bruteforce_avg_time_s": 0.039250551645333566,
+      "rc_autonomous_avg_time_s": 6.7985853573385,
+      "time_gain_x": 0.005773341008797647,
+      "grover_ideal_queries": 128.0
+    },
+    {
+      "bits": 16,
+      "keyspace": 65536,
+      "reps": 3,
+      "keys_tested": [
+        13107,
+        32768,
+        52428
+      ],
+      "bruteforce_avg_attempts": 32768.666666666664,
+      "rc_autonomous_avg_attempts": 31.333333333333332,
+      "attempt_gain_x": 1045.8085106382978,
+      "bruteforce_avg_time_s": 0.1558287419999639,
+      "rc_autonomous_avg_time_s": 27.421573690662626,
+      "time_gain_x": 0.00568270602401734,
+      "grover_ideal_queries": 256.0
+    }
+  ]
+}

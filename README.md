@@ -109,6 +109,16 @@ python3 benchmark_encrypted_folder_sim.py \
   --out-md reports/encrypted_folder_sim_benchmark.md
 ```
 
+### 9) Autonomous RC key ordering (no user candidate list)
+
+```bash
+python3 benchmark_encrypted_folder_autorc.py \
+  --bits 8,10,12,14,16 \
+  --reps 3 \
+  --out-json reports/encrypted_folder_autorc_benchmark.json \
+  --out-md reports/encrypted_folder_autorc_benchmark.md
+```
+
 ## Tests
 
 ```bash
@@ -131,6 +141,8 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
   (measured speedups in generated report).
 - Synthetic encrypted-folder benchmark confirms the same tradeoff on archive recovery:
   phase-guided ordering can reduce attempts strongly, while full ranking overhead can still dominate wall-clock time.
+- Autonomous RC variant (no manual candidate list) also reduces attempts strongly in this synthetic setup,
+  but runtime remains slower than brute-force due to full-space scoring overhead.
 
 ## Output Files
 
@@ -151,3 +163,5 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/encrypted_folder_sim_benchmark.json`
 - `reports/encrypted_folder_sim_benchmark.md`
 - `reports/encrypted_samples/`
+- `reports/encrypted_folder_autorc_benchmark.json`
+- `reports/encrypted_folder_autorc_benchmark.md`
