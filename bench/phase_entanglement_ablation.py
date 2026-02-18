@@ -149,6 +149,11 @@ def best_phase_partition_with_rounding(W, phi, psi_steps=16):
     best_q = -math.inf
     best_x = None
 
+    # Graph-aware phase lifting:
+    # score = base_phase + gamma * (W @ base_phase),
+    # then sign(score) produces candidate partition.
+    gamma = 0.15
+
     # Three lightweight roundings: cos(phi+psi), sin(phi+psi), cos(2phi+psi)
     bases = [
         np.cos(phi)[None, :] * np.cos(psis)[:, None] - np.sin(phi)[None, :] * np.sin(psis)[:, None],
@@ -157,7 +162,9 @@ def best_phase_partition_with_rounding(W, phi, psi_steps=16):
     ]
 
     for B in bases:
-        X = np.where(B >= 0.0, 1.0, -1.0).astype(np.float64)
+        BW = B @ W
+        S = B + gamma * BW
+        X = np.where(S >= 0.0, 1.0, -1.0).astype(np.float64)
         WX = X @ W
         quad = np.einsum("bi,bi->b", WX, X)
         cuts = 0.25 * (total_w - quad)
@@ -170,6 +177,30 @@ def best_phase_partition_with_rounding(W, phi, psi_steps=16):
     x_refined, _ = one_flip_local_search(W, best_x)
     q_refined = eval_maxcut(W, x_refined)
     return x_refined, float(q_refined)
+
+
+def focused_subspace_search(W, x_seed, rng, pool=40, iters=24, flip_k=3):
+    """Refine around uncertain nodes (small |field|) with short stochastic search."""
+    x_best = np.asarray(x_seed, dtype=np.float64).copy()
+    q_best = eval_maxcut(W, x_best)
+    n = x_best.shape[0]
+    h = W @ x_best
+    pool = int(max(8, min(pool, n)))
+    uncertain = np.argsort(np.abs(h))[:pool]
+
+    for _ in range(max(0, int(iters))):
+        x_try = x_best.copy()
+        k = int(max(1, min(flip_k, pool)))
+        idx = rng.choice(uncertain, size=k, replace=False)
+        x_try[idx] *= -1.0
+        x_try, _ = one_flip_local_search(W, x_try)
+        q_try = eval_maxcut(W, x_try)
+        if q_try > q_best:
+            x_best = x_try
+            q_best = q_try
+            h = W @ x_best
+            uncertain = np.argsort(np.abs(h))[:pool]
+    return x_best, float(q_best)
 
 
 def phase_biased_multistart_ls(W, x_seed, rng, starts=6, flip_p=0.04):
@@ -186,6 +217,7 @@ def phase_biased_multistart_ls(W, x_seed, rng, starts=6, flip_p=0.04):
         if q1 > best_q:
             best_q = q1
             best_x = x1
+    best_x, best_q = focused_subspace_search(W, best_x, rng, pool=40, iters=24, flip_k=3)
     return best_x, float(best_q)
 
 

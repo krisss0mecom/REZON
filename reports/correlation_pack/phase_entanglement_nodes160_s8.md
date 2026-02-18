@@ -10,9 +10,9 @@ Claim boundary: proxy metrics on classical phase dynamics (not quantum entanglem
 | mutual_info | 2.093015 | 0.497846 | [1.937879, 2.258432] | 6.567e-28 |
 | bipartition_entropy | 2.040570 | 0.491343 | [1.887128, 2.203782] | 3.904e-31 |
 | chsh_proxy | 0.621904 | 0.209531 | [0.551136, 0.690973] | 0.001858 |
-| quality | 1.224624 | 0.004289 | [1.223249, 1.225922] | 0.8802 |
-| quality_vs_ls_baseline | 1.002709 | 0.003302 | [1.001740, 1.003774] | 9.768e-06 |
-| phase_gap | 148.664909 | 2.599869 | [147.864947, 149.442871] | 0 |
+| quality | 1.227209 | 0.004713 | [1.225673, 1.228823] | 0.6958 |
+| quality_vs_ls_baseline | 1.004827 | 0.002426 | [1.004004, 1.005684] | 8.584e-17 |
+| phase_gap | 150.382655 | 2.806302 | [149.471643, 151.315453] | 0 |
 
 ## Notes
 - `chsh_proxy` is CHSH-like classical proxy, not QM Bell test.

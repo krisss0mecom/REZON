@@ -6,52 +6,52 @@ Scope: classical proxy metrics vs Max-Cut quality proxy.
 
 | metric | pearson r | pearson p | spearman r | spearman p |
 |---|---:|---:|---:|---:|
-| pairwise_correlation | 0.2292 | 0.1787 | 0.2136 | 0.2109 |
-| mutual_info | -0.2539 | 0.1351 | -0.1786 | 0.2972 |
-| bipartition_entropy | -0.2540 | 0.135 | -0.1956 | 0.2529 |
-| chsh_proxy | 0.2217 | 0.1939 | 0.2301 | 0.177 |
+| pairwise_correlation | 0.0310 | 0.8575 | -0.0337 | 0.8452 |
+| mutual_info | -0.0724 | 0.6749 | 0.0878 | 0.6107 |
+| bipartition_entropy | -0.0723 | 0.6754 | 0.0754 | 0.662 |
+| chsh_proxy | 0.1391 | 0.4186 | 0.1864 | 0.2765 |
 
 ## phase_entanglement_nodes160_s8.json
 
 | metric | pearson r | pearson p | spearman r | spearman p |
 |---|---:|---:|---:|---:|
-| pairwise_correlation | 0.0031 | 0.9857 | 0.0046 | 0.9786 |
-| mutual_info | -0.0033 | 0.9846 | 0.0528 | 0.7599 |
-| bipartition_entropy | -0.0014 | 0.9934 | 0.0468 | 0.7862 |
-| chsh_proxy | -0.1386 | 0.4201 | -0.1408 | 0.4127 |
+| pairwise_correlation | -0.1543 | 0.3689 | -0.2018 | 0.2379 |
+| mutual_info | 0.1468 | 0.393 | 0.1946 | 0.2554 |
+| bipartition_entropy | 0.1450 | 0.3989 | 0.1838 | 0.2833 |
+| chsh_proxy | -0.1169 | 0.497 | -0.1521 | 0.3758 |
 
 ## phase_entanglement_nodes320_s8.json
 
 | metric | pearson r | pearson p | spearman r | spearman p |
 |---|---:|---:|---:|---:|
-| pairwise_correlation | -0.2728 | 0.1075 | -0.2654 | 0.1178 |
-| mutual_info | 0.3159 | 0.06055 | 0.2801 | 0.09807 |
-| bipartition_entropy | 0.3175 | 0.0592 | 0.3233 | 0.05444 |
-| chsh_proxy | -0.2937 | 0.08216 | -0.3272 | 0.05146 |
+| pairwise_correlation | -0.3373 | 0.04423 | -0.3403 | 0.04229 |
+| mutual_info | 0.3514 | 0.03559 | 0.3037 | 0.07172 |
+| bipartition_entropy | 0.3517 | 0.03544 | 0.3310 | 0.04861 |
+| chsh_proxy | -0.2832 | 0.09419 | -0.2728 | 0.1074 |
 
 ## phase_entanglement_nodes640_s8.json
 
 | metric | pearson r | pearson p | spearman r | spearman p |
 |---|---:|---:|---:|---:|
-| pairwise_correlation | 0.2677 | 0.1144 | 0.2999 | 0.07559 |
-| mutual_info | -0.1866 | 0.276 | -0.3019 | 0.07351 |
-| bipartition_entropy | -0.1879 | 0.2725 | -0.2996 | 0.07585 |
-| chsh_proxy | 0.0545 | 0.7521 | -0.0613 | 0.7226 |
+| pairwise_correlation | -0.0931 | 0.5893 | -0.0147 | 0.9323 |
+| mutual_info | 0.1502 | 0.382 | 0.0674 | 0.6959 |
+| bipartition_entropy | 0.1503 | 0.3815 | 0.0597 | 0.7294 |
+| chsh_proxy | -0.1776 | 0.3001 | -0.2054 | 0.2294 |
 
 ## phase_entanglement_nodes80_s8.json
 
 | metric | pearson r | pearson p | spearman r | spearman p |
 |---|---:|---:|---:|---:|
-| pairwise_correlation | 0.4325 | 0.008424 | 0.4757 | 0.003366 |
-| mutual_info | -0.4224 | 0.01028 | -0.3839 | 0.02079 |
-| bipartition_entropy | -0.4170 | 0.0114 | -0.3871 | 0.01967 |
-| chsh_proxy | 0.0989 | 0.566 | 0.1936 | 0.258 |
+| pairwise_correlation | 0.5388 | 0.000698 | 0.5588 | 0.0003965 |
+| mutual_info | -0.5394 | 0.0006862 | -0.4531 | 0.005524 |
+| bipartition_entropy | -0.5338 | 0.0008009 | -0.4592 | 0.004844 |
+| chsh_proxy | 0.1912 | 0.264 | 0.2378 | 0.1625 |
 
 ## Aggregate
 
 | metric | pearson r | spearman r |
 |---|---:|---:|
-| pairwise_correlation | 0.3321 | 0.3248 |
-| mutual_info | -0.3572 | -0.3424 |
-| bipartition_entropy | -0.4045 | -0.3849 |
-| chsh_proxy | -0.0146 | 0.0079 |
+| pairwise_correlation | 0.3322 | 0.2963 |
+| mutual_info | -0.3587 | -0.3153 |
+| bipartition_entropy | -0.4059 | -0.3580 |
+| chsh_proxy | -0.0125 | -0.0009 |
