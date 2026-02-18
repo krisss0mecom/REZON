@@ -174,6 +174,18 @@ python3 bench/phase_guided_two_stage.py \
 ./stop_runs.sh
 ```
 
+### 16) Phase-entanglement-like proxy metrics (ablation)
+
+```bash
+python3 bench/phase_entanglement_ablation.py \
+  --seeds 8 \
+  --nodes 80 \
+  --warmup 120 \
+  --steps 240 \
+  --out-json reports/phase_entanglement_report.json \
+  --out-md reports/phase_entanglement_report.md
+```
+
 ### 12) Hardware protocol (80 oscillators)
 
 ```bash
@@ -213,6 +225,7 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
   but runtime remains slower than brute-force due to full-space scoring overhead.
 - Standard suite now supports `1000` oscillators with explicit warmup (`--rc-nodes`, `--rc-warmup-steps`).
 - Two-stage ranking (coarse-to-fine) is included to reduce full-ranking overhead.
+- Entanglement-like metrics are implemented as classical proxy signals (not quantum entanglement proof).
 
 ## Output Files
 
@@ -243,3 +256,5 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/public_dataset_benchmark.json`
 - `reports/two_stage_phase_guided.json`
 - `reports/two_stage_phase_guided.md`
+- `reports/phase_entanglement_report.json`
+- `reports/phase_entanglement_report.md`
