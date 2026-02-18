@@ -66,6 +66,16 @@ python3 benchmark_rezon_proof.py \
   --out-md reports/rezon_proof_benchmark.md
 ```
 
+### 5) QC-like decryption benchmark (key search)
+
+```bash
+python3 benchmark_qc_like_decrypt.py \
+  --bits 8,10,12,14,16,18,20,22,24 \
+  --known-len 10 \
+  --out-json reports/qc_like_decrypt_benchmark.json \
+  --out-md reports/qc_like_decrypt_benchmark.md
+```
+
 ## Tests
 
 ```bash
@@ -80,6 +90,8 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - Latest proof benchmark confirms this trend:
   - `pure`: low 4/4 reliability across seeds,
   - `xor_driven` and `RLS`: substantially higher stability on the same truth-table task.
+- QC-like decryption benchmark shows classical brute-force scaling with keyspace size (`O(N)`)
+  and provides a Grover-query reference (`sqrt(N)`) as a theoretical lower-bound comparator.
 
 ## Output Files
 
@@ -90,3 +102,5 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `results/pure_cnot_sweep.json`
 - `reports/rezon_proof_benchmark.json`
 - `reports/rezon_proof_benchmark.md`
+- `reports/qc_like_decrypt_benchmark.json`
+- `reports/qc_like_decrypt_benchmark.md`

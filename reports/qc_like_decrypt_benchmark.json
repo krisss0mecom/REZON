@@ -1,0 +1,209 @@
+{
+  "config": {
+    "bits": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24
+    ],
+    "known_len": 10
+  },
+  "rows": [
+    {
+      "bits": 8,
+      "keyspace": 256,
+      "reps": 20,
+      "keys_tested": [
+        12,
+        24,
+        36,
+        48,
+        60,
+        73,
+        85,
+        97,
+        109,
+        121,
+        134,
+        146,
+        158,
+        170,
+        182,
+        195,
+        207,
+        219,
+        231,
+        243
+      ],
+      "classical_avg_attempts": 128.5,
+      "classical_avg_time_s": 0.0001968872995348647,
+      "grover_ideal_queries": 16.0,
+      "query_ratio_classical_to_grover": 8.03125
+    },
+    {
+      "bits": 10,
+      "keyspace": 1024,
+      "reps": 20,
+      "keys_tested": [
+        48,
+        97,
+        146,
+        195,
+        243,
+        292,
+        341,
+        390,
+        438,
+        487,
+        536,
+        585,
+        633,
+        682,
+        731,
+        780,
+        828,
+        877,
+        926,
+        975
+      ],
+      "classical_avg_attempts": 512.5,
+      "classical_avg_time_s": 0.0007379205897450447,
+      "grover_ideal_queries": 32.0,
+      "query_ratio_classical_to_grover": 16.015625
+    },
+    {
+      "bits": 12,
+      "keyspace": 4096,
+      "reps": 20,
+      "keys_tested": [
+        195,
+        390,
+        585,
+        780,
+        975,
+        1170,
+        1365,
+        1560,
+        1755,
+        1950,
+        2145,
+        2340,
+        2535,
+        2730,
+        2925,
+        3120,
+        3315,
+        3510,
+        3705,
+        3900
+      ],
+      "classical_avg_attempts": 2048.5,
+      "classical_avg_time_s": 0.0029077202460030096,
+      "grover_ideal_queries": 64.0,
+      "query_ratio_classical_to_grover": 32.0078125
+    },
+    {
+      "bits": 14,
+      "keyspace": 16384,
+      "reps": 10,
+      "keys_tested": [
+        1489,
+        2978,
+        4468,
+        5957,
+        7447,
+        8936,
+        10426,
+        11915,
+        13405,
+        14894
+      ],
+      "classical_avg_attempts": 8192.5,
+      "classical_avg_time_s": 0.011629549704957753,
+      "grover_ideal_queries": 128.0,
+      "query_ratio_classical_to_grover": 64.00390625
+    },
+    {
+      "bits": 16,
+      "keyspace": 65536,
+      "reps": 10,
+      "keys_tested": [
+        5957,
+        11915,
+        17873,
+        23831,
+        29789,
+        35746,
+        41704,
+        47662,
+        53620,
+        59578
+      ],
+      "classical_avg_attempts": 32768.5,
+      "classical_avg_time_s": 0.04657818111591041,
+      "grover_ideal_queries": 256.0,
+      "query_ratio_classical_to_grover": 128.001953125
+    },
+    {
+      "bits": 18,
+      "keyspace": 262144,
+      "reps": 4,
+      "keys_tested": [
+        39321,
+        91750,
+        170393,
+        222822
+      ],
+      "classical_avg_attempts": 131072.5,
+      "classical_avg_time_s": 0.18666538674733602,
+      "grover_ideal_queries": 512.0,
+      "query_ratio_classical_to_grover": 256.0009765625
+    },
+    {
+      "bits": 20,
+      "keyspace": 1048576,
+      "reps": 4,
+      "keys_tested": [
+        157286,
+        367001,
+        681574,
+        891289
+      ],
+      "classical_avg_attempts": 524288.5,
+      "classical_avg_time_s": 0.7602759922738187,
+      "grover_ideal_queries": 1024.0,
+      "query_ratio_classical_to_grover": 512.00048828125
+    },
+    {
+      "bits": 22,
+      "keyspace": 4194304,
+      "reps": 2,
+      "keys_tested": [
+        1258291,
+        2936012
+      ],
+      "classical_avg_attempts": 2097152.5,
+      "classical_avg_time_s": 3.033818219497334,
+      "grover_ideal_queries": 2048.0,
+      "query_ratio_classical_to_grover": 1024.000244140625
+    },
+    {
+      "bits": 24,
+      "keyspace": 16777216,
+      "reps": 2,
+      "keys_tested": [
+        5033164,
+        11744051
+      ],
+      "classical_avg_attempts": 8388608.5,
+      "classical_avg_time_s": 12.009577525983332,
+      "grover_ideal_queries": 4096.0,
+      "query_ratio_classical_to_grover": 2048.0001220703125
+    }
+  ]
+}
