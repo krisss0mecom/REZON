@@ -238,6 +238,30 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - Entanglement-like metrics are implemented as classical proxy signals (not quantum entanglement proof).
 - Correlation pack is included to test whether proxy metrics translate into task quality.
 
+## Latest Max-Cut Snapshot (s8)
+
+Pipeline used: phase dynamics + graph-aware phase rounding + phase-biased local search.
+
+`quality_vs_ls_baseline` interpretation:
+- `> 1.0`: better than strong LS baseline
+- `= 1.0`: parity
+- `< 1.0`: worse
+
+| Nodes | quality_vs_simple_baseline | quality_vs_ls_baseline |
+|---:|---:|---:|
+| 80 | 1.2990 | 0.9994 |
+| 160 | 1.2272 | 1.0048 |
+| 320 | 1.1702 | 1.0032 |
+| 640 | 1.1239 | 1.0017 |
+| 1000 | 1.1012 | 1.0014 |
+
+Source files:
+- `reports/correlation_pack/phase_entanglement_nodes80_s8.json`
+- `reports/correlation_pack/phase_entanglement_nodes160_s8.json`
+- `reports/correlation_pack/phase_entanglement_nodes320_s8.json`
+- `reports/correlation_pack/phase_entanglement_nodes640_s8.json`
+- `reports/correlation_pack/phase_entanglement_nodes1000_s8.json`
+
 ## Output Files
 
 - `results/cnot_pure_report.json`

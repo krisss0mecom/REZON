@@ -1,167 +1,167 @@
 {
   "per_run": [
     {
-      "run_name": "phase_entanglement_nodes1000_s8.json",
+      "run_name": "phase_entanglement_nodes1000_s16.json",
       "correlations": {
         "pairwise_correlation": {
-          "pearson_r": 0.03100360455253045,
-          "pearson_p": 0.8575454491142676,
-          "spearman_r": -0.03371943371943372,
-          "spearman_p": 0.8452114484003364
+          "pearson_r": 0.0015623582123632518,
+          "pearson_p": 0.9927845802819538,
+          "spearman_r": -0.10990990990990991,
+          "spearman_p": 0.5233930887934501
         },
         "mutual_info": {
-          "pearson_r": -0.07237759412586914,
-          "pearson_p": 0.6748576839506436,
-          "spearman_r": 0.08777348777348778,
-          "spearman_p": 0.6107247791689532
+          "pearson_r": -0.05285261400625919,
+          "pearson_p": 0.759499465664575,
+          "spearman_r": 0.09395109395109397,
+          "spearman_p": 0.5857395259429637
         },
         "bipartition_entropy": {
-          "pearson_r": -0.07225118923257261,
-          "pearson_p": 0.6753944904681727,
-          "spearman_r": 0.07541827541827544,
-          "spearman_p": 0.6619928909754593
+          "pearson_r": -0.05281503437389047,
+          "pearson_p": 0.7596654302089244,
+          "spearman_r": 0.08751608751608753,
+          "spearman_p": 0.6117755602203854
         },
         "chsh_proxy": {
-          "pearson_r": 0.13905367677317435,
-          "pearson_p": 0.41861984062144764,
-          "spearman_r": 0.18635778635778638,
-          "spearman_p": 0.27648321840469375
+          "pearson_r": 0.13121535435144605,
+          "pearson_p": 0.44557414075473906,
+          "spearman_r": 0.19510939510939512,
+          "spearman_p": 0.2541434563340792
         }
       }
     },
     {
-      "run_name": "phase_entanglement_nodes160_s8.json",
+      "run_name": "phase_entanglement_nodes160_s16.json",
       "correlations": {
         "pairwise_correlation": {
-          "pearson_r": -0.15429888610151662,
-          "pearson_p": 0.36890940703207503,
-          "spearman_r": -0.20180180180180182,
-          "spearman_p": 0.23789291964959355
+          "pearson_r": -0.07083576304200359,
+          "pearson_p": 0.6814161303391297,
+          "spearman_r": -0.05173745173745174,
+          "spearman_p": 0.7644288749478402
         },
         "mutual_info": {
-          "pearson_r": 0.14676792343397352,
-          "pearson_p": 0.39301154156980234,
-          "spearman_r": 0.1945945945945946,
-          "spearman_p": 0.25542331787145256
+          "pearson_r": 0.07138108681522444,
+          "pearson_p": 0.6790938413126928,
+          "spearman_r": 0.12483912483912483,
+          "spearman_p": 0.46817883801884397
         },
         "bipartition_entropy": {
-          "pearson_r": 0.1449762337240779,
-          "pearson_p": 0.39887688812758676,
-          "spearman_r": 0.1837837837837838,
-          "spearman_p": 0.2832897009715987
+          "pearson_r": 0.06935124715576552,
+          "pearson_p": 0.687752588065301,
+          "spearman_r": 0.06795366795366796,
+          "spearman_p": 0.6937371763828443
         },
         "chsh_proxy": {
-          "pearson_r": -0.11694179411513476,
-          "pearson_p": 0.4969956063726107,
-          "spearman_r": -0.15212355212355214,
-          "spearman_p": 0.37577938060785987
+          "pearson_r": -0.018400487720150963,
+          "pearson_p": 0.9151733663104865,
+          "spearman_r": -0.054568854568854575,
+          "spearman_p": 0.7519313401584009
         }
       }
     },
     {
-      "run_name": "phase_entanglement_nodes320_s8.json",
+      "run_name": "phase_entanglement_nodes320_s16.json",
       "correlations": {
         "pairwise_correlation": {
-          "pearson_r": -0.33731883107831095,
-          "pearson_p": 0.04423220507749101,
-          "spearman_r": -0.34028314028314033,
-          "spearman_p": 0.042285956593047846
+          "pearson_r": 0.0727523978026927,
+          "pearson_p": 0.6732669261743492,
+          "spearman_r": 0.04890604890604891,
+          "spearman_p": 0.7769852884778079
         },
         "mutual_info": {
-          "pearson_r": 0.3514009727610827,
-          "pearson_p": 0.035593521701186785,
-          "spearman_r": 0.30373230373230375,
-          "spearman_p": 0.07171984646451031
+          "pearson_r": -0.03287093214733412,
+          "pearson_p": 0.8490611891604577,
+          "spearman_r": -0.11866151866151867,
+          "spearman_p": 0.4906446326689292
         },
         "bipartition_entropy": {
-          "pearson_r": 0.35167138037249246,
-          "pearson_p": 0.035442193263859695,
-          "spearman_r": 0.331016731016731,
-          "spearman_p": 0.04860992272612086
+          "pearson_r": -0.03407880954883052,
+          "pearson_p": 0.8435819808228674,
+          "spearman_r": -0.11480051480051481,
+          "spearman_p": 0.5049614567750784
         },
         "chsh_proxy": {
-          "pearson_r": -0.2831977328033403,
-          "pearson_p": 0.09419349531341403,
-          "spearman_r": -0.2728442728442729,
-          "spearman_p": 0.10739656103646811
+          "pearson_r": 0.0823187687706641,
+          "pearson_p": 0.6331534673732936,
+          "spearman_r": 0.10244530244530246,
+          "spearman_p": 0.5521465174318699
         }
       }
     },
     {
-      "run_name": "phase_entanglement_nodes640_s8.json",
+      "run_name": "phase_entanglement_nodes640_s16.json",
       "correlations": {
         "pairwise_correlation": {
-          "pearson_r": -0.09305843665353654,
-          "pearson_p": 0.589321730166546,
-          "spearman_r": -0.014671814671814673,
-          "spearman_p": 0.9323181736646404
+          "pearson_r": 0.12250809109561639,
+          "pearson_p": 0.47659144584738267,
+          "spearman_r": 0.19099099099099098,
+          "spearman_p": 0.2645020558178085
         },
         "mutual_info": {
-          "pearson_r": 0.15016090458416606,
-          "pearson_p": 0.38204192633634637,
-          "spearman_r": 0.06743886743886744,
-          "spearman_p": 0.6959462380344117
+          "pearson_r": -0.11154634250840535,
+          "pearson_p": 0.5171892430758014,
+          "spearman_r": -0.17323037323037324,
+          "spearman_p": 0.31232023093204064
         },
         "bipartition_entropy": {
-          "pearson_r": 0.15034066950114475,
-          "pearson_p": 0.3814657909738994,
-          "spearman_r": 0.059716859716859715,
-          "spearman_p": 0.7293689590149803
+          "pearson_r": -0.11113322277642033,
+          "pearson_p": 0.5187519736480039,
+          "spearman_r": -0.18841698841698845,
+          "spearman_p": 0.27111535224058275
         },
         "chsh_proxy": {
-          "pearson_r": -0.17758034201780482,
-          "pearson_p": 0.30013530104403197,
-          "spearman_r": -0.20540540540540542,
-          "spearman_p": 0.22943954274413192
+          "pearson_r": 0.028947897151582955,
+          "pearson_p": 0.8669037932812917,
+          "spearman_r": 0.07438867438867439,
+          "spearman_p": 0.6663385871267641
         }
       }
     },
     {
-      "run_name": "phase_entanglement_nodes80_s8.json",
+      "run_name": "phase_entanglement_nodes80_s16.json",
       "correlations": {
         "pairwise_correlation": {
-          "pearson_r": 0.5388113896511422,
-          "pearson_p": 0.0006979908856175521,
-          "spearman_r": 0.5588159588159589,
-          "spearman_p": 0.0003965233898412667
+          "pearson_r": 0.44780108533868124,
+          "pearson_p": 0.006169030192970536,
+          "spearman_r": 0.31145431145431146,
+          "spearman_p": 0.06444805499788918
         },
         "mutual_info": {
-          "pearson_r": -0.5394344530092288,
-          "pearson_p": 0.0006861670856556793,
-          "spearman_r": -0.4530536079913735,
-          "spearman_p": 0.005524378625002373
+          "pearson_r": -0.3990289676178225,
+          "pearson_p": 0.015918913739709953,
+          "spearman_r": -0.30424710424710427,
+          "spearman_p": 0.07121592462430924
         },
         "bipartition_entropy": {
-          "pearson_r": -0.5337520892598357,
-          "pearson_p": 0.00080088944504915,
-          "spearman_r": -0.45920205920205925,
-          "spearman_p": 0.004844261152002383
+          "pearson_r": -0.3923640212455785,
+          "pearson_p": 0.017938024984876143,
+          "spearman_r": -0.2898326898326899,
+          "spearman_p": 0.08641015910990515
         },
         "chsh_proxy": {
-          "pearson_r": 0.19117112536345526,
-          "pearson_p": 0.2640432547686659,
-          "spearman_r": 0.23783783783783782,
-          "spearman_p": 0.1624731875847924
+          "pearson_r": 0.03132849334157672,
+          "pearson_p": 0.8560681495038512,
+          "spearman_r": 0.07696267696267697,
+          "spearman_p": 0.6554947221058658
         }
       }
     }
   ],
   "aggregate": {
     "pairwise_correlation": {
-      "pearson_r": 0.33218592558588383,
-      "spearman_r": 0.2963239606160684
+      "pearson_r": 0.21030711979560854,
+      "spearman_r": 0.24894183976871714
     },
     "mutual_info": {
-      "pearson_r": -0.3587421348891793,
-      "spearman_r": -0.3153370553294527
+      "pearson_r": -0.24946448774200727,
+      "spearman_r": -0.30413695895963866
     },
     "bipartition_entropy": {
-      "pearson_r": -0.40588295555751086,
-      "spearman_r": -0.3579801845735979
+      "pearson_r": -0.30992973999124973,
+      "spearman_r": -0.3530911447884194
     },
     "chsh_proxy": {
-      "pearson_r": -0.012530984444478303,
-      "spearman_r": -0.0008827432945461279
+      "pearson_r": -0.05263439352194649,
+      "spearman_r": 0.00713190736339599
     }
   }
 }
