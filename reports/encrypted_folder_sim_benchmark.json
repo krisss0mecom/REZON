@@ -1,0 +1,117 @@
+{
+  "config": {
+    "bits": [
+      8,
+      10,
+      12,
+      14,
+      16
+    ],
+    "reps": 3,
+    "top_k": 2048,
+    "sample_dir": "reports/encrypted_samples",
+    "note": "synthetic controlled benchmark only"
+  },
+  "rows": [
+    {
+      "bits": 8,
+      "keyspace": 256,
+      "reps": 3,
+      "keys_tested": [
+        51,
+        128,
+        204
+      ],
+      "sample_encrypted_file": "reports/encrypted_samples/sample_bits8.enc",
+      "bruteforce_avg_attempts": 128.66666666666666,
+      "phase_guided_avg_attempts": 1.0,
+      "attempt_gain_x": 128.66666666666666,
+      "bruteforce_avg_time_s": 0.0015289200042995315,
+      "phase_guided_avg_time_s": 0.019427701326397557,
+      "time_gain_x": 0.07869793644717495,
+      "phase_topk_hits": 3,
+      "phase_topk_hit_rate": 1.0,
+      "grover_ideal_queries": 16.0
+    },
+    {
+      "bits": 10,
+      "keyspace": 1024,
+      "reps": 3,
+      "keys_tested": [
+        204,
+        512,
+        819
+      ],
+      "sample_encrypted_file": "reports/encrypted_samples/sample_bits10.enc",
+      "bruteforce_avg_attempts": 512.6666666666666,
+      "phase_guided_avg_attempts": 3.6666666666666665,
+      "attempt_gain_x": 139.8181818181818,
+      "bruteforce_avg_time_s": 0.003044463674693058,
+      "phase_guided_avg_time_s": 0.07335482500881578,
+      "time_gain_x": 0.04150325045867363,
+      "phase_topk_hits": 3,
+      "phase_topk_hit_rate": 1.0,
+      "grover_ideal_queries": 32.0
+    },
+    {
+      "bits": 12,
+      "keyspace": 4096,
+      "reps": 3,
+      "keys_tested": [
+        819,
+        2048,
+        3276
+      ],
+      "sample_encrypted_file": "reports/encrypted_samples/sample_bits12.enc",
+      "bruteforce_avg_attempts": 2048.6666666666665,
+      "phase_guided_avg_attempts": 7.0,
+      "attempt_gain_x": 292.66666666666663,
+      "bruteforce_avg_time_s": 0.01026272535091266,
+      "phase_guided_avg_time_s": 0.29198236198863015,
+      "time_gain_x": 0.03514844280666615,
+      "phase_topk_hits": 3,
+      "phase_topk_hit_rate": 1.0,
+      "grover_ideal_queries": 64.0
+    },
+    {
+      "bits": 14,
+      "keyspace": 16384,
+      "reps": 3,
+      "keys_tested": [
+        3276,
+        8192,
+        13107
+      ],
+      "sample_encrypted_file": "reports/encrypted_samples/sample_bits14.enc",
+      "bruteforce_avg_attempts": 8192.666666666666,
+      "phase_guided_avg_attempts": 19.666666666666668,
+      "attempt_gain_x": 416.57627118644064,
+      "bruteforce_avg_time_s": 0.03885074099525809,
+      "phase_guided_avg_time_s": 1.144135332336494,
+      "time_gain_x": 0.03395642097331189,
+      "phase_topk_hits": 3,
+      "phase_topk_hit_rate": 1.0,
+      "grover_ideal_queries": 128.0
+    },
+    {
+      "bits": 16,
+      "keyspace": 65536,
+      "reps": 3,
+      "keys_tested": [
+        13107,
+        32768,
+        52428
+      ],
+      "sample_encrypted_file": "reports/encrypted_samples/sample_bits16.enc",
+      "bruteforce_avg_attempts": 32768.666666666664,
+      "phase_guided_avg_attempts": 197.33333333333334,
+      "attempt_gain_x": 166.05743243243242,
+      "bruteforce_avg_time_s": 0.15244957434091097,
+      "phase_guided_avg_time_s": 4.664200168665654,
+      "time_gain_x": 0.03268504112775334,
+      "phase_topk_hits": 3,
+      "phase_topk_hit_rate": 1.0,
+      "grover_ideal_queries": 256.0
+    }
+  ]
+}

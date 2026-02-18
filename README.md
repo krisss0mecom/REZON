@@ -98,6 +98,17 @@ g++ -O3 -march=native -std=c++17 -fopenmp benchmark_qc_like_phase_guided.cpp -o 
   --out-md reports/qc_like_phase_guided_benchmark_cpp.md
 ```
 
+### 8) Synthetic encrypted-folder recovery benchmark
+
+```bash
+python3 benchmark_encrypted_folder_sim.py \
+  --bits 8,10,12,14,16 \
+  --reps 3 \
+  --top-k 2048 \
+  --out-json reports/encrypted_folder_sim_benchmark.json \
+  --out-md reports/encrypted_folder_sim_benchmark.md
+```
+
 ## Tests
 
 ```bash
@@ -118,6 +129,8 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
   due to ranking overhead (important distinction: attempts vs time).
 - C++ implementation of phase-guided ranking significantly reduces overhead vs Python in this repo
   (measured speedups in generated report).
+- Synthetic encrypted-folder benchmark confirms the same tradeoff on archive recovery:
+  phase-guided ordering can reduce attempts strongly, while full ranking overhead can still dominate wall-clock time.
 
 ## Output Files
 
@@ -135,3 +148,6 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/qc_like_phase_guided_benchmark_cpp.json`
 - `reports/qc_like_phase_guided_benchmark_cpp.md`
 - `reports/qc_like_phase_guided_cpp_vs_python.md`
+- `reports/encrypted_folder_sim_benchmark.json`
+- `reports/encrypted_folder_sim_benchmark.md`
+- `reports/encrypted_samples/`
