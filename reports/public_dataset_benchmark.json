@@ -1,0 +1,15 @@
+{
+  "sources": {
+    "maxcut_gset_14": "https://web.stanford.edu/~yyye/yyye/Gset/G14",
+    "sat_uf20_01": "https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/UF20-91/uf20-01.cnf",
+    "qubo_example": "https://raw.githubusercontent.com/jtiosue/qubo/master/README.md"
+  },
+  "rows": [
+    {
+      "dataset": "Gset14",
+      "problem": "maxcut",
+      "no_rc": 275.0,
+      "rc_anchor_rls": 255.0
+    }
+  ]
+}

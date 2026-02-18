@@ -126,6 +126,8 @@ python3 benchmark_encrypted_folder_autorc.py \
 python3 bench/standard_suite.py \
   --instances 6 \
   --seeds 6 \
+  --rc-nodes 1000 \
+  --rc-warmup-steps 40 \
   --out-json reports/standard_suite_report.json \
   --out-md reports/standard_suite_report.md
 ```
@@ -134,6 +136,18 @@ python3 bench/standard_suite.py \
 
 ```bash
 python3 bench/topk_ranker_wrapper.py --keys 65536 --k 1024 --out reports/topk_ranker_smoke.txt
+```
+
+### 11b) Top-K CUDA (CUB/Thrust fallback)
+
+```bash
+python3 bench/topk_cuda_wrapper.py --keys 65536 --k 1024 --out reports/topk_cuda_smoke.txt
+```
+
+### 13) Public dataset runner (canonical benchmark sources)
+
+```bash
+python3 bench/public_dataset_runner.py --out-json reports/public_dataset_benchmark.json
 ```
 
 ### 12) Hardware protocol (80 oscillators)
@@ -173,6 +187,7 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
   phase-guided ordering can reduce attempts strongly, while full ranking overhead can still dominate wall-clock time.
 - Autonomous RC variant (no manual candidate list) also reduces attempts strongly in this synthetic setup,
   but runtime remains slower than brute-force due to full-space scoring overhead.
+- Standard suite now supports `1000` oscillators with explicit warmup (`--rc-nodes`, `--rc-warmup-steps`).
 
 ## Output Files
 
@@ -198,3 +213,6 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/standard_suite_report.json`
 - `reports/standard_suite_report.md`
 - `reports/hw_sw_comparison.json`
+- `reports/topk_cuda_smoke.txt`
+- `reports/cuda_topk_research.md`
+- `reports/public_dataset_benchmark.json`

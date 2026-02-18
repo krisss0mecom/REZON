@@ -19,11 +19,12 @@ ANCHOR_HZ = 200.0
 
 @dataclass
 class RCParams:
-    n_nodes: int = 24
+    n_nodes: int = 1000
     coupling: float = 1.8
     leak: float = 0.02
     anchor_amp: float = 0.4
     dt: float = 0.01
+    warmup_steps: int = 40
     steps: int = 24
     seed: int = 42
 
@@ -55,6 +56,8 @@ def paired_pvalue(a, b):
     a = np.asarray(a, dtype=np.float64)
     b = np.asarray(b, dtype=np.float64)
     if a.size != b.size or a.size == 0:
+        return math.nan
+    if a.size < 2:
         return math.nan
     if scipy_stats is not None:
         try:
@@ -205,9 +208,25 @@ def rc_score_vector(xv: np.ndarray, params: RCParams, use_anchor=True):
     W = W / (np.linalg.norm(W, axis=1, keepdims=True) + 1e-9)
     inb = W @ xv
     t = 0.0
+    # Warmup: settle reservoir dynamics before scoring readout.
+    # Use Kuramoto order-parameter form (O(N)) instead of dense pairwise O(N^2).
+    for _ in range(max(0, int(params.warmup_steps))):
+        z = np.mean(np.exp(1j * phi))
+        R = np.abs(z)
+        theta = np.angle(z)
+        dphi = params.coupling * R * np.sin(theta - phi)
+        if use_anchor:
+            ensure_anchor_immutable(ANCHOR_HZ)
+            dphi += params.anchor_amp * np.sin(2 * np.pi * ANCHOR_HZ * t - phi)
+        dphi += -params.leak * phi
+        phi = (phi + params.dt * dphi) % (2.0 * np.pi)
+        t += params.dt
+
     for _ in range(params.steps):
-        diff = phi[None, :] - phi[:, None]
-        dphi = params.coupling * np.mean(np.sin(diff), axis=1)
+        z = np.mean(np.exp(1j * phi))
+        R = np.abs(z)
+        theta = np.angle(z)
+        dphi = params.coupling * R * np.sin(theta - phi)
         if use_anchor:
             ensure_anchor_immutable(ANCHOR_HZ)
             dphi += params.anchor_amp * np.sin(2 * np.pi * ANCHOR_HZ * t - phi)
@@ -227,10 +246,16 @@ def rc_search_solver(
     use_rls=False,
     rls_steps=100,
     polish_steps=80,
+    rc_nodes=1000,
+    rc_warmup_steps=40,
 ):
     # candidate pool from random states + RC scoring, then local refine
     cands = []
-    params = RCParams(seed=int(rng.integers(0, 1_000_000)))
+    params = RCParams(
+        n_nodes=int(rc_nodes),
+        warmup_steps=int(rc_warmup_steps),
+        seed=int(rng.integers(0, 1_000_000)),
+    )
     for _ in range(budget):
         if domain == "pm1":
             x = rng.choice([-1.0, 1.0], size=n)
@@ -310,6 +335,8 @@ def solve_with_config(
     rc_budget: int,
     rc_polish_steps: int,
     rc_rls_steps: int,
+    rc_nodes: int,
+    rc_warmup_steps: int,
 ):
     cfg = ABLATIONS[cfg_name]
     if cfg["kind"] == "anneal":
@@ -324,10 +351,12 @@ def solve_with_config(
         use_rls=cfg.get("use_rls", False),
         rls_steps=rc_rls_steps,
         polish_steps=rc_polish_steps,
+        rc_nodes=rc_nodes,
+        rc_warmup_steps=rc_warmup_steps,
     )
 
 
-def run_suite(instances=8, seeds=8, fast_mode=False):
+def run_suite(instances=8, seeds=8, fast_mode=False, rc_nodes=1000, rc_warmup_steps=40):
     rng = np.random.default_rng(2026)
     rows = []
     per_problem = {"maxcut": [], "qubo": [], "sat": []}
@@ -374,6 +403,8 @@ def run_suite(instances=8, seeds=8, fast_mode=False):
                         rc_budget=rc_budget,
                         rc_polish_steps=rc_polish_steps,
                         rc_rls_steps=rc_rls_steps,
+                        rc_nodes=rc_nodes,
+                        rc_warmup_steps=rc_warmup_steps,
                     )
                     dt = time.perf_counter() - t0
                     vals.append(float(v))
@@ -445,15 +476,25 @@ def main():
     ap.add_argument("--instances", type=int, default=6)
     ap.add_argument("--seeds", type=int, default=6)
     ap.add_argument("--fast-mode", type=int, default=1)
+    ap.add_argument("--rc-nodes", type=int, default=1000)
+    ap.add_argument("--rc-warmup-steps", type=int, default=40)
     ap.add_argument("--out-json", type=str, default="reports/standard_suite_report.json")
     ap.add_argument("--out-md", type=str, default="reports/standard_suite_report.md")
     args = ap.parse_args()
 
-    report = run_suite(instances=args.instances, seeds=args.seeds, fast_mode=bool(args.fast_mode))
+    report = run_suite(
+        instances=args.instances,
+        seeds=args.seeds,
+        fast_mode=bool(args.fast_mode),
+        rc_nodes=int(args.rc_nodes),
+        rc_warmup_steps=int(args.rc_warmup_steps),
+    )
     payload = {
         "config": {
             "instances": int(args.instances),
             "seeds": int(args.seeds),
+            "rc_nodes": int(args.rc_nodes),
+            "rc_warmup_steps": int(args.rc_warmup_steps),
             "anchor_hz": ANCHOR_HZ,
             "claim_scope": "quantum-inspired analog search heuristic; not QC replacement",
         },

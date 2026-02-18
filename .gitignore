@@ -4,3 +4,5 @@ __pycache__/
 results/
 benchmark_qc_like_phase_guided_cpp
 bench/topk_ranker
+bench/topk_cuda
+bench/datasets/
