@@ -6,14 +6,16 @@ Claim boundary: proxy metrics on classical phase dynamics (not quantum entanglem
 
 | metric | mean | std | ci95 | p-value vs baseline |
 |---|---:|---:|---:|---:|
-| pairwise_correlation | 0.645832 | 0.346559 | [0.518625, 0.765835] | 2.942e-27 |
-| mutual_info | 1.633920 | 0.890475 | [1.309638, 1.948517] | 2.557e-63 |
-| bipartition_entropy | 1.625289 | 0.888259 | [1.301339, 1.939230] | 2.29e-63 |
-| chsh_proxy | 0.778938 | 0.532097 | [0.591597, 0.971779] | 1.862e-32 |
-| quality | 0.359841 | 0.363388 | [0.232629, 0.491592] | 3.055e-29 |
-| phase_gap | -16066.084629 | 9115.793020 | [-19258.045494, -12760.453503] | 6.143e-83 |
+| pairwise_correlation | 0.337252 | 0.278675 | [0.244702, 0.432956] | 1.619e-45 |
+| mutual_info | 2.331576 | 0.550378 | [2.148510, 2.509674] | 6.621e-38 |
+| bipartition_entropy | 2.321211 | 0.550744 | [2.138140, 2.499276] | 1.444e-37 |
+| chsh_proxy | 0.650081 | 0.333017 | [0.537786, 0.756130] | 2.314e-15 |
+| quality | 1.100864 | 0.000989 | [1.100532, 1.101170] | 0.5388 |
+| quality_vs_ls_baseline | 1.001081 | 0.000704 | [1.000850, 1.001332] | 1.007e-17 |
+| phase_gap | 2530.850739 | 23.576313 | [2522.813076, 2538.054449] | 0 |
 
 ## Notes
 - `chsh_proxy` is CHSH-like classical proxy, not QM Bell test.
-- `quality` is phase cut divided by best baseline cut (random-8 vs degree baseline).
+- `quality` is phase+local-search cut divided by best simple baseline cut (random-8 vs degree).
+- `quality_vs_ls_baseline` compares phase+local-search to local-search baselines (random-LS / degree-LS).
 - `phase_gap` is phase cut minus best baseline cut.
