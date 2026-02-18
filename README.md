@@ -161,6 +161,19 @@ python3 bench/phase_guided_two_stage.py \
   --out-md reports/two_stage_phase_guided.md
 ```
 
+### 15) Long-run automation scripts
+
+```bash
+# start all long benchmarks in background
+./run_all_long.sh
+
+# check status + tail last lines from each log
+./watch_runs.sh
+
+# stop all started jobs
+./stop_runs.sh
+```
+
 ### 12) Hardware protocol (80 oscillators)
 
 ```bash
