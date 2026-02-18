@@ -136,6 +136,59 @@ def random_baseline_best_local_search(W, rng, trials=8):
     return float(best)
 
 
+def best_phase_partition_with_rounding(W, phi, psi_steps=16):
+    """
+    Build multiple phase-derived candidates, pick the best cut, then refine with 1-flip LS.
+    Keeps compute bounded (small psi_steps) but significantly stronger than single cos(phi) sign.
+    """
+    psi_steps = max(1, int(psi_steps))
+    n = phi.shape[0]
+    psis = np.linspace(0.0, np.pi, num=psi_steps, endpoint=False, dtype=np.float64)
+    total_w = float(np.sum(W))
+
+    best_q = -math.inf
+    best_x = None
+
+    # Three lightweight roundings: cos(phi+psi), sin(phi+psi), cos(2phi+psi)
+    bases = [
+        np.cos(phi)[None, :] * np.cos(psis)[:, None] - np.sin(phi)[None, :] * np.sin(psis)[:, None],
+        np.sin(phi)[None, :] * np.cos(psis)[:, None] + np.cos(phi)[None, :] * np.sin(psis)[:, None],
+        np.cos(2.0 * phi)[None, :] * np.cos(psis)[:, None] - np.sin(2.0 * phi)[None, :] * np.sin(psis)[:, None],
+    ]
+
+    for B in bases:
+        X = np.where(B >= 0.0, 1.0, -1.0).astype(np.float64)
+        WX = X @ W
+        quad = np.einsum("bi,bi->b", WX, X)
+        cuts = 0.25 * (total_w - quad)
+        i = int(np.argmax(cuts))
+        q = float(cuts[i])
+        if q > best_q:
+            best_q = q
+            best_x = X[i].copy()
+
+    x_refined, _ = one_flip_local_search(W, best_x)
+    q_refined = eval_maxcut(W, x_refined)
+    return x_refined, float(q_refined)
+
+
+def phase_biased_multistart_ls(W, x_seed, rng, starts=6, flip_p=0.04):
+    """Run a few local-search restarts near phase seed."""
+    best_x = np.asarray(x_seed, dtype=np.float64).copy()
+    best_q = eval_maxcut(W, best_x)
+    n = best_x.shape[0]
+    for _ in range(max(0, int(starts))):
+        mask = rng.random(n) < float(flip_p)
+        x0 = best_x.copy()
+        x0[mask] *= -1.0
+        x1, _ = one_flip_local_search(W, x0)
+        q1 = eval_maxcut(W, x1)
+        if q1 > best_q:
+            best_q = q1
+            best_x = x1
+    return best_x, float(best_q)
+
+
 def simulate_phase(n, coupling, noise_amp, leak, anchor_amp, seed, warmup, steps, shil_amp=0.18):
     rng = np.random.default_rng(seed)
     phi = rng.uniform(0.0, 2.0 * np.pi, size=n)
@@ -170,7 +223,7 @@ def simulate_phase(n, coupling, noise_amp, leak, anchor_amp, seed, warmup, steps
     return phi
 
 
-def run_ablation(seeds, n_nodes, warmup, steps):
+def run_ablation(seeds, n_nodes, warmup, steps, psi_steps):
     grid = []
     for coupling in (1.0, 1.8, 2.4):
         for noise in (0.0, 0.02, 0.05):
@@ -206,9 +259,9 @@ def run_ablation(seeds, n_nodes, warmup, steps):
             metric_rows.append(m)
 
             W = graphs[s]
-            x = np.where(np.cos(phi) >= 0.0, 1.0, -1.0)
-            x_phase_ls, _ = one_flip_local_search(W, x)
-            q_phase = eval_maxcut(W, x_phase_ls)
+            x_phase, q_phase = best_phase_partition_with_rounding(W, phi, psi_steps=psi_steps)
+            rng_phase = np.random.default_rng(12000 + 97 * s + int(100 * c) + int(1000 * noise) + int(100 * anch))
+            _, q_phase = phase_biased_multistart_ls(W, x_phase, rng_phase, starts=16, flip_p=0.08)
 
             rng_b = np.random.default_rng(9000 + 131 * s + int(100 * c) + int(1000 * noise) + int(100 * anch))
             q_rand = random_baseline_best(W, rng_b, trials=8)
@@ -357,6 +410,7 @@ def main():
     ap.add_argument("--nodes", type=int, default=80)
     ap.add_argument("--warmup", type=int, default=120)
     ap.add_argument("--steps", type=int, default=240)
+    ap.add_argument("--psi-steps", type=int, default=16)
     ap.add_argument("--out-json", type=str, default="reports/phase_entanglement_report.json")
     ap.add_argument("--out-md", type=str, default="reports/phase_entanglement_report.md")
     args = ap.parse_args()
@@ -367,11 +421,12 @@ def main():
             "nodes": int(args.nodes),
             "warmup": int(args.warmup),
             "steps": int(args.steps),
+            "psi_steps": int(args.psi_steps),
             "anchor_hz": ANCHOR_HZ,
             "scope": "classical proxy metrics, not quantum entanglement",
         }
     }
-    payload.update(run_ablation(args.seeds, args.nodes, args.warmup, args.steps))
+    payload.update(run_ablation(args.seeds, args.nodes, args.warmup, args.steps, args.psi_steps))
 
     out_json = Path(args.out_json)
     out_json.parent.mkdir(parents=True, exist_ok=True)
