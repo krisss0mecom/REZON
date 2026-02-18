@@ -1,0 +1,85 @@
+{
+  "config": {
+    "bits": [
+      8,
+      10,
+      12,
+      14
+    ],
+    "reps": 2,
+    "known_len": 10,
+    "coarse_len": 2,
+    "precheck_len": 4,
+    "shortlist_ratio": 0.01
+  },
+  "rows": [
+    {
+      "bits": 8,
+      "keyspace": 256,
+      "reps": 2,
+      "keys_tested": [
+        76,
+        179
+      ],
+      "bruteforce_avg_attempts": 128.5,
+      "two_stage_avg_attempts": 1.0,
+      "attempt_gain_x": 128.5,
+      "bruteforce_avg_time_s": 0.00024101499002426863,
+      "two_stage_avg_time_s": 0.03927683352958411,
+      "time_gain_x": 0.006136314167045346,
+      "shortlist_hit_rate": 1.0,
+      "grover_ideal_queries": 16.0
+    },
+    {
+      "bits": 10,
+      "keyspace": 1024,
+      "reps": 2,
+      "keys_tested": [
+        307,
+        716
+      ],
+      "bruteforce_avg_attempts": 512.5,
+      "two_stage_avg_attempts": 1.0,
+      "attempt_gain_x": 512.5,
+      "bruteforce_avg_time_s": 0.0008376080368179828,
+      "two_stage_avg_time_s": 0.03884712452418171,
+      "time_gain_x": 0.02156164830929984,
+      "shortlist_hit_rate": 1.0,
+      "grover_ideal_queries": 32.0
+    },
+    {
+      "bits": 12,
+      "keyspace": 4096,
+      "reps": 2,
+      "keys_tested": [
+        1228,
+        2867
+      ],
+      "bruteforce_avg_attempts": 2048.5,
+      "two_stage_avg_attempts": 2.0,
+      "attempt_gain_x": 1024.25,
+      "bruteforce_avg_time_s": 0.0036961715086363256,
+      "two_stage_avg_time_s": 0.0526105790049769,
+      "time_gain_x": 0.07025529044808027,
+      "shortlist_hit_rate": 1.0,
+      "grover_ideal_queries": 64.0
+    },
+    {
+      "bits": 14,
+      "keyspace": 16384,
+      "reps": 2,
+      "keys_tested": [
+        4915,
+        11468
+      ],
+      "bruteforce_avg_attempts": 8192.5,
+      "two_stage_avg_attempts": 2.5,
+      "attempt_gain_x": 3277.0,
+      "bruteforce_avg_time_s": 0.013974804489407688,
+      "two_stage_avg_time_s": 0.1515700194868259,
+      "time_gain_x": 0.09220032125563159,
+      "shortlist_hit_rate": 1.0,
+      "grover_ideal_queries": 128.0
+    }
+  ]
+}

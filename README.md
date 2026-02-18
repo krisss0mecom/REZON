@@ -150,6 +150,17 @@ python3 bench/topk_cuda_wrapper.py --keys 65536 --k 1024 --out reports/topk_cuda
 python3 bench/public_dataset_runner.py --out-json reports/public_dataset_benchmark.json
 ```
 
+### 14) Two-stage phase-guided ranking (coarse-to-fine)
+
+```bash
+python3 bench/phase_guided_two_stage.py \
+  --bits 8,10,12,14,16 \
+  --reps 3 \
+  --shortlist-ratio 0.02 \
+  --out-json reports/two_stage_phase_guided.json \
+  --out-md reports/two_stage_phase_guided.md
+```
+
 ### 12) Hardware protocol (80 oscillators)
 
 ```bash
@@ -188,6 +199,7 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - Autonomous RC variant (no manual candidate list) also reduces attempts strongly in this synthetic setup,
   but runtime remains slower than brute-force due to full-space scoring overhead.
 - Standard suite now supports `1000` oscillators with explicit warmup (`--rc-nodes`, `--rc-warmup-steps`).
+- Two-stage ranking (coarse-to-fine) is included to reduce full-ranking overhead.
 
 ## Output Files
 
@@ -216,3 +228,5 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/topk_cuda_smoke.txt`
 - `reports/cuda_topk_research.md`
 - `reports/public_dataset_benchmark.json`
+- `reports/two_stage_phase_guided.json`
+- `reports/two_stage_phase_guided.md`
