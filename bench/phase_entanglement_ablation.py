@@ -48,9 +48,22 @@ def pvalue_vs_baseline(x, y):
     return math.nan
 
 
+def pvalue_vs_constant(x, c):
+    x = np.asarray(x, dtype=np.float64)
+    if x.size < 2:
+        return math.nan
+    if scipy_stats is not None:
+        try:
+            return float(scipy_stats.ttest_1samp(x, popmean=c).pvalue)
+        except Exception:
+            pass
+    return math.nan
+
+
 def gen_maxcut(n, edge_p, seed):
     rng = np.random.default_rng(seed)
-    W = rng.uniform(-1.0, 1.0, size=(n, n))
+    # Classical Max-Cut benchmark: non-negative edge weights.
+    W = rng.uniform(0.0, 1.0, size=(n, n))
     M = rng.random((n, n)) < edge_p
     W = np.where(M, W, 0.0)
     W = np.triu(W, 1)
@@ -60,13 +73,33 @@ def gen_maxcut(n, edge_p, seed):
 
 
 def eval_maxcut(W, x_pm1):
+    # For x in {-1,+1}^n and symmetric W:
+    # cut(x) = 1/4 * sum_ij W_ij * (1 - x_i x_j)
+    #        = 1/4 * (sum(W) - x^T W x)
+    x = np.asarray(x_pm1, dtype=np.float64)
+    total_w = float(np.sum(W))
+    quad = float(x @ (W @ x))
+    return 0.25 * (total_w - quad)
+
+
+def degree_baseline_partition(W):
+    d = np.sum(W, axis=1)
+    med = float(np.median(d))
+    x = np.where(d >= med, 1.0, -1.0)
+    if np.all(x == x[0]):
+        x[::2] = 1.0
+        x[1::2] = -1.0
+    return x
+
+
+def random_baseline_best(W, rng, trials=8):
     n = W.shape[0]
-    v = 0.0
-    for i in range(n):
-        for j in range(i + 1, n):
-            if x_pm1[i] != x_pm1[j]:
-                v += W[i, j]
-    return float(v)
+    X = rng.choice(np.array([-1.0, 1.0], dtype=np.float64), size=(trials, n))
+    WX = X @ W
+    quad = np.einsum("bi,bi->b", WX, X)
+    total_w = float(np.sum(W))
+    cuts = 0.25 * (total_w - quad)
+    return float(np.max(cuts))
 
 
 def simulate_phase(n, coupling, noise_amp, leak, anchor_amp, seed, warmup, steps):
@@ -102,11 +135,14 @@ def run_ablation(seeds, n_nodes, warmup, steps):
 
     baseline = (1.0, 0.05, 0.02, 0.0)
     results = []
+    graphs = [gen_maxcut(n_nodes, edge_p=0.2, seed=500 + s) for s in range(seeds)]
 
     for cfg in grid:
         c, noise, leak, anch = cfg
         metric_rows = []
         quality_rows = []
+        phase_cut_rows = []
+        baseline_cut_rows = []
         for s in range(seeds):
             phi = simulate_phase(
                 n=n_nodes,
@@ -121,10 +157,18 @@ def run_ablation(seeds, n_nodes, warmup, steps):
             m = compute_all_metrics(phi)
             metric_rows.append(m)
 
-            W = gen_maxcut(n_nodes, edge_p=0.2, seed=500 + s)
+            W = graphs[s]
             x = np.where(np.cos(phi) >= 0.0, 1.0, -1.0)
-            q = eval_maxcut(W, x)
-            quality_rows.append(q)
+            q_phase = eval_maxcut(W, x)
+
+            rng_b = np.random.default_rng(9000 + 131 * s + int(100 * c) + int(1000 * noise) + int(100 * anch))
+            q_rand = random_baseline_best(W, rng_b, trials=8)
+            q_deg = eval_maxcut(W, degree_baseline_partition(W))
+            q_base = float(max(q_rand, q_deg, 1e-12))
+
+            phase_cut_rows.append(q_phase)
+            baseline_cut_rows.append(q_base)
+            quality_rows.append(float(q_phase / q_base))
 
         row = {
             "params": {
@@ -146,6 +190,15 @@ def run_ablation(seeds, n_nodes, warmup, steps):
             "quality_raw": [float(x) for x in quality_rows],
             "quality_mean": float(np.mean(quality_rows)),
             "quality_std": float(np.std(quality_rows)),
+            "phase_cut_raw": [float(x) for x in phase_cut_rows],
+            "phase_cut_mean": float(np.mean(phase_cut_rows)),
+            "phase_cut_std": float(np.std(phase_cut_rows)),
+            "baseline_cut_raw": [float(x) for x in baseline_cut_rows],
+            "baseline_cut_mean": float(np.mean(baseline_cut_rows)),
+            "baseline_cut_std": float(np.std(baseline_cut_rows)),
+            "phase_gap_raw": [float(p - b) for p, b in zip(phase_cut_rows, baseline_cut_rows)],
+            "phase_gap_mean": float(np.mean([p - b for p, b in zip(phase_cut_rows, baseline_cut_rows)])),
+            "phase_gap_std": float(np.std([p - b for p, b in zip(phase_cut_rows, baseline_cut_rows)])),
         }
         results.append(row)
 
@@ -178,6 +231,7 @@ def run_ablation(seeds, n_nodes, warmup, steps):
         }
 
     q_vals = [r["quality_mean"] for r in results]
+    gap_vals = [r["phase_gap_mean"] for r in results]
     if base is not None:
         base_q = np.asarray(base["quality_raw"], dtype=np.float64)
         pool_q = np.asarray([q for r in results for q in r["quality_raw"]], dtype=np.float64)
@@ -190,6 +244,13 @@ def run_ablation(seeds, n_nodes, warmup, steps):
         "std": float(np.std(q_vals)),
         "ci95": bootstrap_ci(q_vals),
         "p_value_vs_baseline": p_q,
+        "p_value_vs_unity": pvalue_vs_constant(np.asarray([q for r in results for q in r["quality_raw"]], dtype=np.float64), 1.0),
+    }
+    stats_out["phase_gap"] = {
+        "mean": float(np.mean(gap_vals)),
+        "std": float(np.std(gap_vals)),
+        "ci95": bootstrap_ci(gap_vals),
+        "p_value_vs_zero": pvalue_vs_constant(np.asarray([g for r in results for g in r["phase_gap_raw"]], dtype=np.float64), 0.0),
     }
 
     return {"ablation_results": results, "stats": stats_out}
@@ -208,13 +269,14 @@ def to_markdown(payload):
     ]
     for k, v in payload["stats"].items():
         ci = v["ci95"]
-        p = v["p_value_vs_baseline"]
+        p = v.get("p_value_vs_baseline", v.get("p_value_vs_zero", v.get("p_value_vs_unity", math.nan)))
         p_s = "nan" if p != p else f"{p:.4g}"
         lines.append(f"| {k} | {v['mean']:.6f} | {v['std']:.6f} | [{ci[0]:.6f}, {ci[1]:.6f}] | {p_s} |")
     lines.append("")
     lines.append("## Notes")
     lines.append("- `chsh_proxy` is CHSH-like classical proxy, not QM Bell test.")
-    lines.append("- `quality` is Max-Cut objective from phase-derived partition.")
+    lines.append("- `quality` is phase cut divided by best baseline cut (random-8 vs degree baseline).")
+    lines.append("- `phase_gap` is phase cut minus best baseline cut.")
     return "\n".join(lines) + "\n"
 
 
