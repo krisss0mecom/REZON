@@ -87,6 +87,17 @@ python3 benchmark_qc_like_phase_guided.py \
   --out-md reports/qc_like_phase_guided_benchmark.md
 ```
 
+### 7) C++ phase-guided benchmark (faster runtime path)
+
+```bash
+g++ -O3 -march=native -std=c++17 -fopenmp benchmark_qc_like_phase_guided.cpp -o benchmark_qc_like_phase_guided_cpp
+./benchmark_qc_like_phase_guided_cpp \
+  --known-len 10 \
+  --precheck-len 4 \
+  --out-json reports/qc_like_phase_guided_benchmark_cpp.json \
+  --out-md reports/qc_like_phase_guided_benchmark_cpp.md
+```
+
 ## Tests
 
 ```bash
@@ -105,6 +116,8 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
   and provides a Grover-query reference (`sqrt(N)`) as a theoretical lower-bound comparator.
 - Phase-guided ordering can reduce average query count, but may still be slower wall-clock
   due to ranking overhead (important distinction: attempts vs time).
+- C++ implementation of phase-guided ranking significantly reduces overhead vs Python in this repo
+  (measured speedups in generated report).
 
 ## Output Files
 
@@ -119,3 +132,6 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/qc_like_decrypt_benchmark.md`
 - `reports/qc_like_phase_guided_benchmark.json`
 - `reports/qc_like_phase_guided_benchmark.md`
+- `reports/qc_like_phase_guided_benchmark_cpp.json`
+- `reports/qc_like_phase_guided_benchmark_cpp.md`
+- `reports/qc_like_phase_guided_cpp_vs_python.md`

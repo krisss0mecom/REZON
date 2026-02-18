@@ -1,0 +1,76 @@
+{
+  "config": {
+    "bits": [8, 10, 12, 14, 16],
+    "known_len": 10,
+    "precheck_len": 4,
+    "openmp": true,
+    "threads": 6
+  },
+  "rows": [
+    {
+      "bits": 8,
+      "keyspace": 256,
+      "reps": 6,
+      "keys_tested": [36, 73, 109, 146, 182, 219],
+      "bruteforce_avg_attempts": 128.500000,
+      "phase_guided_avg_attempts": 1.666667,
+      "attempt_gain_x": 77.100000,
+      "bruteforce_avg_time_s": 0.000001,
+      "phase_guided_avg_time_s": 0.000598,
+      "time_gain_x": 0.001267,
+      "grover_ideal_queries": 16.000000
+    },
+    {
+      "bits": 10,
+      "keyspace": 1024,
+      "reps": 6,
+      "keys_tested": [146, 292, 438, 585, 731, 877],
+      "bruteforce_avg_attempts": 512.500000,
+      "phase_guided_avg_attempts": 3.666667,
+      "attempt_gain_x": 139.772727,
+      "bruteforce_avg_time_s": 0.000002,
+      "phase_guided_avg_time_s": 0.000977,
+      "time_gain_x": 0.002408,
+      "grover_ideal_queries": 32.000000
+    },
+    {
+      "bits": 12,
+      "keyspace": 4096,
+      "reps": 4,
+      "keys_tested": [819, 1638, 2457, 3276],
+      "bruteforce_avg_attempts": 2048.500000,
+      "phase_guided_avg_attempts": 11.250000,
+      "attempt_gain_x": 182.088889,
+      "bruteforce_avg_time_s": 0.000016,
+      "phase_guided_avg_time_s": 0.003500,
+      "time_gain_x": 0.004661,
+      "grover_ideal_queries": 64.000000
+    },
+    {
+      "bits": 14,
+      "keyspace": 16384,
+      "reps": 3,
+      "keys_tested": [3276, 8192, 13107],
+      "bruteforce_avg_attempts": 8192.666667,
+      "phase_guided_avg_attempts": 67.666667,
+      "attempt_gain_x": 121.073892,
+      "bruteforce_avg_time_s": 0.000034,
+      "phase_guided_avg_time_s": 0.006785,
+      "time_gain_x": 0.004953,
+      "grover_ideal_queries": 128.000000
+    },
+    {
+      "bits": 16,
+      "keyspace": 65536,
+      "reps": 2,
+      "keys_tested": [19660, 45875],
+      "bruteforce_avg_attempts": 32768.500000,
+      "phase_guided_avg_attempts": 596.000000,
+      "attempt_gain_x": 54.980705,
+      "bruteforce_avg_time_s": 0.000090,
+      "phase_guided_avg_time_s": 0.032535,
+      "time_gain_x": 0.002777,
+      "grover_ideal_queries": 256.000000
+    }
+  ]
+}
