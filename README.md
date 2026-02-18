@@ -54,6 +54,18 @@ python3 cnot_report_table.py --in-json results/cnot_rls_report.json --out-md res
 python3 cnot_variant_audit.py --eval-seeds 50 --out-json results/cnot_variant_audit.json
 ```
 
+### 4) Proof benchmark pack (multi-seed)
+
+```bash
+python3 benchmark_rezon_proof.py \
+  --eval-seeds 8 \
+  --warmup 1200 \
+  --steps 600 \
+  --train-steps 700 \
+  --out-json reports/rezon_proof_benchmark.json \
+  --out-md reports/rezon_proof_benchmark.md
+```
+
 ## Tests
 
 ```bash
@@ -65,6 +77,9 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - Pure mode can show phase-coherent conditional behavior, but is not reliably 4/4 across seeds.
 - RLS readout on top of phase reservoir gives stable, reproducible 4/4 CNOT truth-table output.
 - Practical takeaway: use pure mode for dynamics research, RLS mode for stable execution.
+- Latest proof benchmark confirms this trend:
+  - `pure`: low 4/4 reliability across seeds,
+  - `xor_driven` and `RLS`: substantially higher stability on the same truth-table task.
 
 ## Output Files
 
@@ -73,3 +88,5 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `results/cnot_rls_table.md`
 - `results/cnot_variant_audit.json`
 - `results/pure_cnot_sweep.json`
+- `reports/rezon_proof_benchmark.json`
+- `reports/rezon_proof_benchmark.md`
