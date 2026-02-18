@@ -186,6 +186,16 @@ python3 bench/phase_entanglement_ablation.py \
   --out-md reports/phase_entanglement_report.md
 ```
 
+### 17) Correlation pack (metrics -> quality across node scales)
+
+```bash
+# quick smoke
+./run_correlation_pack.sh 4
+
+# stronger statistical run
+./run_correlation_pack.sh 16
+```
+
 ### 12) Hardware protocol (80 oscillators)
 
 ```bash
@@ -226,6 +236,7 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - Standard suite now supports `1000` oscillators with explicit warmup (`--rc-nodes`, `--rc-warmup-steps`).
 - Two-stage ranking (coarse-to-fine) is included to reduce full-ranking overhead.
 - Entanglement-like metrics are implemented as classical proxy signals (not quantum entanglement proof).
+- Correlation pack is included to test whether proxy metrics translate into task quality.
 
 ## Output Files
 
@@ -258,3 +269,5 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/two_stage_phase_guided.md`
 - `reports/phase_entanglement_report.json`
 - `reports/phase_entanglement_report.md`
+- `reports/correlation_pack_summary.json`
+- `reports/correlation_pack_summary.md`

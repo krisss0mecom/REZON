@@ -1,0 +1,1895 @@
+{
+  "config": {
+    "seeds": 4,
+    "nodes": 1000,
+    "warmup": 120,
+    "steps": 240,
+    "anchor_hz": 200.0,
+    "scope": "classical proxy metrics, not quantum entanglement"
+  },
+  "ablation_results": [
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.0,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.0451904284891114,
+        "mutual_info": 2.9411718700717255,
+        "bipartition_entropy": 2.930243229748967,
+        "chsh_proxy": 0.036991243106479194
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.0694690809607885,
+          "mutual_info": 2.9150652617026886,
+          "bipartition_entropy": 2.904374891717073,
+          "chsh_proxy": 0.030727120324932133
+        },
+        {
+          "pairwise_correlation": 0.047093276420606164,
+          "mutual_info": 2.9379722288518213,
+          "bipartition_entropy": 2.9253766766456657,
+          "chsh_proxy": 0.061000919874984905
+        },
+        {
+          "pairwise_correlation": 0.058248320119443746,
+          "mutual_info": 2.9308925570610342,
+          "bipartition_entropy": 2.9189666363665348,
+          "chsh_proxy": 0.033450679872125966
+        },
+        {
+          "pairwise_correlation": 0.005951036455607171,
+          "mutual_info": 2.9807574326713593,
+          "bipartition_entropy": 2.9722547142665956,
+          "chsh_proxy": 0.02278625235387377
+        }
+      ],
+      "quality_raw": [
+        131.46424679956067,
+        31.166990792695774,
+        -159.7310756893523,
+        -36.074975427711465
+      ],
+      "quality_mean": -8.293703381201833,
+      "quality_std": 105.82356522950586
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.0,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.8084003905253893,
+        "mutual_info": 1.5074901688434845,
+        "bipartition_entropy": 1.4953118180414657,
+        "chsh_proxy": 1.1380833787979254
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.7991278439528336,
+          "mutual_info": 1.605658556048303,
+          "bipartition_entropy": 1.5930156639514172,
+          "chsh_proxy": 1.0846878930403625
+        },
+        {
+          "pairwise_correlation": 0.8638395602113207,
+          "mutual_info": 1.331182027676847,
+          "bipartition_entropy": 1.3205746834703884,
+          "chsh_proxy": 1.2182120335585527
+        },
+        {
+          "pairwise_correlation": 0.7740111742587623,
+          "mutual_info": 1.5810218672784888,
+          "bipartition_entropy": 1.5668556503025841,
+          "chsh_proxy": 1.1148608481864295
+        },
+        {
+          "pairwise_correlation": 0.7966229836786405,
+          "mutual_info": 1.512098224370299,
+          "bipartition_entropy": 1.5008012744414734,
+          "chsh_proxy": 1.1345727404063566
+        }
+      ],
+      "quality_raw": [
+        -59.259963906961794,
+        56.61829886816372,
+        -1.1921654645170228,
+        -2.31680424281436
+      ],
+      "quality_mean": -1.5376586865323643,
+      "quality_std": 40.97165591121611
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.0,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.06619210002687863,
+        "mutual_info": 2.9150356601991336,
+        "bipartition_entropy": 2.9060400635718,
+        "chsh_proxy": 0.083344118834776
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.1380971754853498,
+          "mutual_info": 2.8440518740409035,
+          "bipartition_entropy": 2.835971230709716,
+          "chsh_proxy": 0.01738823671660128
+        },
+        {
+          "pairwise_correlation": 0.025094045295961924,
+          "mutual_info": 2.9498339778746194,
+          "bipartition_entropy": 2.942791443790913,
+          "chsh_proxy": 0.14246146460842884
+        },
+        {
+          "pairwise_correlation": 0.09386605720397766,
+          "mutual_info": 2.892167879748247,
+          "bipartition_entropy": 2.880621309324291,
+          "chsh_proxy": 0.06701876157851683
+        },
+        {
+          "pairwise_correlation": 0.007711122122225145,
+          "mutual_info": 2.974088909132766,
+          "bipartition_entropy": 2.9647762704622784,
+          "chsh_proxy": 0.10650801243555702
+        }
+      ],
+      "quality_raw": [
+        118.92973676374396,
+        133.58843559238406,
+        -234.25165393639006,
+        43.689894301552776
+      ],
+      "quality_mean": 15.489103180322685,
+      "quality_std": 148.1664160474687
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.0,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.7797432458987374,
+        "mutual_info": 1.6481516978582986,
+        "bipartition_entropy": 1.63526837897321,
+        "chsh_proxy": 1.0739019220732473
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.7524819349053175,
+          "mutual_info": 1.761806663522614,
+          "bipartition_entropy": 1.750461225842404,
+          "chsh_proxy": 1.0122226424619976
+        },
+        {
+          "pairwise_correlation": 0.8526636056783606,
+          "mutual_info": 1.4407308597754918,
+          "bipartition_entropy": 1.4283065302813647,
+          "chsh_proxy": 1.1560047925940755
+        },
+        {
+          "pairwise_correlation": 0.7464670239439759,
+          "mutual_info": 1.7149440075762372,
+          "bipartition_entropy": 1.7006611842057724,
+          "chsh_proxy": 1.0561345262072201
+        },
+        {
+          "pairwise_correlation": 0.7673604190672955,
+          "mutual_info": 1.6751252605588516,
+          "bipartition_entropy": 1.661644575563299,
+          "chsh_proxy": 1.0712457270296958
+        }
+      ],
+      "quality_raw": [
+        0.6665802926587026,
+        77.4007363493348,
+        39.28433359825367,
+        -23.489387983592188
+      ],
+      "quality_mean": 23.465565564163747,
+      "quality_std": 38.35295771457573
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.02,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.0450901964239694,
+        "mutual_info": 2.9416562719484345,
+        "bipartition_entropy": 2.930859481189069,
+        "chsh_proxy": 0.037043401333646225
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.06945337585367822,
+          "mutual_info": 2.917082788188218,
+          "bipartition_entropy": 2.9071438693941256,
+          "chsh_proxy": 0.030486832961834687
+        },
+        {
+          "pairwise_correlation": 0.04681183898087368,
+          "mutual_info": 2.9374080994119294,
+          "bipartition_entropy": 2.9245322740835427,
+          "chsh_proxy": 0.061177624919228735
+        },
+        {
+          "pairwise_correlation": 0.058157182743500145,
+          "mutual_info": 2.931841030592375,
+          "bipartition_entropy": 2.9199130852384565,
+          "chsh_proxy": 0.0333971808286504
+        },
+        {
+          "pairwise_correlation": 0.00593838811782555,
+          "mutual_info": 2.980293169601215,
+          "bipartition_entropy": 2.9718486960401505,
+          "chsh_proxy": 0.023111966624871083
+        }
+      ],
+      "quality_raw": [
+        131.46424679956067,
+        31.166990792695774,
+        -160.3687786559441,
+        -36.074975427711465
+      ],
+      "quality_mean": -8.453129122849784,
+      "quality_std": 106.05182336184357
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.02,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.8083697018032938,
+        "mutual_info": 1.5092138728506572,
+        "bipartition_entropy": 1.497497899136908,
+        "chsh_proxy": 1.1383435415183336
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.7994026640527707,
+          "mutual_info": 1.608209875714188,
+          "bipartition_entropy": 1.5957869323644829,
+          "chsh_proxy": 1.0845688248040484
+        },
+        {
+          "pairwise_correlation": 0.8635582216386394,
+          "mutual_info": 1.3309921466542625,
+          "bipartition_entropy": 1.321393955201508,
+          "chsh_proxy": 1.218724409517989
+        },
+        {
+          "pairwise_correlation": 0.7741207322571078,
+          "mutual_info": 1.5833422092868839,
+          "bipartition_entropy": 1.5695200844030988,
+          "chsh_proxy": 1.115277833923843
+        },
+        {
+          "pairwise_correlation": 0.7963971892646577,
+          "mutual_info": 1.5143112597472943,
+          "bipartition_entropy": 1.5032906245785425,
+          "chsh_proxy": 1.1348030978274541
+        }
+      ],
+      "quality_raw": [
+        -53.66309746511771,
+        56.61829886816372,
+        -1.1921654645170228,
+        -2.31680424281436
+      ],
+      "quality_mean": -0.13844207607134285,
+      "quality_std": 39.0258631289432
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.02,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.06611465844389582,
+        "mutual_info": 2.9157617360070303,
+        "bipartition_entropy": 2.9069567507539342,
+        "chsh_proxy": 0.08322331328445069
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.13801689864936809,
+          "mutual_info": 2.844046298445572,
+          "bipartition_entropy": 2.836045258476548,
+          "chsh_proxy": 0.016913988543759972
+        },
+        {
+          "pairwise_correlation": 0.02500570026093706,
+          "mutual_info": 2.951417609846671,
+          "bipartition_entropy": 2.9441547141074693,
+          "chsh_proxy": 0.1425379256760606
+        },
+        {
+          "pairwise_correlation": 0.09371670600675519,
+          "mutual_info": 2.8932710418071967,
+          "bipartition_entropy": 2.8823179774221392,
+          "chsh_proxy": 0.06693889601833758
+        },
+        {
+          "pairwise_correlation": 0.00771932885852293,
+          "mutual_info": 2.9743119939286817,
+          "bipartition_entropy": 2.9653090530095803,
+          "chsh_proxy": 0.10650244289964461
+        }
+      ],
+      "quality_raw": [
+        115.50714093182725,
+        133.58843559238406,
+        -234.25165393639006,
+        43.78176308073714
+      ],
+      "quality_mean": 14.6564214171396,
+      "quality_std": 147.57981495247788
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.02,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.7796278686539734,
+        "mutual_info": 1.647074570140184,
+        "bipartition_entropy": 1.6345940896134845,
+        "chsh_proxy": 1.0738178403056566
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.7525980386116256,
+          "mutual_info": 1.7603533950188253,
+          "bipartition_entropy": 1.7466703361668094,
+          "chsh_proxy": 1.01275187484145
+        },
+        {
+          "pairwise_correlation": 0.8525125908714396,
+          "mutual_info": 1.4356250520002427,
+          "bipartition_entropy": 1.4239970493332383,
+          "chsh_proxy": 1.1553889574930867
+        },
+        {
+          "pairwise_correlation": 0.7460543139914937,
+          "mutual_info": 1.7123718024254173,
+          "bipartition_entropy": 1.700857119835364,
+          "chsh_proxy": 1.0564306721867833
+        },
+        {
+          "pairwise_correlation": 0.7673465311413349,
+          "mutual_info": 1.6799480311162511,
+          "bipartition_entropy": 1.6668518531185261,
+          "chsh_proxy": 1.0706998567013064
+        }
+      ],
+      "quality_raw": [
+        3.4707260261809383,
+        84.6254749902225,
+        21.219869509746033,
+        -23.489387983592188
+      ],
+      "quality_mean": 21.45667063563932,
+      "quality_std": 39.793203902358535
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.05,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.04494081172615522,
+        "mutual_info": 2.942088614419453,
+        "bipartition_entropy": 2.930604923102619,
+        "chsh_proxy": 0.03711923785213156
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.06943075856808081,
+          "mutual_info": 2.917861079307955,
+          "bipartition_entropy": 2.9073547122373933,
+          "chsh_proxy": 0.030121845668128144
+        },
+        {
+          "pairwise_correlation": 0.04639773830884352,
+          "mutual_info": 2.937535923655209,
+          "bipartition_entropy": 2.9246940522503246,
+          "chsh_proxy": 0.06144000632418706
+        },
+        {
+          "pairwise_correlation": 0.05801473207633103,
+          "mutual_info": 2.9324148923990543,
+          "bipartition_entropy": 2.91960032830079,
+          "chsh_proxy": 0.033307277005326485
+        },
+        {
+          "pairwise_correlation": 0.005920017951365515,
+          "mutual_info": 2.9805425623155952,
+          "bipartition_entropy": 2.970770599621969,
+          "chsh_proxy": 0.02360782241088455
+        }
+      ],
+      "quality_raw": [
+        131.46424679956067,
+        24.11649037100207,
+        -160.3687786559441,
+        -34.73050557341311
+      ],
+      "quality_mean": -9.87963676469862,
+      "quality_std": 105.35461260543481
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.05,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.808324809486746,
+        "mutual_info": 1.5118099262383768,
+        "bipartition_entropy": 1.5002517386875103,
+        "chsh_proxy": 1.1387645266657047
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.7997750640387805,
+          "mutual_info": 1.6138109539002137,
+          "bipartition_entropy": 1.5987525516863896,
+          "chsh_proxy": 1.0844978743348574
+        },
+        {
+          "pairwise_correlation": 0.8631603609271746,
+          "mutual_info": 1.3312371262227156,
+          "bipartition_entropy": 1.3253881741123608,
+          "chsh_proxy": 1.219510163725121
+        },
+        {
+          "pairwise_correlation": 0.7742826706007179,
+          "mutual_info": 1.5844925628032345,
+          "bipartition_entropy": 1.5720764219009538,
+          "chsh_proxy": 1.1159850520901944
+        },
+        {
+          "pairwise_correlation": 0.7960811423803112,
+          "mutual_info": 1.5176990620273438,
+          "bipartition_entropy": 1.504789807050336,
+          "chsh_proxy": 1.1350650165126455
+        }
+      ],
+      "quality_raw": [
+        -49.413280242400965,
+        36.29267895116625,
+        -1.1921654645170228,
+        -2.31680424281436
+      ],
+      "quality_mean": -4.157392749641524,
+      "quality_std": 30.399358514044756
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.05,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.06600011295937283,
+        "mutual_info": 2.9161796332743264,
+        "bipartition_entropy": 2.9072910469711575,
+        "chsh_proxy": 0.08303120338186704
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.1378980784516177,
+          "mutual_info": 2.843779324330769,
+          "bipartition_entropy": 2.835973841322533,
+          "chsh_proxy": 0.01619369712298757
+        },
+        {
+          "pairwise_correlation": 0.024884655768515458,
+          "mutual_info": 2.952005646111715,
+          "bipartition_entropy": 2.944963383802797,
+          "chsh_proxy": 0.14263712439075382
+        },
+        {
+          "pairwise_correlation": 0.09348410737849544,
+          "mutual_info": 2.8937958931515504,
+          "bipartition_entropy": 2.8823729658005477,
+          "chsh_proxy": 0.06680355179231606
+        },
+        {
+          "pairwise_correlation": 0.007733610238862786,
+          "mutual_info": 2.975137669503271,
+          "bipartition_entropy": 2.965853996958754,
+          "chsh_proxy": 0.10649044022141069
+        }
+      ],
+      "quality_raw": [
+        115.50714093182725,
+        117.3052036814833,
+        -234.25165393639006,
+        43.78176308073714
+      ],
+      "quality_mean": 10.585613439414411,
+      "quality_std": 144.43412834215852
+    },
+    {
+      "params": {
+        "coupling": 1.0,
+        "noise": 0.05,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.7794553580010741,
+        "mutual_info": 1.646197864959752,
+        "bipartition_entropy": 1.634485342092403,
+        "chsh_proxy": 1.0736880910179858
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.752775629441092,
+          "mutual_info": 1.763249378925381,
+          "bipartition_entropy": 1.748721435776775,
+          "chsh_proxy": 1.0134988051921088
+        },
+        {
+          "pairwise_correlation": 0.8522770749940074,
+          "mutual_info": 1.4291380033744066,
+          "bipartition_entropy": 1.4182897101130887,
+          "chsh_proxy": 1.1544763083727032
+        },
+        {
+          "pairwise_correlation": 0.7454185037961162,
+          "mutual_info": 1.7127138537775517,
+          "bipartition_entropy": 1.7031574508568252,
+          "chsh_proxy": 1.0569634359134943
+        },
+        {
+          "pairwise_correlation": 0.7673502237730812,
+          "mutual_info": 1.6796902237616687,
+          "bipartition_entropy": 1.6677727716229231,
+          "chsh_proxy": 1.069813814593637
+        }
+      ],
+      "quality_raw": [
+        7.935337647468003,
+        92.86815405805902,
+        35.79806146114734,
+        -23.489387983592188
+      ],
+      "quality_mean": 28.278041295770542,
+      "quality_std": 42.78471016569265
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.0,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.42251010382534937,
+        "mutual_info": 2.42850662542132,
+        "bipartition_entropy": 2.416975100189838,
+        "chsh_proxy": 0.20800740612960855
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.5346336563253623,
+          "mutual_info": 2.2586310305781896,
+          "bipartition_entropy": 2.2493316108715042,
+          "chsh_proxy": 0.037868962132732914
+        },
+        {
+          "pairwise_correlation": 0.5059028907861022,
+          "mutual_info": 2.3114815179967376,
+          "bipartition_entropy": 2.2975912689728046,
+          "chsh_proxy": 0.027040785925887656
+        },
+        {
+          "pairwise_correlation": 0.5052673724625757,
+          "mutual_info": 2.311782627336678,
+          "bipartition_entropy": 2.2962908274175606,
+          "chsh_proxy": 0.562481575765694
+        },
+        {
+          "pairwise_correlation": 0.14423649572735708,
+          "mutual_info": 2.832131325773675,
+          "bipartition_entropy": 2.8246866934974832,
+          "chsh_proxy": 0.20463830069411965
+        }
+      ],
+      "quality_raw": [
+        85.88220943023717,
+        -96.31722283778616,
+        -21.622664358967093,
+        40.72204423448563
+      ],
+      "quality_mean": 2.166091616992386,
+      "quality_std": 68.48324247734989
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.0,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9703214315860891,
+        "mutual_info": 0.7799096785313122,
+        "bipartition_entropy": 0.7745316885196752,
+        "chsh_proxy": 1.3529702447080139
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9740893376700298,
+          "mutual_info": 0.8487825638244475,
+          "bipartition_entropy": 0.8421806866516162,
+          "chsh_proxy": 1.364321377490695
+        },
+        {
+          "pairwise_correlation": 0.9809698589382053,
+          "mutual_info": 0.6931701057136421,
+          "bipartition_entropy": 0.6889750273073032,
+          "chsh_proxy": 1.3667132469781977
+        },
+        {
+          "pairwise_correlation": 0.968728662236557,
+          "mutual_info": 0.7412759729591241,
+          "bipartition_entropy": 0.7374922454680097,
+          "chsh_proxy": 1.3305665288256294
+        },
+        {
+          "pairwise_correlation": 0.9574978674995643,
+          "mutual_info": 0.8364100716280352,
+          "bipartition_entropy": 0.829478794651772,
+          "chsh_proxy": 1.350279825537533
+        }
+      ],
+      "quality_raw": [
+        19.840132431729366,
+        7.814917693579773,
+        -15.547486010297863,
+        13.559516293319618
+      ],
+      "quality_mean": 6.416770102082723,
+      "quality_std": 13.3752461906619
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.0,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.3879054899392973,
+        "mutual_info": 2.4256073376155176,
+        "bipartition_entropy": 2.414072774060607,
+        "chsh_proxy": 0.22261775105692866
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.6466603205759696,
+          "mutual_info": 1.9899308835285834,
+          "bipartition_entropy": 1.9783565071770042,
+          "chsh_proxy": 0.07284538874963932
+        },
+        {
+          "pairwise_correlation": 0.34645271049079823,
+          "mutual_info": 2.5436900925125774,
+          "bipartition_entropy": 2.531886693454945,
+          "chsh_proxy": 0.26187887645849484
+        },
+        {
+          "pairwise_correlation": 0.5523757251749166,
+          "mutual_info": 2.196909163345211,
+          "bipartition_entropy": 2.183886188931635,
+          "chsh_proxy": 0.4495976230607881
+        },
+        {
+          "pairwise_correlation": 0.006133203515504906,
+          "mutual_info": 2.9718992110756983,
+          "bipartition_entropy": 2.9621617066788444,
+          "chsh_proxy": 0.10614911595879234
+        }
+      ],
+      "quality_raw": [
+        48.010614721543966,
+        -18.50984037291978,
+        12.218897078028256,
+        38.4073586974002
+      ],
+      "quality_mean": 20.03175753101316,
+      "quality_std": 25.821380314385333
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.0,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.958484949585175,
+        "mutual_info": 0.7696406192384676,
+        "bipartition_entropy": 0.7614009681997336,
+        "chsh_proxy": 1.3234516044224978
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.948936601694437,
+          "mutual_info": 0.8011845722775098,
+          "bipartition_entropy": 0.7906223225876077,
+          "chsh_proxy": 1.2970870911899448
+        },
+        {
+          "pairwise_correlation": 0.9739495338240813,
+          "mutual_info": 0.7874950941017331,
+          "bipartition_entropy": 0.7826794144007505,
+          "chsh_proxy": 1.369368820927297
+        },
+        {
+          "pairwise_correlation": 0.9545944369479802,
+          "mutual_info": 0.8896562649393238,
+          "bipartition_entropy": 0.8814274613234879,
+          "chsh_proxy": 1.3366910047796974
+        },
+        {
+          "pairwise_correlation": 0.9564592258742015,
+          "mutual_info": 0.6002265456353039,
+          "bipartition_entropy": 0.5908746744870885,
+          "chsh_proxy": 1.2906595007930517
+        }
+      ],
+      "quality_raw": [
+        -22.435434660266925,
+        15.523118747139005,
+        8.10421637324946,
+        0.5543065833947234
+      ],
+      "quality_mean": 0.43655176087906616,
+      "quality_std": 14.226201294495466
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.02,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.4221165820019302,
+        "mutual_info": 2.4285334854822644,
+        "bipartition_entropy": 2.4177180449276254,
+        "chsh_proxy": 0.20835653435386278
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.5343780931282676,
+          "mutual_info": 2.256889319831204,
+          "bipartition_entropy": 2.248286870052942,
+          "chsh_proxy": 0.03884568084634643
+        },
+        {
+          "pairwise_correlation": 0.5048393141391037,
+          "mutual_info": 2.313831994956576,
+          "bipartition_entropy": 2.300905463568045,
+          "chsh_proxy": 0.027851755259822975
+        },
+        {
+          "pairwise_correlation": 0.5051288879048855,
+          "mutual_info": 2.310314649070155,
+          "bipartition_entropy": 2.295597214584131,
+          "chsh_proxy": 0.5623918894899678
+        },
+        {
+          "pairwise_correlation": 0.14412003283546387,
+          "mutual_info": 2.8330979780711223,
+          "bipartition_entropy": 2.8260826315053844,
+          "chsh_proxy": 0.20433681181931396
+        }
+      ],
+      "quality_raw": [
+        85.88220943023717,
+        -96.31722283778616,
+        -24.51732940240128,
+        48.076581516356065
+      ],
+      "quality_mean": 3.2810596766014477,
+      "quality_std": 69.86085640886796
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.02,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.970202559403363,
+        "mutual_info": 0.7800584294037733,
+        "bipartition_entropy": 0.7736977884490615,
+        "chsh_proxy": 1.3533714522972342
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9739703449428284,
+          "mutual_info": 0.8546093412128213,
+          "bipartition_entropy": 0.8477995866573428,
+          "chsh_proxy": 1.3650176980269835
+        },
+        {
+          "pairwise_correlation": 0.9817882826393913,
+          "mutual_info": 0.6861715878345864,
+          "bipartition_entropy": 0.6822626984234751,
+          "chsh_proxy": 1.3658342645797934
+        },
+        {
+          "pairwise_correlation": 0.9678984394064291,
+          "mutual_info": 0.7492850926403948,
+          "bipartition_entropy": 0.7424030937243083,
+          "chsh_proxy": 1.3308288537282411
+        },
+        {
+          "pairwise_correlation": 0.9571531706248029,
+          "mutual_info": 0.830167695927291,
+          "bipartition_entropy": 0.8223257749911195,
+          "chsh_proxy": 1.3518049928539184
+        }
+      ],
+      "quality_raw": [
+        19.840132431729366,
+        7.814917693579773,
+        -18.254789836438835,
+        13.559516293319618
+      ],
+      "quality_mean": 5.73994414554748,
+      "quality_std": 14.49149571620643
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.02,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.3875365787439935,
+        "mutual_info": 2.4262605679844915,
+        "bipartition_entropy": 2.414971453623353,
+        "chsh_proxy": 0.2226226145509652
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.6463098009451236,
+          "mutual_info": 1.9904109169509776,
+          "bipartition_entropy": 1.9792922338268797,
+          "chsh_proxy": 0.0718741692157167
+        },
+        {
+          "pairwise_correlation": 0.3456013810429982,
+          "mutual_info": 2.5449868760116496,
+          "bipartition_entropy": 2.5344165387103565,
+          "chsh_proxy": 0.26274389135360676
+        },
+        {
+          "pairwise_correlation": 0.5521715852542838,
+          "mutual_info": 2.198845369546832,
+          "bipartition_entropy": 2.1857805820125735,
+          "chsh_proxy": 0.44971211077225437
+        },
+        {
+          "pairwise_correlation": 0.006063547733568537,
+          "mutual_info": 2.970799109428506,
+          "bipartition_entropy": 2.960396459943603,
+          "chsh_proxy": 0.10616028686228296
+        }
+      ],
+      "quality_raw": [
+        48.010614721543966,
+        -12.974237044316919,
+        19.98888148562633,
+        35.957340854643604
+      ],
+      "quality_mean": 22.745650004374248,
+      "quality_std": 22.89310660832282
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.02,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9580486934442141,
+        "mutual_info": 0.768036394267138,
+        "bipartition_entropy": 0.7595378413832623,
+        "chsh_proxy": 1.3239326265430178
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9479590591582409,
+          "mutual_info": 0.8046132178480727,
+          "bipartition_entropy": 0.7943722115329903,
+          "chsh_proxy": 1.2991673769112628
+        },
+        {
+          "pairwise_correlation": 0.975104518282014,
+          "mutual_info": 0.783260985736791,
+          "bipartition_entropy": 0.7772743792712035,
+          "chsh_proxy": 1.3676013811307661
+        },
+        {
+          "pairwise_correlation": 0.953444729918771,
+          "mutual_info": 0.8888927452306168,
+          "bipartition_entropy": 0.8808531001352955,
+          "chsh_proxy": 1.3378745983610871
+        },
+        {
+          "pairwise_correlation": 0.9556864664178302,
+          "mutual_info": 0.5953786282530709,
+          "bipartition_entropy": 0.5856516745935603,
+          "chsh_proxy": 1.2910871497689547
+        }
+      ],
+      "quality_raw": [
+        -22.435434660266925,
+        15.523118747139005,
+        8.10421637324946,
+        -0.0812233024744935
+      ],
+      "quality_mean": 0.27766928941176194,
+      "quality_std": 14.227547780143498
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.05,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.4215249858381817,
+        "mutual_info": 2.4288955839334543,
+        "bipartition_entropy": 2.418057767820117,
+        "chsh_proxy": 0.20887627466342837
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.5339976312961648,
+          "mutual_info": 2.257813974610293,
+          "bipartition_entropy": 2.25102119534957,
+          "chsh_proxy": 0.04033038106910686
+        },
+        {
+          "pairwise_correlation": 0.5032263471088416,
+          "mutual_info": 2.316486133575906,
+          "bipartition_entropy": 2.3034129598334907,
+          "chsh_proxy": 0.02904440203177122
+        },
+        {
+          "pairwise_correlation": 0.5049301640775637,
+          "mutual_info": 2.3082774120489735,
+          "bipartition_entropy": 2.292538357913841,
+          "chsh_proxy": 0.5622842550813377
+        },
+        {
+          "pairwise_correlation": 0.14394580087015668,
+          "mutual_info": 2.833004815498645,
+          "bipartition_entropy": 2.825258558183566,
+          "chsh_proxy": 0.20384606047149767
+        }
+      ],
+      "quality_raw": [
+        85.81383956667071,
+        -71.96377732504222,
+        -8.009131799056362,
+        51.73015126278718
+      ],
+      "quality_mean": 14.392770426339828,
+      "quality_std": 60.11311771927731
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.05,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9697238100644116,
+        "mutual_info": 0.7811412114849983,
+        "bipartition_entropy": 0.7745690415917519,
+        "chsh_proxy": 1.3535650239344568
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9737312351264046,
+          "mutual_info": 0.8586752554347046,
+          "bipartition_entropy": 0.8517730971479258,
+          "chsh_proxy": 1.3656639151828265
+        },
+        {
+          "pairwise_correlation": 0.9822644791072958,
+          "mutual_info": 0.6883695196030716,
+          "bipartition_entropy": 0.6814933130479063,
+          "chsh_proxy": 1.3646904147518817
+        },
+        {
+          "pairwise_correlation": 0.9658437030392077,
+          "mutual_info": 0.7464566199438764,
+          "bipartition_entropy": 0.7404759797743882,
+          "chsh_proxy": 1.331486159309474
+        },
+        {
+          "pairwise_correlation": 0.9570558229847381,
+          "mutual_info": 0.8310634509583406,
+          "bipartition_entropy": 0.824533776396787,
+          "chsh_proxy": 1.3524196064936451
+        }
+      ],
+      "quality_raw": [
+        19.840132431729366,
+        18.338403233119127,
+        -18.254789836438835,
+        23.1266736260515
+      ],
+      "quality_mean": 10.762604863615291,
+      "quality_std": 16.842458395571505
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.05,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.3869961120667521,
+        "mutual_info": 2.427709609029919,
+        "bipartition_entropy": 2.4179433141718745,
+        "chsh_proxy": 0.22259233448531196
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.6458158754356383,
+          "mutual_info": 1.9920897800825923,
+          "bipartition_entropy": 1.982688987419704,
+          "chsh_proxy": 0.07026403664471774
+        },
+        {
+          "pairwise_correlation": 0.3443309221070108,
+          "mutual_info": 2.5465567182070847,
+          "bipartition_entropy": 2.5377517245217867,
+          "chsh_proxy": 0.2640384624237891
+        },
+        {
+          "pairwise_correlation": 0.5518681029158137,
+          "mutual_info": 2.2006264869514065,
+          "bipartition_entropy": 2.1895485843143074,
+          "chsh_proxy": 0.4498892837097836
+        },
+        {
+          "pairwise_correlation": 0.005969547808545453,
+          "mutual_info": 2.9715654508785927,
+          "bipartition_entropy": 2.961783960431699,
+          "chsh_proxy": 0.1061775551629573
+        }
+      ],
+      "quality_raw": [
+        50.29089706309693,
+        3.0692263646826996,
+        19.98888148562633,
+        35.957340854643604
+      ],
+      "quality_mean": 27.326586442012392,
+      "quality_std": 17.63597825455828
+    },
+    {
+      "params": {
+        "coupling": 1.8,
+        "noise": 0.05,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9576423091837793,
+        "mutual_info": 0.7697236064606809,
+        "bipartition_entropy": 0.7619704873756351,
+        "chsh_proxy": 1.3237832248013444
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9465397280064167,
+          "mutual_info": 0.8110347930911153,
+          "bipartition_entropy": 0.8027428173218252,
+          "chsh_proxy": 1.3021074693474297
+        },
+        {
+          "pairwise_correlation": 0.9766818430719174,
+          "mutual_info": 0.7823494597580121,
+          "bipartition_entropy": 0.7766675141188781,
+          "chsh_proxy": 1.3657188984460242
+        },
+        {
+          "pairwise_correlation": 0.9511723187748431,
+          "mutual_info": 0.8910052924045369,
+          "bipartition_entropy": 0.8810639134989846,
+          "chsh_proxy": 1.3405674504462683
+        },
+        {
+          "pairwise_correlation": 0.9561753468819401,
+          "mutual_info": 0.5945048805890594,
+          "bipartition_entropy": 0.5874077045628529,
+          "chsh_proxy": 1.286739080965654
+        }
+      ],
+      "quality_raw": [
+        4.058364736137509,
+        12.78059379308548,
+        1.3597480142343732,
+        -19.888811875797725
+      ],
+      "quality_mean": -0.4225263330850906,
+      "quality_std": 12.005348188618534
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.0,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.8246486005465219,
+        "mutual_info": 1.3186273602714014,
+        "bipartition_entropy": 1.3051469990035196,
+        "chsh_proxy": 0.540107610342763
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.8997740810931182,
+          "mutual_info": 1.057574095825932,
+          "bipartition_entropy": 1.0438222606160825,
+          "chsh_proxy": 0.1818057940430151
+        },
+        {
+          "pairwise_correlation": 0.9010509108547693,
+          "mutual_info": 0.9821517005782947,
+          "bipartition_entropy": 0.9664366573900673,
+          "chsh_proxy": 0.03928593691330129
+        },
+        {
+          "pairwise_correlation": 0.9025828439126187,
+          "mutual_info": 1.1557476615331965,
+          "bipartition_entropy": 1.1425593768727031,
+          "chsh_proxy": 1.0919920946237478
+        },
+        {
+          "pairwise_correlation": 0.5951865663255816,
+          "mutual_info": 2.0790359831481826,
+          "bipartition_entropy": 2.0677697011352256,
+          "chsh_proxy": 0.8473466157909879
+        }
+      ],
+      "quality_raw": [
+        15.28290412235322,
+        -10.533007785711478,
+        -9.699517338071033,
+        11.913247350952268
+      ],
+      "quality_mean": 1.7409065873807443,
+      "quality_std": 11.920512651302678
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.0,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9933315617252229,
+        "mutual_info": 0.38495318287678904,
+        "bipartition_entropy": 0.38254745026413356,
+        "chsh_proxy": 1.382230835234386
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9912773204142244,
+          "mutual_info": 0.7387206781054773,
+          "bipartition_entropy": 0.7369422580637148,
+          "chsh_proxy": 1.3991792832105325
+        },
+        {
+          "pairwise_correlation": 0.994388071449419,
+          "mutual_info": 0.1281948552252244,
+          "bipartition_entropy": 0.12532005002574204,
+          "chsh_proxy": 1.3774415910318267
+        },
+        {
+          "pairwise_correlation": 0.9951804720848771,
+          "mutual_info": 0.0835494019878893,
+          "bipartition_entropy": 0.08015706871536607,
+          "chsh_proxy": 1.3616443816017079
+        },
+        {
+          "pairwise_correlation": 0.9924803829523712,
+          "mutual_info": 0.5893477961885651,
+          "bipartition_entropy": 0.5877704242517112,
+          "chsh_proxy": 1.390658085093476
+        }
+      ],
+      "quality_raw": [
+        2.056579112301736,
+        0.0,
+        0.0,
+        10.949318512380763
+      ],
+      "quality_mean": 3.251474406170625,
+      "quality_std": 4.522962255944367
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.0,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.7170797983432149,
+        "mutual_info": 1.4562086294727226,
+        "bipartition_entropy": 1.4478729228611638,
+        "chsh_proxy": 0.33996913635383624
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9132494030633467,
+          "mutual_info": 0.7335238930000509,
+          "bipartition_entropy": 0.7265487307643002,
+          "chsh_proxy": 0.039704954715797575
+        },
+        {
+          "pairwise_correlation": 0.8497947783248931,
+          "mutual_info": 1.3352165631146236,
+          "bipartition_entropy": 1.3262438192095156,
+          "chsh_proxy": 0.22255434307407446
+        },
+        {
+          "pairwise_correlation": 0.8974150558705464,
+          "mutual_info": 1.0021582699825795,
+          "bipartition_entropy": 0.9918368769787278,
+          "chsh_proxy": 0.8385699364012398
+        },
+        {
+          "pairwise_correlation": 0.2078599561140734,
+          "mutual_info": 2.753935791793636,
+          "bipartition_entropy": 2.746862264492111,
+          "chsh_proxy": 0.2590473112242331
+        }
+      ],
+      "quality_raw": [
+        -9.473814288498264,
+        -46.49666117542943,
+        -19.424605231167288,
+        6.976057062527346
+      ],
+      "quality_mean": -17.10475590814191,
+      "quality_std": 19.412512842581116
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.0,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9911766844273711,
+        "mutual_info": 0.4639555556264606,
+        "bipartition_entropy": 0.46168749579229573,
+        "chsh_proxy": 1.3683779720820688
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9834250124041829,
+          "mutual_info": 0.667577984951961,
+          "bipartition_entropy": 0.6643281270127261,
+          "chsh_proxy": 1.380756805487162
+        },
+        {
+          "pairwise_correlation": 0.9951390647293207,
+          "mutual_info": 0.6749869810016973,
+          "bipartition_entropy": 0.6749849060960116,
+          "chsh_proxy": 1.4002192605900248
+        },
+        {
+          "pairwise_correlation": 0.9937893453660249,
+          "mutual_info": 0.40202559728218623,
+          "bipartition_entropy": 0.3998683016503537,
+          "chsh_proxy": 1.3823878138433285
+        },
+        {
+          "pairwise_correlation": 0.9923533152099553,
+          "mutual_info": 0.11123165926999803,
+          "bipartition_entropy": 0.10756864841009156,
+          "chsh_proxy": 1.3101480084077592
+        }
+      ],
+      "quality_raw": [
+        12.348614175415642,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quality_mean": 3.0871535438539106,
+      "quality_std": 5.3471067887212875
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.02,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.8246270728448913,
+        "mutual_info": 1.3180864090810038,
+        "bipartition_entropy": 1.3048315137394617,
+        "chsh_proxy": 0.5412578240329977
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.8996316487227511,
+          "mutual_info": 1.0628241841993655,
+          "bipartition_entropy": 1.0485917504335995,
+          "chsh_proxy": 0.18444991620720913
+        },
+        {
+          "pairwise_correlation": 0.9010039701556252,
+          "mutual_info": 0.9783081651575042,
+          "bipartition_entropy": 0.9649482922550612,
+          "chsh_proxy": 0.04120631382482143
+        },
+        {
+          "pairwise_correlation": 0.9025083297670734,
+          "mutual_info": 1.1557993381919747,
+          "bipartition_entropy": 1.141519819744251,
+          "chsh_proxy": 1.0922520479458533
+        },
+        {
+          "pairwise_correlation": 0.5953643427341158,
+          "mutual_info": 2.07541394877517,
+          "bipartition_entropy": 2.064266192524936,
+          "chsh_proxy": 0.8471230181541067
+        }
+      ],
+      "quality_raw": [
+        -11.017770408697341,
+        -5.9282690206505855,
+        -9.699517338071033,
+        16.85626202828306
+      ],
+      "quality_mean": -2.447323684783975,
+      "quality_std": 11.300356981587258
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.02,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9925752276775586,
+        "mutual_info": 0.38990301065384214,
+        "bipartition_entropy": 0.38762373150894125,
+        "chsh_proxy": 1.3828781992388255
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9936783139670414,
+          "mutual_info": 0.731605884032209,
+          "bipartition_entropy": 0.7304517602926185,
+          "chsh_proxy": 1.397696003208497
+        },
+        {
+          "pairwise_correlation": 0.9908265720865114,
+          "mutual_info": 0.1484283830363899,
+          "bipartition_entropy": 0.1454748449285731,
+          "chsh_proxy": 1.3799644284747472
+        },
+        {
+          "pairwise_correlation": 0.9951914423542609,
+          "mutual_info": 0.0835494019878893,
+          "bipartition_entropy": 0.08015706871536607,
+          "chsh_proxy": 1.361765267648434
+        },
+        {
+          "pairwise_correlation": 0.9906045823024207,
+          "mutual_info": 0.5960283735588803,
+          "bipartition_entropy": 0.5944112520992073,
+          "chsh_proxy": 1.3920870976236237
+        }
+      ],
+      "quality_raw": [
+        0.0,
+        6.852735565925688,
+        0.0,
+        10.949318512380763
+      ],
+      "quality_mean": 4.450513519576613,
+      "quality_std": 4.680258493671319
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.02,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.7166703790735952,
+        "mutual_info": 1.4579255332720837,
+        "bipartition_entropy": 1.4483579856756021,
+        "chsh_proxy": 0.3405600906168884
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9131540274769735,
+          "mutual_info": 0.7395507220010735,
+          "bipartition_entropy": 0.7311264781204824,
+          "chsh_proxy": 0.03861259499460906
+        },
+        {
+          "pairwise_correlation": 0.8490067598222568,
+          "mutual_info": 1.3383424420624204,
+          "bipartition_entropy": 1.326631241784519,
+          "chsh_proxy": 0.2257759335497635
+        },
+        {
+          "pairwise_correlation": 0.8972889664628662,
+          "mutual_info": 0.9982696606668428,
+          "bipartition_entropy": 0.9879551092017326,
+          "chsh_proxy": 0.8392412193215235
+        },
+        {
+          "pairwise_correlation": 0.20723176253228434,
+          "mutual_info": 2.7555393083579984,
+          "bipartition_entropy": 2.747719113595675,
+          "chsh_proxy": 0.25861061460165746
+        }
+      ],
+      "quality_raw": [
+        -11.89437511364977,
+        -55.85586253572935,
+        -11.70801896694498,
+        2.487323038624217
+      ],
+      "quality_mean": -19.24273339442497,
+      "quality_std": 21.928787409633756
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.02,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9916787336725087,
+        "mutual_info": 0.4642608824399146,
+        "bipartition_entropy": 0.46205683492295807,
+        "chsh_proxy": 1.3680368270162147
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9858915885623089,
+          "mutual_info": 0.6646145855959728,
+          "bipartition_entropy": 0.6615616731766222,
+          "chsh_proxy": 1.380978828618661
+        },
+        {
+          "pairwise_correlation": 0.9951727683673088,
+          "mutual_info": 0.6746002312122423,
+          "bipartition_entropy": 0.674591924985976,
+          "chsh_proxy": 1.4002941178980932
+        },
+        {
+          "pairwise_correlation": 0.9927639247341127,
+          "mutual_info": 0.4070220762917998,
+          "bipartition_entropy": 0.40555158939285624,
+          "chsh_proxy": 1.380704774455654
+        },
+        {
+          "pairwise_correlation": 0.9928866530263042,
+          "mutual_info": 0.11080663665964358,
+          "bipartition_entropy": 0.10652215213637797,
+          "chsh_proxy": 1.3101695870924501
+        }
+      ],
+      "quality_raw": [
+        12.348614175415642,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quality_mean": 3.0871535438539106,
+      "quality_std": 5.3471067887212875
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.05,
+        "leak": 0.005,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.8245615952348635,
+        "mutual_info": 1.3227740309860563,
+        "bipartition_entropy": 1.310401171752006,
+        "chsh_proxy": 0.5429915998501282
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.8994080063502697,
+          "mutual_info": 1.0619429256079427,
+          "bipartition_entropy": 1.0500190740579884,
+          "chsh_proxy": 0.1885364847172727
+        },
+        {
+          "pairwise_correlation": 0.9008787933731038,
+          "mutual_info": 0.988457330054414,
+          "bipartition_entropy": 0.9747648751283882,
+          "chsh_proxy": 0.044046349119315376
+        },
+        {
+          "pairwise_correlation": 0.9022936899027683,
+          "mutual_info": 1.1630184674498167,
+          "bipartition_entropy": 1.1473896444905194,
+          "chsh_proxy": 1.0926896571975249
+        },
+        {
+          "pairwise_correlation": 0.5956658913133125,
+          "mutual_info": 2.077677400832051,
+          "bipartition_entropy": 2.069431093331128,
+          "chsh_proxy": 0.8466939083663999
+        }
+      ],
+      "quality_raw": [
+        -0.5974245276421466,
+        -5.9282690206505855,
+        -9.699517338071033,
+        16.85626202828306
+      ],
+      "quality_mean": 0.15776278547982336,
+      "quality_std": 10.16877499282955
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.05,
+        "leak": 0.005,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9931828163768187,
+        "mutual_info": 0.4018132326820957,
+        "bipartition_entropy": 0.39886292578890664,
+        "chsh_proxy": 1.3838996743041851
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9944384480986732,
+          "mutual_info": 0.735395907233753,
+          "bipartition_entropy": 0.7337269477179243,
+          "chsh_proxy": 1.3988233134086288
+        },
+        {
+          "pairwise_correlation": 0.992156198288129,
+          "mutual_info": 0.18649264450114478,
+          "bipartition_entropy": 0.18349737409151265,
+          "chsh_proxy": 1.3837221050787454
+        },
+        {
+          "pairwise_correlation": 0.9950119994552549,
+          "mutual_info": 0.08503392185478828,
+          "bipartition_entropy": 0.08015706871536607,
+          "chsh_proxy": 1.3615000861222384
+        },
+        {
+          "pairwise_correlation": 0.9911246196652178,
+          "mutual_info": 0.6003304571386967,
+          "bipartition_entropy": 0.5980703126308234,
+          "chsh_proxy": 1.3915531926071278
+        }
+      ],
+      "quality_raw": [
+        0.0,
+        18.338403233119127,
+        0.0,
+        5.040932970698375
+      ],
+      "quality_mean": 5.8448340509543755,
+      "quality_std": 7.500994901057543
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.05,
+        "leak": 0.02,
+        "anchor": 0.0,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.7161431925442019,
+        "mutual_info": 1.4568662796943586,
+        "bipartition_entropy": 1.4481962676170537,
+        "chsh_proxy": 0.34109848555430594
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9132339879209258,
+          "mutual_info": 0.7409733178126965,
+          "bipartition_entropy": 0.7322110884037112,
+          "chsh_proxy": 0.03549796984246146
+        },
+        {
+          "pairwise_correlation": 0.8477974585372153,
+          "mutual_info": 1.3374727229374737,
+          "bipartition_entropy": 1.3271204602773508,
+          "chsh_proxy": 0.23067684681915634
+        },
+        {
+          "pairwise_correlation": 0.897157737314197,
+          "mutual_info": 0.9918415625007062,
+          "bipartition_entropy": 0.9838025006103088,
+          "chsh_proxy": 0.8403322819377734
+        },
+        {
+          "pairwise_correlation": 0.2063835864044695,
+          "mutual_info": 2.7571775155265583,
+          "bipartition_entropy": 2.7496510211768443,
+          "chsh_proxy": 0.25788684361783254
+        }
+      ],
+      "quality_raw": [
+        -20.42575714113907,
+        -61.00438863504208,
+        -9.36900917652115,
+        6.350206464320243
+      ],
+      "quality_mean": -21.112237122095515,
+      "quality_std": 24.91959177742949
+    },
+    {
+      "params": {
+        "coupling": 2.4,
+        "noise": 0.05,
+        "leak": 0.02,
+        "anchor": 0.4,
+        "nodes": 1000,
+        "warmup": 120,
+        "steps": 240
+      },
+      "metrics_mean": {
+        "pairwise_correlation": 0.9913908715297313,
+        "mutual_info": 0.46027803202251666,
+        "bipartition_entropy": 0.4574851968591283,
+        "chsh_proxy": 1.3680707443624993
+      },
+      "metrics_raw": [
+        {
+          "pairwise_correlation": 0.9881503880963883,
+          "mutual_info": 0.6588280485560641,
+          "bipartition_entropy": 0.6549954400229121,
+          "chsh_proxy": 1.3821332449413646
+        },
+        {
+          "pairwise_correlation": 0.9952048676943276,
+          "mutual_info": 0.673415049858407,
+          "bipartition_entropy": 0.6733963152563106,
+          "chsh_proxy": 1.4003675102651874
+        },
+        {
+          "pairwise_correlation": 0.9903649897133503,
+          "mutual_info": 0.3966760986824629,
+          "bipartition_entropy": 0.39364058567360827,
+          "chsh_proxy": 1.3813343027430471
+        },
+        {
+          "pairwise_correlation": 0.991843240614859,
+          "mutual_info": 0.11219293099313246,
+          "bipartition_entropy": 0.10790844648368235,
+          "chsh_proxy": 1.308447919500398
+        }
+      ],
+      "quality_raw": [
+        18.344284077606588,
+        0.0,
+        -8.485275894213745,
+        0.0
+      ],
+      "quality_mean": 2.464752045848211,
+      "quality_std": 9.8006715934522
+    }
+  ],
+  "stats": {
+    "pairwise_correlation": {
+      "mean": 0.6635424950588232,
+      "std": 0.33340970513745494,
+      "ci95": [
+        0.5432215228690702,
+        0.775876086162012
+      ],
+      "p_value_vs_baseline": 1.4363967993787652e-08
+    },
+    "mutual_info": {
+      "mean": 1.5875418659650957,
+      "std": 0.8718906365545452,
+      "ci95": [
+        1.2805358515668719,
+        1.8941522768750163
+      ],
+      "p_value_vs_baseline": 1.594228975917256e-28
+    },
+    "bipartition_entropy": {
+      "mean": 1.5786089313327845,
+      "std": 0.8696947843224225,
+      "ci95": [
+        1.2718101807738287,
+        1.8845738342151315
+      ],
+      "p_value_vs_baseline": 1.7461475600865508e-28
+    },
+    "chsh_proxy": {
+      "mean": 0.7561382752529993,
+      "std": 0.5374879947388508,
+      "ci95": [
+        0.5691650062699484,
+        0.9483656659113897
+      ],
+      "p_value_vs_baseline": 2.1894899595617617e-15
+    },
+    "quality": {
+      "mean": 4.411218962525315,
+      "std": 12.041753408512207,
+      "ci95": [
+        0.32482436268090187,
+        8.192696897683003
+      ],
+      "p_value_vs_baseline": 0.9457037865457134
+    }
+  }
+}
