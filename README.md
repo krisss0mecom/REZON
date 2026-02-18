@@ -76,6 +76,17 @@ python3 benchmark_qc_like_decrypt.py \
   --out-md reports/qc_like_decrypt_benchmark.md
 ```
 
+### 6) Phase-guided candidate ordering vs brute-force
+
+```bash
+python3 benchmark_qc_like_phase_guided.py \
+  --bits 8,10,12,14,16 \
+  --known-len 10 \
+  --precheck-len 4 \
+  --out-json reports/qc_like_phase_guided_benchmark.json \
+  --out-md reports/qc_like_phase_guided_benchmark.md
+```
+
 ## Tests
 
 ```bash
@@ -92,6 +103,8 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
   - `xor_driven` and `RLS`: substantially higher stability on the same truth-table task.
 - QC-like decryption benchmark shows classical brute-force scaling with keyspace size (`O(N)`)
   and provides a Grover-query reference (`sqrt(N)`) as a theoretical lower-bound comparator.
+- Phase-guided ordering can reduce average query count, but may still be slower wall-clock
+  due to ranking overhead (important distinction: attempts vs time).
 
 ## Output Files
 
@@ -104,3 +117,5 @@ pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
 - `reports/rezon_proof_benchmark.md`
 - `reports/qc_like_decrypt_benchmark.json`
 - `reports/qc_like_decrypt_benchmark.md`
+- `reports/qc_like_phase_guided_benchmark.json`
+- `reports/qc_like_phase_guided_benchmark.md`

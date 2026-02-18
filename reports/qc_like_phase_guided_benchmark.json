@@ -1,0 +1,106 @@
+{
+  "config": {
+    "bits": [
+      8,
+      10,
+      12,
+      14,
+      16
+    ],
+    "known_len": 10,
+    "precheck_len": 4
+  },
+  "rows": [
+    {
+      "bits": 8,
+      "keyspace": 256,
+      "reps": 6,
+      "keys_tested": [
+        36,
+        73,
+        109,
+        146,
+        182,
+        219
+      ],
+      "bruteforce_avg_attempts": 128.5,
+      "phase_guided_avg_attempts": 1.6666666666666667,
+      "attempt_gain_x": 77.1,
+      "bruteforce_avg_time_s": 0.00019606451193491617,
+      "phase_guided_avg_time_s": 0.018272277821476262,
+      "time_gain_x": 0.010730162591139698,
+      "grover_ideal_queries": 16.0
+    },
+    {
+      "bits": 10,
+      "keyspace": 1024,
+      "reps": 6,
+      "keys_tested": [
+        146,
+        292,
+        438,
+        585,
+        731,
+        877
+      ],
+      "bruteforce_avg_attempts": 512.5,
+      "phase_guided_avg_attempts": 3.6666666666666665,
+      "attempt_gain_x": 139.77272727272728,
+      "bruteforce_avg_time_s": 0.0007381601511345556,
+      "phase_guided_avg_time_s": 0.07204308115372744,
+      "time_gain_x": 0.010246093577805895,
+      "grover_ideal_queries": 32.0
+    },
+    {
+      "bits": 12,
+      "keyspace": 4096,
+      "reps": 4,
+      "keys_tested": [
+        819,
+        1638,
+        2457,
+        3276
+      ],
+      "bruteforce_avg_attempts": 2048.5,
+      "phase_guided_avg_attempts": 11.25,
+      "attempt_gain_x": 182.0888888888889,
+      "bruteforce_avg_time_s": 0.0029448779969243333,
+      "phase_guided_avg_time_s": 0.2875828189862659,
+      "time_gain_x": 0.010240104076123448,
+      "grover_ideal_queries": 64.0
+    },
+    {
+      "bits": 14,
+      "keyspace": 16384,
+      "reps": 3,
+      "keys_tested": [
+        3276,
+        8192,
+        13107
+      ],
+      "bruteforce_avg_attempts": 8192.666666666666,
+      "phase_guided_avg_attempts": 67.66666666666667,
+      "attempt_gain_x": 121.07389162561574,
+      "bruteforce_avg_time_s": 0.01178661632972459,
+      "phase_guided_avg_time_s": 1.1494108433447157,
+      "time_gain_x": 0.010254485067694552,
+      "grover_ideal_queries": 128.0
+    },
+    {
+      "bits": 16,
+      "keyspace": 65536,
+      "reps": 2,
+      "keys_tested": [
+        19660,
+        45875
+      ],
+      "bruteforce_avg_attempts": 32768.5,
+      "phase_guided_avg_attempts": 596.0,
+      "attempt_gain_x": 54.980704697986575,
+      "bruteforce_avg_time_s": 0.046793159475782886,
+      "phase_guided_avg_time_s": 4.6034826035029255,
+      "time_gain_x": 0.010164730380468168,
+      "grover_ideal_queries": 256.0
+    }
+  ]
+}
