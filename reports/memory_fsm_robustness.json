@@ -1,0 +1,260 @@
+{
+  "latch": {
+    "0.0": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.05": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.1": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.3": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.5": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    }
+  },
+  "register": {
+    "0.0": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.05": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.1": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.3": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.5": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    }
+  },
+  "automaton": {
+    "0.0": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.05": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.1": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.3": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.5": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    }
+  },
+  "turing_demo": {
+    "0.0": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.02": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.05": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    },
+    "0.1": {
+      "n_trials": 12,
+      "n_pass": 12,
+      "pass_rate": 1.0,
+      "pass_rate_ci95": [
+        0.7574992425007574,
+        0.9999999999999998
+      ],
+      "n_fail": 0,
+      "failure_examples": []
+    }
+  },
+  "failure_envelope": {
+    "latch": {
+      "min_pass_rate_over_sweep": 1.0,
+      "mean_pass_rate_over_sweep": 1.0,
+      "max_pass_rate_over_sweep": 1.0
+    },
+    "register": {
+      "min_pass_rate_over_sweep": 1.0,
+      "mean_pass_rate_over_sweep": 1.0,
+      "max_pass_rate_over_sweep": 1.0
+    },
+    "automaton": {
+      "min_pass_rate_over_sweep": 1.0,
+      "mean_pass_rate_over_sweep": 1.0,
+      "max_pass_rate_over_sweep": 1.0
+    },
+    "turing_demo": {
+      "min_pass_rate_over_sweep": 1.0,
+      "mean_pass_rate_over_sweep": 1.0,
+      "max_pass_rate_over_sweep": 1.0
+    }
+  },
+  "config": {
+    "seeds": 12,
+    "noise_grid": [
+      0.0,
+      0.05,
+      0.1,
+      0.3,
+      0.5
+    ],
+    "hold_steps": 5000,
+    "automaton_transitions": 50,
+    "turing_noises": [
+      0.0,
+      0.02,
+      0.05,
+      0.1
+    ],
+    "turing_extra_random": 8
+  }
+}

@@ -24,3 +24,4 @@ jobs:
           python cnot_phase_gate.py --eval-seeds 20 --noise-sweep --out-json reports/ci_cnot_phase_gate_report.json
           python phase_gate_universal.py --out-json reports/ci_phase_gate_universal_report.json
           python phase_turing_demo.py > reports/ci_phase_turing_demo.log
+          python bench/memory_fsm_robustness.py --seeds 4 --noise-grid 0.0,0.1 --turing-noises 0.0,0.05 --out-json reports/ci_memory_fsm_robustness.json --out-md reports/ci_memory_fsm_robustness.md
