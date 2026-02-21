@@ -1,0 +1,167 @@
+{
+  "method": "cnot_phase_gate",
+  "architecture": "3-oscillator pure CNOT, no RLS",
+  "key_equation": "dphi_out = omega + anchor + K_cnot * cos(phi_c) * sin(phi_t - phi_out)",
+  "physics_insight": "cos(phi_c) acts as CNOT gate: +1 when control=0 (sync=preserve), -1 when control=1 (anti-sync=flip). XOR emerges from attractor symmetry.",
+  "params": {
+    "dt": 0.001,
+    "K_inj": 8.0,
+    "K_cnot": 5.0,
+    "a_anchor": 0.08,
+    "leak": 0.0,
+    "noise_amp": 0.0,
+    "warmup": 2000,
+    "collect": 400,
+    "gate_seed": 42
+  },
+  "single_seed_score": 4,
+  "single_seed_rows": [
+    {
+      "control": 0,
+      "target": 0,
+      "phi_c_deg": 360.0,
+      "phi_t_deg": 360.0,
+      "phi_out_deg": 0.31,
+      "cos_c": 1.0,
+      "mean_cos_out": 1.0,
+      "pred_bit": 0,
+      "expected": 0,
+      "ok": 1
+    },
+    {
+      "control": 0,
+      "target": 1,
+      "phi_c_deg": 360.0,
+      "phi_t_deg": 180.0,
+      "phi_out_deg": 180.31,
+      "cos_c": 1.0,
+      "mean_cos_out": -1.0,
+      "pred_bit": 1,
+      "expected": 1,
+      "ok": 1
+    },
+    {
+      "control": 1,
+      "target": 0,
+      "phi_c_deg": 180.0,
+      "phi_t_deg": 360.0,
+      "phi_out_deg": 180.31,
+      "cos_c": -1.0,
+      "mean_cos_out": -1.0,
+      "pred_bit": 1,
+      "expected": 1,
+      "ok": 1
+    },
+    {
+      "control": 1,
+      "target": 1,
+      "phi_c_deg": 180.0,
+      "phi_t_deg": 180.0,
+      "phi_out_deg": 0.31,
+      "cos_c": -1.0,
+      "mean_cos_out": 1.0,
+      "pred_bit": 0,
+      "expected": 0,
+      "ok": 1
+    }
+  ],
+  "multi_seed_clean": {
+    "mean": 4.0,
+    "std": 0.0,
+    "pass4_rate": 1.0,
+    "distribution": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 200
+    },
+    "n_seeds": 200
+  },
+  "anchor_hz": 200.0,
+  "comparison": {
+    "old_pure_mode_pass4": 0.0,
+    "rls_mode_pass4": 1.0,
+    "this_gate_pass4": 1.0
+  },
+  "noise_sweep": {
+    "0.0": {
+      "mean": 4.0,
+      "std": 0.0,
+      "pass4_rate": 1.0,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 200
+      },
+      "n_seeds": 200
+    },
+    "0.05": {
+      "mean": 4.0,
+      "std": 0.0,
+      "pass4_rate": 1.0,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 200
+      },
+      "n_seeds": 200
+    },
+    "0.1": {
+      "mean": 4.0,
+      "std": 0.0,
+      "pass4_rate": 1.0,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 200
+      },
+      "n_seeds": 200
+    },
+    "0.2": {
+      "mean": 4.0,
+      "std": 0.0,
+      "pass4_rate": 1.0,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 200
+      },
+      "n_seeds": 200
+    },
+    "0.5": {
+      "mean": 4.0,
+      "std": 0.0,
+      "pass4_rate": 1.0,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 200
+      },
+      "n_seeds": 200
+    },
+    "1.0": {
+      "mean": 4.0,
+      "std": 0.0,
+      "pass4_rate": 1.0,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 200
+      },
+      "n_seeds": 200
+    }
+  }
+}
