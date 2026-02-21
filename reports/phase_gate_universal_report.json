@@ -1,0 +1,363 @@
+{
+  "title": "Phase Gate Universal \u2014 Turing Completeness Proof",
+  "framework": "d\u03c6_out = K\u00b7f(\u03c6_c)\u00b7sin(\u03c6_t\u2212\u03c6_out) + bias",
+  "key_insight": "cos(\u03c6_c) acts as a sign modulator: +1=sync (preserve), \u22121=anti-sync (flip). Combined with bias terms, this implements any boolean function.",
+  "gates": {
+    "NOT": "\u2212K\u00b7sin(\u03c6_in\u2212\u03c6_out)",
+    "XOR": "K\u00b7cos(\u03c6_c)\u00b7sin(\u03c6_t\u2212\u03c6_out)",
+    "AND": "\u2212K_b\u00b7sin(\u03c6_out) + K_a\u00b7(1\u2212cos(\u03c6_c))/2\u00b7sin(\u03c6_t\u2212\u03c6_out)",
+    "OR": "+K_b\u00b7sin(\u03c6_out) + K_a\u00b7(1+cos(\u03c6_c))/2\u00b7sin(\u03c6_t\u2212\u03c6_out)",
+    "NAND": "AND \u2192 NOT (cascade)",
+    "NOR": "OR  \u2192 NOT (cascade)"
+  },
+  "completeness_proof": {
+    "functional": "{NOT,AND} \u2286 framework \u2227 both verified \u2192 functionally complete",
+    "turing": "functional_completeness \u2227 bistable_memory \u2227 feedback \u2192 Turing complete"
+  },
+  "params": {
+    "dt": 0.001,
+    "K_inj": 8.0,
+    "K_main": 5.0,
+    "K_bias": 1.5,
+    "a_anchor": 0.08,
+    "warmup": 2000,
+    "collect": 400,
+    "noise": 0.0
+  },
+  "results": {
+    "NOT": {
+      "gate": "NOT",
+      "score": 2,
+      "total": 2,
+      "rows": [
+        {
+          "gate": "NOT",
+          "inputs": [
+            0
+          ],
+          "mean_cos_out": -1.0,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "NOT",
+          "inputs": [
+            1
+          ],
+          "mean_cos_out": 1.0,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        }
+      ]
+    },
+    "AND": {
+      "gate": "AND",
+      "score": 4,
+      "total": 4,
+      "rows": [
+        {
+          "gate": "AND",
+          "inputs": [
+            0,
+            0
+          ],
+          "mean_cos_out": 0.9999,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        },
+        {
+          "gate": "AND",
+          "inputs": [
+            0,
+            1
+          ],
+          "mean_cos_out": 0.9999,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        },
+        {
+          "gate": "AND",
+          "inputs": [
+            1,
+            0
+          ],
+          "mean_cos_out": 1.0,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        },
+        {
+          "gate": "AND",
+          "inputs": [
+            1,
+            1
+          ],
+          "mean_cos_out": -1.0,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        }
+      ]
+    },
+    "OR": {
+      "gate": "OR",
+      "score": 4,
+      "total": 4,
+      "rows": [
+        {
+          "gate": "OR",
+          "inputs": [
+            0,
+            0
+          ],
+          "mean_cos_out": 1.0,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        },
+        {
+          "gate": "OR",
+          "inputs": [
+            0,
+            1
+          ],
+          "mean_cos_out": -1.0,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "OR",
+          "inputs": [
+            1,
+            0
+          ],
+          "mean_cos_out": -0.9917,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "OR",
+          "inputs": [
+            1,
+            1
+          ],
+          "mean_cos_out": -0.9935,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        }
+      ]
+    },
+    "XOR": {
+      "gate": "XOR",
+      "score": 4,
+      "total": 4,
+      "rows": [
+        {
+          "gate": "XOR",
+          "inputs": [
+            0,
+            0
+          ],
+          "mean_cos_out": 1.0,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        },
+        {
+          "gate": "XOR",
+          "inputs": [
+            0,
+            1
+          ],
+          "mean_cos_out": -1.0,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "XOR",
+          "inputs": [
+            1,
+            0
+          ],
+          "mean_cos_out": -1.0,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "XOR",
+          "inputs": [
+            1,
+            1
+          ],
+          "mean_cos_out": 1.0,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        }
+      ]
+    },
+    "NAND": {
+      "gate": "NAND",
+      "score": 4,
+      "total": 4,
+      "rows": [
+        {
+          "gate": "NAND",
+          "inputs": [
+            0,
+            0
+          ],
+          "mean_cos_out": -0.8891,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "NAND",
+          "inputs": [
+            0,
+            1
+          ],
+          "mean_cos_out": -0.2067,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "NAND",
+          "inputs": [
+            1,
+            0
+          ],
+          "mean_cos_out": -1.0,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "NAND",
+          "inputs": [
+            1,
+            1
+          ],
+          "mean_cos_out": 1.0,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        }
+      ]
+    },
+    "NOR": {
+      "gate": "NOR",
+      "score": 4,
+      "total": 4,
+      "rows": [
+        {
+          "gate": "NOR",
+          "inputs": [
+            0,
+            0
+          ],
+          "mean_cos_out": -1.0,
+          "pred_bit": 1,
+          "expected": 1,
+          "ok": 1
+        },
+        {
+          "gate": "NOR",
+          "inputs": [
+            0,
+            1
+          ],
+          "mean_cos_out": 1.0,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        },
+        {
+          "gate": "NOR",
+          "inputs": [
+            1,
+            0
+          ],
+          "mean_cos_out": 0.9993,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        },
+        {
+          "gate": "NOR",
+          "inputs": [
+            1,
+            1
+          ],
+          "mean_cos_out": 0.9989,
+          "pred_bit": 0,
+          "expected": 0,
+          "ok": 1
+        }
+      ]
+    },
+    "half_adder": {
+      "circuit": "half_adder",
+      "score": 4,
+      "total": 4,
+      "rows": [
+        {
+          "a": 0,
+          "b": 0,
+          "sum_pred": 0,
+          "sum_exp": 0,
+          "sum_ok": 1,
+          "carry_pred": 0,
+          "carry_exp": 0,
+          "carry_ok": 1,
+          "ok": 1
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "sum_pred": 1,
+          "sum_exp": 1,
+          "sum_ok": 1,
+          "carry_pred": 0,
+          "carry_exp": 0,
+          "carry_ok": 1,
+          "ok": 1
+        },
+        {
+          "a": 1,
+          "b": 0,
+          "sum_pred": 1,
+          "sum_exp": 1,
+          "sum_ok": 1,
+          "carry_pred": 0,
+          "carry_exp": 0,
+          "carry_ok": 1,
+          "ok": 1
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "sum_pred": 0,
+          "sum_exp": 0,
+          "sum_ok": 1,
+          "carry_pred": 1,
+          "carry_exp": 1,
+          "carry_ok": 1,
+          "ok": 1
+        }
+      ]
+    }
+  },
+  "anchor_hz": 200.0
+}
