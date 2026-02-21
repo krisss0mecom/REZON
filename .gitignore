@@ -12,6 +12,7 @@ reports/phase_ls_probe_nodes160_s8_ps24.md
 reports/phase_ls_probe_nodes160_s8_ps24_ms.json
 reports/phase_ls_probe_nodes160_s8_ps24_ms.md
 reports/phase_turing_demo_report.json
+reports/ci_*
 benchmark_qc_like_phase_guided_cpp
 bench/topk_ranker
 bench/topk_cuda
