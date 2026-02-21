@@ -28,18 +28,21 @@ Full set implemented and verified: **NOT, AND, OR, XOR, NAND, NOR, Half-Adder**.
 
 ---
 
-## Key Result: Turing Completeness
+## Key Result: Constructive Universality (Turing-Complete Under Standard Assumptions)
 
 ```
 1. {NOT, AND} ⊆ framework  →  functional completeness (any boolean function) ✓
 2. Bistable oscillator holds state ∈ {0, π} without external support          ✓
 3. φ_out feeds back as φ_in of next gate                                       ✓
-∴  Framework is computationally universal (Turing complete)                    □
+∴  Framework is computationally universal (Turing complete) under standard
+   unbounded-memory assumptions                                                 □
 ```
 
 This is a **classical phase computer** in the mathematical sense — not quantum, not quantum-inspired. Logic as attractor dynamics, not CMOS boolean algebra.
 
 Formal claim scope and assumptions: `TURING_FORMALISM.md`.
+Repro protocol: `REPRODUCIBILITY.md`.
+Submission gap checklist: `PAPER_READINESS_CHECKLIST.md`.
 
 ---
 
