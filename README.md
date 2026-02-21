@@ -39,6 +39,8 @@ Full set implemented and verified: **NOT, AND, OR, XOR, NAND, NOR, Half-Adder**.
 
 This is a **classical phase computer** in the mathematical sense — not quantum, not quantum-inspired. Logic as attractor dynamics, not CMOS boolean algebra.
 
+Formal claim scope and assumptions: `TURING_FORMALISM.md`.
+
 ---
 
 ## Core Files
@@ -47,9 +49,14 @@ This is a **classical phase computer** in the mathematical sense — not quantum
 |------|-------------|
 | `cnot_phase_gate.py` | CNOTPhaseGate — 3-oscillator CNOT, 200/200 seeds pass4=100%, noise-robust |
 | `phase_gate_universal.py` | All 6 gates + Half-Adder + Turing completeness proof |
+| `phase_dlatch.py` | Addressable D-latch/PhaseRegister memory from pure ODE dynamics |
+| `phase_automaton.py` | 3-state phase automaton (mod-3 FSM) |
+| `phase_turing_demo.py` | End-to-end memory + NAND + loop demonstration |
 | `test_cnot_phase_gate.py` | Test suite (5/5 passing) |
-| `results/cnot_phase_gate_report.json` | CNOT benchmark: 200 seeds, noise sweep |
-| `results/phase_gate_universal_report.json` | All gates benchmark |
+| `test_phase_dlatch.py` | D-latch/register tests |
+| `test_phase_automaton.py` | FSM tests |
+| `reports/cnot_phase_gate_report.json` | CNOT benchmark: 200 seeds, noise sweep |
+| `reports/phase_gate_universal_report.json` | All gates benchmark |
 | `legacy/` | Old RLS/pure-mode experiments (kept for reference) |
 
 ---
@@ -83,7 +90,7 @@ Readout: `mean(cos(φ_out)) > 0 → bit=0`, else `bit=1`. **No RLS. No learned w
 | Old pure mode | 0%             | unstable, seed-dependent     |
 | cnot_rls.py  | 100%            | has RLS readout (legacy)     |
 | **CNOTPhaseGate** | **100%**   | **pure, no RLS**            |
-| noise=2.0    | **100%**        | robust under heavy noise     |
+| noise=1.0    | **100%**        | robust under heavy noise     |
 
 ### All Gates (phase_gate_universal.py)
 
@@ -120,7 +127,7 @@ python3 phase_gate_universal.py
 ### Run tests
 
 ```bash
-pytest test_cnot_phase_gate.py -v
+pytest -q
 ```
 
 ---

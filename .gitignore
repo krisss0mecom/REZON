@@ -2,6 +2,16 @@ __pycache__/
 *.pyc
 .pytest_cache/
 results/
+reports/pids/
+reports/*.log
+reports/*_full.json
+reports/*_full.md
+reports/topk_cuda_1m_4k.txt
+reports/phase_ls_probe_nodes160_s8_ps24.json
+reports/phase_ls_probe_nodes160_s8_ps24.md
+reports/phase_ls_probe_nodes160_s8_ps24_ms.json
+reports/phase_ls_probe_nodes160_s8_ps24_ms.md
+reports/phase_turing_demo_report.json
 benchmark_qc_like_phase_guided_cpp
 bench/topk_ranker
 bench/topk_cuda
