@@ -175,7 +175,7 @@ if __name__ == "__main__":
     print()
     print(f"  Total: {result['n_correct']}/{result['n_cases']} correct")
 
-    status = "PASS — Turing complete ✓" if result["all_correct"] else "FAIL ✗"
+    status = "PASS — constructive universality demo ✓" if result["all_correct"] else "FAIL ✗"
     print(f"  Status: {status}")
 
     print()
@@ -190,7 +190,7 @@ if __name__ == "__main__":
     os.makedirs("reports", exist_ok=True)
     report = {
         "ts": int(time.time()),
-        "title": "Phase Turing Completeness Demonstration",
+        "title": "Phase Constructive Universality Demonstration",
         "formal_argument": (
             "{NOT,AND} functionally complete (phase_gate_universal.py) "
             "+ phase memory proved (phase_dlatch.py) "

@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  test-and-benchmark:
+  test-and-repro:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,11 +15,12 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt pytest numpy scipy
+          pip install -r requirements.txt
       - name: Unit tests
         run: |
-          pytest -q test_reservoir_phase_cnot.py test_cnot_rls.py
-      - name: Benchmark smoke
+          pytest -q
+      - name: Repro smoke
         run: |
-          python bench/standard_suite.py --instances 2 --seeds 2 --fast-mode 1 --out-json reports/ci_standard_suite.json --out-md reports/ci_standard_suite.md
-          python bench/topk_ranker_wrapper.py --keys 4096 --k 128 --out reports/ci_topk.txt
+          python cnot_phase_gate.py --eval-seeds 20 --noise-sweep --out-json reports/ci_cnot_phase_gate_report.json
+          python phase_gate_universal.py --out-json reports/ci_phase_gate_universal_report.json
+          python phase_turing_demo.py > reports/ci_phase_turing_demo.log
