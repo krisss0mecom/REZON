@@ -41,8 +41,12 @@ Full set implemented and verified: **NOT, AND, OR, XOR, NAND, NOR, Half-Adder**.
 This is a **classical phase computer** in the mathematical sense — not quantum, not quantum-inspired. Logic as attractor dynamics, not CMOS boolean algebra.
 
 Formal claim scope and assumptions: `TURING_FORMALISM.md`.
+Formal appendix (lemmas/proof sketch): `FORMAL_APPENDIX.md`.
 Repro protocol: `REPRODUCIBILITY.md`.
 Submission gap checklist: `PAPER_READINESS_CHECKLIST.md`.
+Threats to validity: `THREATS_TO_VALIDITY.md`.
+Reviewer checklist: `REVIEWER_CHECKLIST.md`.
+Statistical power notes: `STATISTICAL_POWER.md`.
 
 ---
 
@@ -131,6 +135,12 @@ python3 phase_gate_universal.py
 
 ```bash
 pytest -q
+```
+
+### Run memory/FSM robustness sweep
+
+```bash
+python bench/memory_fsm_robustness.py --seeds 12 --out-json reports/memory_fsm_robustness.json --out-md reports/memory_fsm_robustness.md
 ```
 
 ---

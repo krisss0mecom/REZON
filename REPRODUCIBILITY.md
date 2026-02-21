@@ -54,6 +54,16 @@ Expected:
 - all demo cases correct
 - output report at `reports/phase_turing_demo_report.json`
 
+5. Reproduce memory/FSM robustness with confidence intervals:
+
+```bash
+python bench/memory_fsm_robustness.py --seeds 12 --out-json reports/memory_fsm_robustness.json --out-md reports/memory_fsm_robustness.md
+```
+
+Expected:
+- pass-rate summaries with 95% Wilson intervals
+- failure envelope section for latch/register/automaton/turing_demo
+
 ## Claim Scope
 
 Interpret results under assumptions and non-claims in `TURING_FORMALISM.md`.

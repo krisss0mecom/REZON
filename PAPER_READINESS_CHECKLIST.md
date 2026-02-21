@@ -7,7 +7,7 @@ Use this before submission.
 - [x] Explicit model definition (`TURING_FORMALISM.md`)
 - [x] Constructive theorem statement with assumptions
 - [x] Explicit non-claims section
-- [ ] Full formal appendix with step-by-step lemmas and proof details
+- [x] Full formal appendix with step-by-step lemmas and proof details
 - [ ] Proof review by independent co-author
 
 ## Experiments
@@ -16,16 +16,16 @@ Use this before submission.
 - [x] End-to-end memory+logic+loop demonstration
 - [x] Fixed-seed reproducibility protocol (`REPRODUCIBILITY.md`)
 - [ ] Multi-platform replication (at least 2 hardware/OS setups)
-- [ ] Confidence intervals and sensitivity sweeps for new memory/FSM modules
-- [ ] Adversarial/noise stress tests with failure envelopes
+- [x] Confidence intervals and sensitivity sweeps for new memory/FSM modules
+- [x] Adversarial/noise stress tests with failure envelopes
 
 ## Claims and Writing
 
 - [x] Claim language constrained to constructive universality
 - [x] Separation of empirical evidence vs theorem assumptions
-- [ ] Submission-ready manuscript structure (Intro/Related/Methods/Theory/Results/Limitations)
-- [ ] Statistical power justification for all key experiments
-- [ ] Reviewer checklist (threats to validity, ablations, negative results)
+- [x] Submission-ready manuscript structure (Intro/Related/Methods/Theory/Results/Limitations)
+- [x] Statistical power justification for all key experiments
+- [x] Reviewer checklist (threats to validity, ablations, negative results)
 
 ## Artifact Quality
 
