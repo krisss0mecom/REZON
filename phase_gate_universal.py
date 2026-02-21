@@ -312,7 +312,7 @@ def main() -> None:
     p.add_argument("--collect",   type=int,   default=400)
     p.add_argument("--noise",     type=float, default=0.0)
     p.add_argument("--out-json",  type=str,
-                   default="results/phase_gate_universal_report.json")
+                   default="reports/phase_gate_universal_report.json")
     args = p.parse_args()
 
     gate_kwargs = dict(

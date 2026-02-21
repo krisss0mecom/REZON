@@ -228,7 +228,7 @@ def main() -> None:
     p.add_argument("--noise-sweep", action="store_true",
                    help="Run noise robustness sweep")
     p.add_argument("--out-json", type=str,
-                   default="results/cnot_phase_gate_report.json")
+                   default="reports/cnot_phase_gate_report.json")
     args = p.parse_args()
 
     cfg = dict(
