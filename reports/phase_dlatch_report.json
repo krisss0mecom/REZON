@@ -1,0 +1,90 @@
+{
+  "ts": 1771674603,
+  "noise005_5cycles": [
+    {
+      "write": 0,
+      "read_after_hold": 0,
+      "hold_steps": 10000,
+      "ok": true
+    },
+    {
+      "write": 1,
+      "read_after_hold": 1,
+      "hold_steps": 10000,
+      "ok": true
+    },
+    {
+      "write": 0,
+      "read_after_hold": 0,
+      "hold_steps": 10000,
+      "ok": true
+    },
+    {
+      "write": 1,
+      "read_after_hold": 1,
+      "hold_steps": 10000,
+      "ok": true
+    },
+    {
+      "write": 0,
+      "read_after_hold": 0,
+      "hold_steps": 10000,
+      "ok": true
+    }
+  ],
+  "noise10_5cycles": [
+    {
+      "write": 0,
+      "read_after_hold": 0,
+      "hold_steps": 10000,
+      "ok": true
+    },
+    {
+      "write": 1,
+      "read_after_hold": 1,
+      "hold_steps": 10000,
+      "ok": true
+    },
+    {
+      "write": 0,
+      "read_after_hold": 0,
+      "hold_steps": 10000,
+      "ok": true
+    },
+    {
+      "write": 1,
+      "read_after_hold": 1,
+      "hold_steps": 10000,
+      "ok": true
+    },
+    {
+      "write": 0,
+      "read_after_hold": 0,
+      "hold_steps": 10000,
+      "ok": true
+    }
+  ],
+  "register_8bit": {
+    "written": [
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    "read_back": [
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    "match": true
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "ts": 1771674582,
+  "title": "Phase Constructive Universality Demonstration",
+  "formal_argument": "{NOT,AND} functionally complete (phase_gate_universal.py) + phase memory proved (phase_dlatch.py) + computation loop (this file) \u2192 Turing complete given unbounded memory \u25a1",
+  "components": {
+    "memory": "PhaseRegister (D-latches, bistable potential -K_hold\u00b7sin(2\u03c6))",
+    "logic": "NAND gate (run_gate from phase_gate_universal, pure ODE)",
+    "loop": "arbitrary N iterations over input pairs"
+  },
+  "all_correct": true,
+  "n_cases": 12,
+  "n_correct": 12,
+  "results": [
+    {
+      "step": 1,
+      "A": 0,
+      "B": 0,
+      "mem_ok": true,
+      "nand_computed": 1,
+      "stored": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "step": 2,
+      "A": 0,
+      "B": 1,
+      "mem_ok": true,
+      "nand_computed": 1,
+      "stored": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "step": 3,
+      "A": 1,
+      "B": 0,
+      "mem_ok": true,
+      "nand_computed": 1,
+      "stored": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "step": 4,
+      "A": 1,
+      "B": 1,
+      "mem_ok": true,
+      "nand_computed": 0,
+      "stored": 0,
+      "expected": 0,
+      "ok": true
+    },
+    {
+      "step": 5,
+      "A": 0,
+      "B": 1,
+      "mem_ok": true,
+      "nand_computed": 1,
+      "stored": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "step": 6,
+      "A": 1,
+      "B": 0,
+      "mem_ok": true,
+      "nand_computed": 1,
+      "stored": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "step": 7,
+      "A": 0,
+      "B": 1,
+      "mem_ok": true,
+      "nand_computed": 1,
+      "stored": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "step": 8,
+      "A": 0,
+      "B": 1,
+      "mem_ok": true,
+      "nand_computed": 1,
+      "stored": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "step": 9,
+      "A": 0,
+      "B": 0,
+      "mem_ok": true,
+      "nand_computed": 1,
+      "stored": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "step": 10,
+      "A": 1,
+      "B": 1,
+      "mem_ok": true,
+      "nand_computed": 0,
+      "stored": 0,
+      "expected": 0,
+      "ok": true
+    },
+    {
+      "step": 11,
+      "A": 1,
+      "B": 1,
+      "mem_ok": true,
+      "nand_computed": 0,
+      "stored": 0,
+      "expected": 0,
+      "ok": true
+    },
+    {
+      "step": 12,
+      "A": 1,
+      "B": 1,
+      "mem_ok": true,
+      "nand_computed": 0,
+      "stored": 0,
+      "expected": 0,
+      "ok": true
+    }
+  ]
+}
