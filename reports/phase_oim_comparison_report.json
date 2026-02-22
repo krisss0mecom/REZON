@@ -1,0 +1,225 @@
+{
+  "title": "Phase OIM Comparison \u2014 conditional coupling vs standard OIM",
+  "literature_comparison": {
+    "standard_oim": "J_ij\u00b7sin(\u03c6_j\u2212\u03c6_i)  [pairwise, Wang 2019]",
+    "three_body_kura": "sin(\u03c6_j+\u03c6_k\u22122\u03c6_i)  [additive, not multiplicative]",
+    "our_framework": "cos(\u03c6_c)\u00b7sin(\u03c6_t\u2212\u03c6_out)  [multiplicative sign-gate]"
+  },
+  "key_advantages": [
+    "\u03c6_c=0\u2192sync, \u03c6_c=\u03c0\u2192anti-sync, \u03c6_c=\u03c0/2\u2192disabled: 3-mode per edge",
+    "Hard constraint encoding (no penalty approximation)",
+    "Standard OIM is special case (all \u03c6_c=\u03c0)",
+    "Conditional coupling not found in OIM/Kuramoto literature"
+  ],
+  "params": {
+    "K": 2.0,
+    "dt": 0.001,
+    "a_anchor": 0.08,
+    "noise_amp": 0.1,
+    "warmup": 2000,
+    "solve": 5000,
+    "restarts": 5
+  },
+  "benchmark_maxcut": {
+    "benchmark": "maxcut_standard",
+    "N": 10,
+    "n_graphs": 8,
+    "quality_std_mean": 0.7603,
+    "quality_cond_mean": 0.7603,
+    "quality_opt_mean": 0.7603,
+    "note": "At phi_c=pi for all edges, Conditional OIM reduces to Standard OIM. Similar quality expected.",
+    "rows": [
+      {
+        "graph_id": 0,
+        "N": 10,
+        "total_edges": 19,
+        "optimal_cut": 14,
+        "std_oim_cut": 14,
+        "cond_oim_cut": 14,
+        "quality_std": 0.7368,
+        "quality_cond": 0.7368,
+        "quality_opt": 0.7368
+      },
+      {
+        "graph_id": 1,
+        "N": 10,
+        "total_edges": 21,
+        "optimal_cut": 15,
+        "std_oim_cut": 15,
+        "cond_oim_cut": 15,
+        "quality_std": 0.7143,
+        "quality_cond": 0.7143,
+        "quality_opt": 0.7143
+      },
+      {
+        "graph_id": 2,
+        "N": 10,
+        "total_edges": 20,
+        "optimal_cut": 16,
+        "std_oim_cut": 16,
+        "cond_oim_cut": 16,
+        "quality_std": 0.8,
+        "quality_cond": 0.8,
+        "quality_opt": 0.8
+      },
+      {
+        "graph_id": 3,
+        "N": 10,
+        "total_edges": 22,
+        "optimal_cut": 17,
+        "std_oim_cut": 17,
+        "cond_oim_cut": 17,
+        "quality_std": 0.7727,
+        "quality_cond": 0.7727,
+        "quality_opt": 0.7727
+      },
+      {
+        "graph_id": 4,
+        "N": 10,
+        "total_edges": 19,
+        "optimal_cut": 16,
+        "std_oim_cut": 16,
+        "cond_oim_cut": 16,
+        "quality_std": 0.8421,
+        "quality_cond": 0.8421,
+        "quality_opt": 0.8421
+      },
+      {
+        "graph_id": 5,
+        "N": 10,
+        "total_edges": 24,
+        "optimal_cut": 18,
+        "std_oim_cut": 18,
+        "cond_oim_cut": 18,
+        "quality_std": 0.75,
+        "quality_cond": 0.75,
+        "quality_opt": 0.75
+      },
+      {
+        "graph_id": 6,
+        "N": 10,
+        "total_edges": 23,
+        "optimal_cut": 17,
+        "std_oim_cut": 17,
+        "cond_oim_cut": 17,
+        "quality_std": 0.7391,
+        "quality_cond": 0.7391,
+        "quality_opt": 0.7391
+      },
+      {
+        "graph_id": 7,
+        "N": 10,
+        "total_edges": 22,
+        "optimal_cut": 16,
+        "std_oim_cut": 16,
+        "cond_oim_cut": 16,
+        "quality_std": 0.7273,
+        "quality_cond": 0.7273,
+        "quality_opt": 0.7273
+      }
+    ]
+  },
+  "benchmark_constrained_maxcut": {
+    "benchmark": "constrained_maxcut",
+    "N": 10,
+    "n_same_pairs": 2,
+    "n_graphs": 8,
+    "std_mean_violations": 0.375,
+    "cond_mean_violations": 0.5,
+    "std_constraints_satisfied": "5/8",
+    "cond_constraints_satisfied": "4/8",
+    "key_advantage": "Conditional OIM uses phi_c=0 for constrained edges: sync coupling enforces exact same-partition constraint. Standard OIM uses penalty (approximate), can be violated.",
+    "rows": [
+      {
+        "graph_id": 0,
+        "n_constrained": 2,
+        "total_free_edges": 20,
+        "std_violations": 1,
+        "cond_violations": 1,
+        "std_free_cuts": 15,
+        "cond_free_cuts": 15,
+        "std_constraint_satisfied": 0,
+        "cond_constraint_satisfied": 0
+      },
+      {
+        "graph_id": 1,
+        "n_constrained": 2,
+        "total_free_edges": 24,
+        "std_violations": 0,
+        "cond_violations": 0,
+        "std_free_cuts": 17,
+        "cond_free_cuts": 17,
+        "std_constraint_satisfied": 1,
+        "cond_constraint_satisfied": 1
+      },
+      {
+        "graph_id": 2,
+        "n_constrained": 2,
+        "total_free_edges": 20,
+        "std_violations": 1,
+        "cond_violations": 0,
+        "std_free_cuts": 15,
+        "cond_free_cuts": 16,
+        "std_constraint_satisfied": 0,
+        "cond_constraint_satisfied": 1
+      },
+      {
+        "graph_id": 3,
+        "n_constrained": 2,
+        "total_free_edges": 17,
+        "std_violations": 0,
+        "cond_violations": 0,
+        "std_free_cuts": 13,
+        "cond_free_cuts": 13,
+        "std_constraint_satisfied": 1,
+        "cond_constraint_satisfied": 1
+      },
+      {
+        "graph_id": 4,
+        "n_constrained": 2,
+        "total_free_edges": 21,
+        "std_violations": 0,
+        "cond_violations": 0,
+        "std_free_cuts": 15,
+        "cond_free_cuts": 15,
+        "std_constraint_satisfied": 1,
+        "cond_constraint_satisfied": 1
+      },
+      {
+        "graph_id": 5,
+        "n_constrained": 2,
+        "total_free_edges": 13,
+        "std_violations": 1,
+        "cond_violations": 1,
+        "std_free_cuts": 11,
+        "cond_free_cuts": 12,
+        "std_constraint_satisfied": 0,
+        "cond_constraint_satisfied": 0
+      },
+      {
+        "graph_id": 6,
+        "n_constrained": 2,
+        "total_free_edges": 22,
+        "std_violations": 0,
+        "cond_violations": 1,
+        "std_free_cuts": 16,
+        "cond_free_cuts": 16,
+        "std_constraint_satisfied": 1,
+        "cond_constraint_satisfied": 0
+      },
+      {
+        "graph_id": 7,
+        "n_constrained": 2,
+        "total_free_edges": 17,
+        "std_violations": 0,
+        "cond_violations": 1,
+        "std_free_cuts": 13,
+        "cond_free_cuts": 14,
+        "std_constraint_satisfied": 1,
+        "cond_constraint_satisfied": 0
+      }
+    ]
+  },
+  "anchor_hz": 200.0,
+  "ts": 1771766609
+}

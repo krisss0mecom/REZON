@@ -1,0 +1,422 @@
+{
+  "title": "Phase Full Adder \u2014 cascaded oscillator gates",
+  "gate_params": {
+    "warmup": 2000,
+    "collect": 400,
+    "dt": 0.001,
+    "a_anchor": 0.08,
+    "K_inj": 8.0,
+    "K_main": 5.0,
+    "K_bias": 1.5,
+    "noise_amp": 0.0
+  },
+  "cascade_principle": "Output phase \u03c6_out of gate N is injection target of gate N+1. No digital encoding between stages. Phase continuity preserved.",
+  "full_adder_1bit": {
+    "circuit": "full_adder_1bit",
+    "score": 8,
+    "total": 8,
+    "rows": [
+      {
+        "a": 0,
+        "b": 0,
+        "cin": 0,
+        "sum": 0,
+        "carry": 0,
+        "phi_sum": 0.0003,
+        "phi_carry": 0.0834,
+        "expected_sum": 0,
+        "expected_carry": 0,
+        "sum_ok": 1,
+        "carry_ok": 1,
+        "ok": 1
+      },
+      {
+        "a": 0,
+        "b": 0,
+        "cin": 1,
+        "sum": 1,
+        "carry": 0,
+        "phi_sum": 3.135,
+        "phi_carry": 0.1252,
+        "expected_sum": 1,
+        "expected_carry": 0,
+        "sum_ok": 1,
+        "carry_ok": 1,
+        "ok": 1
+      },
+      {
+        "a": 0,
+        "b": 1,
+        "cin": 0,
+        "sum": 1,
+        "carry": 0,
+        "phi_sum": 3.1377,
+        "phi_carry": 0.0033,
+        "expected_sum": 1,
+        "expected_carry": 0,
+        "sum_ok": 1,
+        "carry_ok": 1,
+        "ok": 1
+      },
+      {
+        "a": 0,
+        "b": 1,
+        "cin": 1,
+        "sum": 0,
+        "carry": 1,
+        "phi_sum": 0.0046,
+        "phi_carry": 3.1387,
+        "expected_sum": 0,
+        "expected_carry": 1,
+        "sum_ok": 1,
+        "carry_ok": 1,
+        "ok": 1
+      },
+      {
+        "a": 1,
+        "b": 0,
+        "cin": 0,
+        "sum": 1,
+        "carry": 0,
+        "phi_sum": 3.1318,
+        "phi_carry": 0.0147,
+        "expected_sum": 1,
+        "expected_carry": 0,
+        "sum_ok": 1,
+        "carry_ok": 1,
+        "ok": 1
+      },
+      {
+        "a": 1,
+        "b": 0,
+        "cin": 1,
+        "sum": 0,
+        "carry": 1,
+        "phi_sum": 0.0085,
+        "phi_carry": 3.1415,
+        "expected_sum": 0,
+        "expected_carry": 1,
+        "sum_ok": 1,
+        "carry_ok": 1,
+        "ok": 1
+      },
+      {
+        "a": 1,
+        "b": 1,
+        "cin": 0,
+        "sum": 0,
+        "carry": 1,
+        "phi_sum": 0.0084,
+        "phi_carry": 3.098,
+        "expected_sum": 0,
+        "expected_carry": 1,
+        "sum_ok": 1,
+        "carry_ok": 1,
+        "ok": 1
+      },
+      {
+        "a": 1,
+        "b": 1,
+        "cin": 1,
+        "sum": 1,
+        "carry": 1,
+        "phi_sum": 3.1396,
+        "phi_carry": 3.0685,
+        "expected_sum": 1,
+        "expected_carry": 1,
+        "sum_ok": 1,
+        "carry_ok": 1,
+        "ok": 1
+      }
+    ]
+  },
+  "ripple_carry_4bit": {
+    "circuit": "ripple_carry_4bit",
+    "score": 20,
+    "total": 20,
+    "rows": [
+      {
+        "a": 15,
+        "b": 10,
+        "sum_bits": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "carry_out": 1,
+        "pred_total": 25,
+        "expected": 25,
+        "ok": 1
+      },
+      {
+        "a": 10,
+        "b": 14,
+        "sum_bits": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "carry_out": 1,
+        "pred_total": 24,
+        "expected": 24,
+        "ok": 1
+      },
+      {
+        "a": 9,
+        "b": 12,
+        "sum_bits": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 21,
+        "expected": 21,
+        "ok": 1
+      },
+      {
+        "a": 13,
+        "b": 3,
+        "sum_bits": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 16,
+        "expected": 16,
+        "ok": 1
+      },
+      {
+        "a": 0,
+        "b": 4,
+        "sum_bits": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "carry_out": 0,
+        "pred_total": 4,
+        "expected": 4,
+        "ok": 1
+      },
+      {
+        "a": 4,
+        "b": 13,
+        "sum_bits": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 17,
+        "expected": 17,
+        "ok": 1
+      },
+      {
+        "a": 14,
+        "b": 0,
+        "sum_bits": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "carry_out": 0,
+        "pred_total": 14,
+        "expected": 14,
+        "ok": 1
+      },
+      {
+        "a": 7,
+        "b": 13,
+        "sum_bits": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 20,
+        "expected": 20,
+        "ok": 1
+      },
+      {
+        "a": 2,
+        "b": 12,
+        "sum_bits": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "carry_out": 0,
+        "pred_total": 14,
+        "expected": 14,
+        "ok": 1
+      },
+      {
+        "a": 1,
+        "b": 7,
+        "sum_bits": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "carry_out": 0,
+        "pred_total": 8,
+        "expected": 8,
+        "ok": 1
+      },
+      {
+        "a": 13,
+        "b": 4,
+        "sum_bits": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 17,
+        "expected": 17,
+        "ok": 1
+      },
+      {
+        "a": 5,
+        "b": 4,
+        "sum_bits": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "carry_out": 0,
+        "pred_total": 9,
+        "expected": 9,
+        "ok": 1
+      },
+      {
+        "a": 11,
+        "b": 4,
+        "sum_bits": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "carry_out": 0,
+        "pred_total": 15,
+        "expected": 15,
+        "ok": 1
+      },
+      {
+        "a": 15,
+        "b": 7,
+        "sum_bits": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 22,
+        "expected": 22,
+        "ok": 1
+      },
+      {
+        "a": 7,
+        "b": 8,
+        "sum_bits": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "carry_out": 0,
+        "pred_total": 15,
+        "expected": 15,
+        "ok": 1
+      },
+      {
+        "a": 9,
+        "b": 8,
+        "sum_bits": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 17,
+        "expected": 17,
+        "ok": 1
+      },
+      {
+        "a": 8,
+        "b": 15,
+        "sum_bits": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 23,
+        "expected": 23,
+        "ok": 1
+      },
+      {
+        "a": 12,
+        "b": 12,
+        "sum_bits": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "carry_out": 1,
+        "pred_total": 24,
+        "expected": 24,
+        "ok": 1
+      },
+      {
+        "a": 11,
+        "b": 9,
+        "sum_bits": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 20,
+        "expected": 20,
+        "ok": 1
+      },
+      {
+        "a": 5,
+        "b": 15,
+        "sum_bits": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "carry_out": 1,
+        "pred_total": 20,
+        "expected": 20,
+        "ok": 1
+      }
+    ]
+  },
+  "anchor_hz": 200.0,
+  "ts": 1771766461
+}
