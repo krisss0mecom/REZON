@@ -1,0 +1,994 @@
+{
+  "title": "Phase Analog Computing \u2014 fuzzy logic from phase dynamics",
+  "key_finding": "Phase gates with analog inputs x,y \u2208 [0,1] implement fuzzy logic t-norms: AND\u2248x\u00b7y (product), NOT\u22481-x (complement), OR\u2248x+y-xy (prob. sum), XOR\u2248|x-y| (sym. diff). No explicit fuzzy logic code \u2014 emerges from ODE attractor structure.",
+  "fuzzy_mapping": {
+    "AND": "x\u00b7y  (\u0141ukasiewicz/product t-norm)",
+    "NOT": "1-x  (standard complement)",
+    "OR": "x+y-xy  (probabilistic sum / de Morgan dual of product)",
+    "XOR": "|x-y|  (symmetric difference)"
+  },
+  "gate_params": {
+    "warmup": 2000,
+    "collect": 400,
+    "dt": 0.001,
+    "a_anchor": 0.08,
+    "K_inj": 8.0,
+    "K_main": 5.0,
+    "K_bias": 1.5,
+    "noise_amp": 0.0
+  },
+  "sweep_results": {
+    "AND": {
+      "gate": "AND",
+      "grid": 5,
+      "mean_error": 0.0689,
+      "max_error": 0.1967,
+      "rows": [
+        {
+          "gate": "AND",
+          "x": 0.0,
+          "y": 0.0,
+          "out_value": 0.027,
+          "expected": 0.0,
+          "error": 0.027
+        },
+        {
+          "gate": "AND",
+          "x": 0.0,
+          "y": 0.25,
+          "out_value": 0.0244,
+          "expected": 0.0,
+          "error": 0.0244
+        },
+        {
+          "gate": "AND",
+          "x": 0.0,
+          "y": 0.5,
+          "out_value": 0.0192,
+          "expected": 0.0,
+          "error": 0.0192
+        },
+        {
+          "gate": "AND",
+          "x": 0.0,
+          "y": 0.75,
+          "out_value": 0.0156,
+          "expected": 0.0,
+          "error": 0.0156
+        },
+        {
+          "gate": "AND",
+          "x": 0.0,
+          "y": 1.0,
+          "out_value": 0.0334,
+          "expected": 0.0,
+          "error": 0.0334
+        },
+        {
+          "gate": "AND",
+          "x": 0.25,
+          "y": 0.0,
+          "out_value": 0.0093,
+          "expected": 0.0,
+          "error": 0.0093
+        },
+        {
+          "gate": "AND",
+          "x": 0.25,
+          "y": 0.25,
+          "out_value": 0.0857,
+          "expected": 0.0,
+          "error": 0.0857
+        },
+        {
+          "gate": "AND",
+          "x": 0.25,
+          "y": 0.5,
+          "out_value": 0.1572,
+          "expected": 0.0,
+          "error": 0.1572
+        },
+        {
+          "gate": "AND",
+          "x": 0.25,
+          "y": 0.75,
+          "out_value": 0.1834,
+          "expected": 0.0,
+          "error": 0.1834
+        },
+        {
+          "gate": "AND",
+          "x": 0.25,
+          "y": 1.0,
+          "out_value": 0.1314,
+          "expected": 0.0,
+          "error": 0.1314
+        },
+        {
+          "gate": "AND",
+          "x": 0.5,
+          "y": 0.0,
+          "out_value": 0.0037,
+          "expected": 0.0,
+          "error": 0.0037
+        },
+        {
+          "gate": "AND",
+          "x": 0.5,
+          "y": 0.25,
+          "out_value": 0.1548,
+          "expected": 0.25,
+          "error": 0.0952
+        },
+        {
+          "gate": "AND",
+          "x": 0.5,
+          "y": 0.5,
+          "out_value": 0.3256,
+          "expected": 0.5,
+          "error": 0.1744
+        },
+        {
+          "gate": "AND",
+          "x": 0.5,
+          "y": 0.75,
+          "out_value": 0.5533,
+          "expected": 0.75,
+          "error": 0.1967
+        },
+        {
+          "gate": "AND",
+          "x": 0.5,
+          "y": 1.0,
+          "out_value": 0.9391,
+          "expected": 1.0,
+          "error": 0.0609
+        },
+        {
+          "gate": "AND",
+          "x": 0.75,
+          "y": 0.0,
+          "out_value": 0.0011,
+          "expected": 0.0,
+          "error": 0.0011
+        },
+        {
+          "gate": "AND",
+          "x": 0.75,
+          "y": 0.25,
+          "out_value": 0.1879,
+          "expected": 0.25,
+          "error": 0.0621
+        },
+        {
+          "gate": "AND",
+          "x": 0.75,
+          "y": 0.5,
+          "out_value": 0.3948,
+          "expected": 0.5,
+          "error": 0.1052
+        },
+        {
+          "gate": "AND",
+          "x": 0.75,
+          "y": 0.75,
+          "out_value": 0.6473,
+          "expected": 0.75,
+          "error": 0.1027
+        },
+        {
+          "gate": "AND",
+          "x": 0.75,
+          "y": 1.0,
+          "out_value": 0.9975,
+          "expected": 1.0,
+          "error": 0.0025
+        },
+        {
+          "gate": "AND",
+          "x": 1.0,
+          "y": 0.0,
+          "out_value": 0.0011,
+          "expected": 0.0,
+          "error": 0.0011
+        },
+        {
+          "gate": "AND",
+          "x": 1.0,
+          "y": 0.25,
+          "out_value": 0.1963,
+          "expected": 0.25,
+          "error": 0.0537
+        },
+        {
+          "gate": "AND",
+          "x": 1.0,
+          "y": 0.5,
+          "out_value": 0.4064,
+          "expected": 0.5,
+          "error": 0.0936
+        },
+        {
+          "gate": "AND",
+          "x": 1.0,
+          "y": 0.75,
+          "out_value": 0.6678,
+          "expected": 0.75,
+          "error": 0.0822
+        },
+        {
+          "gate": "AND",
+          "x": 1.0,
+          "y": 1.0,
+          "out_value": 0.9981,
+          "expected": 1.0,
+          "error": 0.0019
+        }
+      ]
+    },
+    "NOT": {
+      "gate": "NOT",
+      "grid": 5,
+      "mean_error": 0.002,
+      "max_error": 0.0037,
+      "rows": [
+        {
+          "gate": "NOT",
+          "x": 0.0,
+          "y": 0.5,
+          "out_value": 0.9991,
+          "expected": 1.0,
+          "error": 0.0009
+        },
+        {
+          "gate": "NOT",
+          "x": 0.25,
+          "y": 0.5,
+          "out_value": 0.75,
+          "expected": 0.75,
+          "error": 0.0
+        },
+        {
+          "gate": "NOT",
+          "x": 0.5,
+          "y": 0.5,
+          "out_value": 0.4963,
+          "expected": 0.5,
+          "error": 0.0037
+        },
+        {
+          "gate": "NOT",
+          "x": 0.75,
+          "y": 0.5,
+          "out_value": 0.2526,
+          "expected": 0.25,
+          "error": 0.0026
+        },
+        {
+          "gate": "NOT",
+          "x": 1.0,
+          "y": 0.5,
+          "out_value": 0.0028,
+          "expected": 0.0,
+          "error": 0.0028
+        }
+      ]
+    },
+    "OR": {
+      "gate": "OR",
+      "grid": 5,
+      "mean_error": 0.125,
+      "max_error": 0.9148,
+      "rows": [
+        {
+          "gate": "OR",
+          "x": 0.0,
+          "y": 0.0,
+          "out_value": 0.0016,
+          "expected": 0.0,
+          "error": 0.0016
+        },
+        {
+          "gate": "OR",
+          "x": 0.0,
+          "y": 0.25,
+          "out_value": 0.3338,
+          "expected": 0.25,
+          "error": 0.0838
+        },
+        {
+          "gate": "OR",
+          "x": 0.0,
+          "y": 0.5,
+          "out_value": 0.5913,
+          "expected": 0.5,
+          "error": 0.0913
+        },
+        {
+          "gate": "OR",
+          "x": 0.0,
+          "y": 0.75,
+          "out_value": 0.803,
+          "expected": 0.75,
+          "error": 0.053
+        },
+        {
+          "gate": "OR",
+          "x": 0.0,
+          "y": 1.0,
+          "out_value": 0.9978,
+          "expected": 1.0,
+          "error": 0.0022
+        },
+        {
+          "gate": "OR",
+          "x": 0.25,
+          "y": 0.0,
+          "out_value": 0.005,
+          "expected": 0.0,
+          "error": 0.005
+        },
+        {
+          "gate": "OR",
+          "x": 0.25,
+          "y": 0.25,
+          "out_value": 0.3521,
+          "expected": 0.25,
+          "error": 0.1021
+        },
+        {
+          "gate": "OR",
+          "x": 0.25,
+          "y": 0.5,
+          "out_value": 0.6085,
+          "expected": 0.5,
+          "error": 0.1085
+        },
+        {
+          "gate": "OR",
+          "x": 0.25,
+          "y": 0.75,
+          "out_value": 0.8115,
+          "expected": 0.75,
+          "error": 0.0615
+        },
+        {
+          "gate": "OR",
+          "x": 0.25,
+          "y": 1.0,
+          "out_value": 0.998,
+          "expected": 1.0,
+          "error": 0.002
+        },
+        {
+          "gate": "OR",
+          "x": 0.5,
+          "y": 0.0,
+          "out_value": 0.0852,
+          "expected": 1.0,
+          "error": 0.9148
+        },
+        {
+          "gate": "OR",
+          "x": 0.5,
+          "y": 0.25,
+          "out_value": 0.4466,
+          "expected": 1.0,
+          "error": 0.5534
+        },
+        {
+          "gate": "OR",
+          "x": 0.5,
+          "y": 0.5,
+          "out_value": 0.669,
+          "expected": 1.0,
+          "error": 0.331
+        },
+        {
+          "gate": "OR",
+          "x": 0.5,
+          "y": 0.75,
+          "out_value": 0.8452,
+          "expected": 1.0,
+          "error": 0.1548
+        },
+        {
+          "gate": "OR",
+          "x": 0.5,
+          "y": 1.0,
+          "out_value": 0.9975,
+          "expected": 1.0,
+          "error": 0.0025
+        },
+        {
+          "gate": "OR",
+          "x": 0.75,
+          "y": 0.0,
+          "out_value": 0.8904,
+          "expected": 1.0,
+          "error": 0.1096
+        },
+        {
+          "gate": "OR",
+          "x": 0.75,
+          "y": 0.25,
+          "out_value": 0.8138,
+          "expected": 1.0,
+          "error": 0.1862
+        },
+        {
+          "gate": "OR",
+          "x": 0.75,
+          "y": 0.5,
+          "out_value": 0.8516,
+          "expected": 1.0,
+          "error": 0.1484
+        },
+        {
+          "gate": "OR",
+          "x": 0.75,
+          "y": 0.75,
+          "out_value": 0.9133,
+          "expected": 1.0,
+          "error": 0.0867
+        },
+        {
+          "gate": "OR",
+          "x": 0.75,
+          "y": 1.0,
+          "out_value": 0.9939,
+          "expected": 1.0,
+          "error": 0.0061
+        },
+        {
+          "gate": "OR",
+          "x": 1.0,
+          "y": 0.0,
+          "out_value": 0.9713,
+          "expected": 1.0,
+          "error": 0.0287
+        },
+        {
+          "gate": "OR",
+          "x": 1.0,
+          "y": 0.25,
+          "out_value": 0.9817,
+          "expected": 1.0,
+          "error": 0.0183
+        },
+        {
+          "gate": "OR",
+          "x": 1.0,
+          "y": 0.5,
+          "out_value": 0.9731,
+          "expected": 1.0,
+          "error": 0.0269
+        },
+        {
+          "gate": "OR",
+          "x": 1.0,
+          "y": 0.75,
+          "out_value": 0.9799,
+          "expected": 1.0,
+          "error": 0.0201
+        },
+        {
+          "gate": "OR",
+          "x": 1.0,
+          "y": 1.0,
+          "out_value": 0.9723,
+          "expected": 1.0,
+          "error": 0.0277
+        }
+      ]
+    },
+    "XOR": {
+      "gate": "XOR",
+      "grid": 5,
+      "mean_error": 0.066,
+      "max_error": 0.5232,
+      "rows": [
+        {
+          "gate": "XOR",
+          "x": 0.0,
+          "y": 0.0,
+          "out_value": 0.0009,
+          "expected": 0.0,
+          "error": 0.0009
+        },
+        {
+          "gate": "XOR",
+          "x": 0.0,
+          "y": 0.25,
+          "out_value": 0.2501,
+          "expected": 0.25,
+          "error": 0.0001
+        },
+        {
+          "gate": "XOR",
+          "x": 0.0,
+          "y": 0.5,
+          "out_value": 0.4985,
+          "expected": 0.5,
+          "error": 0.0015
+        },
+        {
+          "gate": "XOR",
+          "x": 0.0,
+          "y": 0.75,
+          "out_value": 0.7474,
+          "expected": 0.75,
+          "error": 0.0026
+        },
+        {
+          "gate": "XOR",
+          "x": 0.0,
+          "y": 1.0,
+          "out_value": 0.9972,
+          "expected": 1.0,
+          "error": 0.0028
+        },
+        {
+          "gate": "XOR",
+          "x": 0.25,
+          "y": 0.0,
+          "out_value": 0.003,
+          "expected": 0.0,
+          "error": 0.003
+        },
+        {
+          "gate": "XOR",
+          "x": 0.25,
+          "y": 0.25,
+          "out_value": 0.2505,
+          "expected": 0.25,
+          "error": 0.0005
+        },
+        {
+          "gate": "XOR",
+          "x": 0.25,
+          "y": 0.5,
+          "out_value": 0.5011,
+          "expected": 0.5,
+          "error": 0.0011
+        },
+        {
+          "gate": "XOR",
+          "x": 0.25,
+          "y": 0.75,
+          "out_value": 0.7483,
+          "expected": 0.75,
+          "error": 0.0017
+        },
+        {
+          "gate": "XOR",
+          "x": 0.25,
+          "y": 1.0,
+          "out_value": 0.9969,
+          "expected": 1.0,
+          "error": 0.0031
+        },
+        {
+          "gate": "XOR",
+          "x": 0.5,
+          "y": 0.0,
+          "out_value": 0.5319,
+          "expected": 1.0,
+          "error": 0.4681
+        },
+        {
+          "gate": "XOR",
+          "x": 0.5,
+          "y": 0.25,
+          "out_value": 0.474,
+          "expected": 0.75,
+          "error": 0.276
+        },
+        {
+          "gate": "XOR",
+          "x": 0.5,
+          "y": 0.5,
+          "out_value": 0.4825,
+          "expected": 0.5,
+          "error": 0.0175
+        },
+        {
+          "gate": "XOR",
+          "x": 0.5,
+          "y": 0.75,
+          "out_value": 0.5255,
+          "expected": 0.25,
+          "error": 0.2755
+        },
+        {
+          "gate": "XOR",
+          "x": 0.5,
+          "y": 1.0,
+          "out_value": 0.5232,
+          "expected": 0.0,
+          "error": 0.5232
+        },
+        {
+          "gate": "XOR",
+          "x": 0.75,
+          "y": 0.0,
+          "out_value": 0.9985,
+          "expected": 1.0,
+          "error": 0.0015
+        },
+        {
+          "gate": "XOR",
+          "x": 0.75,
+          "y": 0.25,
+          "out_value": 0.7501,
+          "expected": 0.75,
+          "error": 0.0001
+        },
+        {
+          "gate": "XOR",
+          "x": 0.75,
+          "y": 0.5,
+          "out_value": 0.5562,
+          "expected": 0.5,
+          "error": 0.0562
+        },
+        {
+          "gate": "XOR",
+          "x": 0.75,
+          "y": 0.75,
+          "out_value": 0.2502,
+          "expected": 0.25,
+          "error": 0.0002
+        },
+        {
+          "gate": "XOR",
+          "x": 0.75,
+          "y": 1.0,
+          "out_value": 0.0004,
+          "expected": 0.0,
+          "error": 0.0004
+        },
+        {
+          "gate": "XOR",
+          "x": 1.0,
+          "y": 0.0,
+          "out_value": 0.9986,
+          "expected": 1.0,
+          "error": 0.0014
+        },
+        {
+          "gate": "XOR",
+          "x": 1.0,
+          "y": 0.25,
+          "out_value": 0.7482,
+          "expected": 0.75,
+          "error": 0.0018
+        },
+        {
+          "gate": "XOR",
+          "x": 1.0,
+          "y": 0.5,
+          "out_value": 0.4916,
+          "expected": 0.5,
+          "error": 0.0084
+        },
+        {
+          "gate": "XOR",
+          "x": 1.0,
+          "y": 0.75,
+          "out_value": 0.2487,
+          "expected": 0.25,
+          "error": 0.0013
+        },
+        {
+          "gate": "XOR",
+          "x": 1.0,
+          "y": 1.0,
+          "out_value": 0.0011,
+          "expected": 0.0,
+          "error": 0.0011
+        }
+      ]
+    },
+    "interpolation": {
+      "AND": [
+        {
+          "gate": "AND",
+          "x": 0.0,
+          "y": 0.0,
+          "out_value": 0.027,
+          "expected": 0.0,
+          "error": 0.027
+        },
+        {
+          "gate": "AND",
+          "x": 0.125,
+          "y": 0.125,
+          "out_value": 0.0318,
+          "expected": 0.0,
+          "error": 0.0318
+        },
+        {
+          "gate": "AND",
+          "x": 0.25,
+          "y": 0.25,
+          "out_value": 0.0902,
+          "expected": 0.0,
+          "error": 0.0902
+        },
+        {
+          "gate": "AND",
+          "x": 0.375,
+          "y": 0.375,
+          "out_value": 0.1954,
+          "expected": 0.0,
+          "error": 0.1954
+        },
+        {
+          "gate": "AND",
+          "x": 0.5,
+          "y": 0.5,
+          "out_value": 0.3321,
+          "expected": 0.5,
+          "error": 0.1679
+        },
+        {
+          "gate": "AND",
+          "x": 0.625,
+          "y": 0.625,
+          "out_value": 0.4808,
+          "expected": 0.625,
+          "error": 0.1442
+        },
+        {
+          "gate": "AND",
+          "x": 0.75,
+          "y": 0.75,
+          "out_value": 0.6508,
+          "expected": 0.75,
+          "error": 0.0992
+        },
+        {
+          "gate": "AND",
+          "x": 0.875,
+          "y": 0.875,
+          "out_value": 0.8207,
+          "expected": 0.875,
+          "error": 0.0543
+        },
+        {
+          "gate": "AND",
+          "x": 1.0,
+          "y": 1.0,
+          "out_value": 0.9982,
+          "expected": 1.0,
+          "error": 0.0018
+        }
+      ],
+      "NOT": [
+        {
+          "gate": "NOT",
+          "x": 0.0,
+          "y": 0.5,
+          "out_value": 0.9991,
+          "expected": 1.0,
+          "error": 0.0009
+        },
+        {
+          "gate": "NOT",
+          "x": 0.125,
+          "y": 0.5,
+          "out_value": 0.8742,
+          "expected": 0.875,
+          "error": 0.0008
+        },
+        {
+          "gate": "NOT",
+          "x": 0.25,
+          "y": 0.5,
+          "out_value": 0.7479,
+          "expected": 0.75,
+          "error": 0.0021
+        },
+        {
+          "gate": "NOT",
+          "x": 0.375,
+          "y": 0.5,
+          "out_value": 0.6233,
+          "expected": 0.625,
+          "error": 0.0017
+        },
+        {
+          "gate": "NOT",
+          "x": 0.5,
+          "y": 0.5,
+          "out_value": 0.5013,
+          "expected": 0.5,
+          "error": 0.0013
+        },
+        {
+          "gate": "NOT",
+          "x": 0.625,
+          "y": 0.5,
+          "out_value": 0.376,
+          "expected": 0.375,
+          "error": 0.001
+        },
+        {
+          "gate": "NOT",
+          "x": 0.75,
+          "y": 0.5,
+          "out_value": 0.2482,
+          "expected": 0.25,
+          "error": 0.0018
+        },
+        {
+          "gate": "NOT",
+          "x": 0.875,
+          "y": 0.5,
+          "out_value": 0.1259,
+          "expected": 0.125,
+          "error": 0.0009
+        },
+        {
+          "gate": "NOT",
+          "x": 1.0,
+          "y": 0.5,
+          "out_value": 0.0015,
+          "expected": 0.0,
+          "error": 0.0015
+        }
+      ],
+      "OR": [
+        {
+          "gate": "OR",
+          "x": 0.0,
+          "y": 0.0,
+          "out_value": 0.0016,
+          "expected": 0.0,
+          "error": 0.0016
+        },
+        {
+          "gate": "OR",
+          "x": 0.125,
+          "y": 0.125,
+          "out_value": 0.1792,
+          "expected": 0.125,
+          "error": 0.0542
+        },
+        {
+          "gate": "OR",
+          "x": 0.25,
+          "y": 0.25,
+          "out_value": 0.3549,
+          "expected": 0.25,
+          "error": 0.1049
+        },
+        {
+          "gate": "OR",
+          "x": 0.375,
+          "y": 0.375,
+          "out_value": 0.5204,
+          "expected": 0.375,
+          "error": 0.1454
+        },
+        {
+          "gate": "OR",
+          "x": 0.5,
+          "y": 0.5,
+          "out_value": 0.6756,
+          "expected": 1.0,
+          "error": 0.3244
+        },
+        {
+          "gate": "OR",
+          "x": 0.625,
+          "y": 0.625,
+          "out_value": 0.8061,
+          "expected": 1.0,
+          "error": 0.1939
+        },
+        {
+          "gate": "OR",
+          "x": 0.75,
+          "y": 0.75,
+          "out_value": 0.919,
+          "expected": 1.0,
+          "error": 0.081
+        },
+        {
+          "gate": "OR",
+          "x": 0.875,
+          "y": 0.875,
+          "out_value": 0.968,
+          "expected": 1.0,
+          "error": 0.032
+        },
+        {
+          "gate": "OR",
+          "x": 1.0,
+          "y": 1.0,
+          "out_value": 0.9806,
+          "expected": 1.0,
+          "error": 0.0194
+        }
+      ],
+      "XOR": [
+        {
+          "gate": "XOR",
+          "x": 0.0,
+          "y": 0.5,
+          "out_value": 0.5009,
+          "expected": 0.5,
+          "error": 0.0009
+        },
+        {
+          "gate": "XOR",
+          "x": 0.125,
+          "y": 0.5,
+          "out_value": 0.5009,
+          "expected": 0.5,
+          "error": 0.0009
+        },
+        {
+          "gate": "XOR",
+          "x": 0.25,
+          "y": 0.5,
+          "out_value": 0.503,
+          "expected": 0.5,
+          "error": 0.003
+        },
+        {
+          "gate": "XOR",
+          "x": 0.375,
+          "y": 0.5,
+          "out_value": 0.5046,
+          "expected": 0.5,
+          "error": 0.0046
+        },
+        {
+          "gate": "XOR",
+          "x": 0.5,
+          "y": 0.5,
+          "out_value": 0.5246,
+          "expected": 0.5,
+          "error": 0.0246
+        },
+        {
+          "gate": "XOR",
+          "x": 0.625,
+          "y": 0.5,
+          "out_value": 0.3233,
+          "expected": 0.5,
+          "error": 0.1767
+        },
+        {
+          "gate": "XOR",
+          "x": 0.75,
+          "y": 0.5,
+          "out_value": 0.572,
+          "expected": 0.5,
+          "error": 0.072
+        },
+        {
+          "gate": "XOR",
+          "x": 0.875,
+          "y": 0.5,
+          "out_value": 0.482,
+          "expected": 0.5,
+          "error": 0.018
+        },
+        {
+          "gate": "XOR",
+          "x": 1.0,
+          "y": 0.5,
+          "out_value": 0.5041,
+          "expected": 0.5,
+          "error": 0.0041
+        }
+      ]
+    }
+  },
+  "anchor_hz": 200.0,
+  "ts": 1771766470
+}

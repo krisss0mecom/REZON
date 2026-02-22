@@ -522,8 +522,19 @@ def main() -> None:
     }
     if args.out_json:
         os.makedirs(os.path.dirname(args.out_json), exist_ok=True)
+
+        class _NpEncoder(json.JSONEncoder):
+            def default(self, o):
+                if isinstance(o, np.integer):
+                    return int(o)
+                if isinstance(o, np.floating):
+                    return float(o)
+                if isinstance(o, np.ndarray):
+                    return o.tolist()
+                return super().default(o)
+
         with open(args.out_json, "w") as f:
-            json.dump(report, f, indent=2)
+            json.dump(report, f, indent=2, cls=_NpEncoder)
         print(f"\n  Saved → {args.out_json}")
 
 
