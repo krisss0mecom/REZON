@@ -60,11 +60,23 @@ Statistical power notes: `STATISTICAL_POWER.md`.
 | `phase_dlatch.py` | Addressable D-latch/PhaseRegister memory from pure ODE dynamics |
 | `phase_automaton.py` | 3-state phase automaton (mod-3 FSM) |
 | `phase_turing_demo.py` | End-to-end memory + NAND + loop demonstration |
+| `phase_full_adder.py` | 1-bit full adder (5 cascaded gates) + 4-bit ripple carry adder |
+| `phase_analog.py` | Analog phase computing — fuzzy logic from phase dynamics |
+| `phase_hopfield.py` | Phase Hopfield associative memory (Hebbian, 200 Hz anchor) |
+| `phase_oim_comparison.py` | Standard OIM vs Conditional OIM — hard constraint encoding |
 | `test_cnot_phase_gate.py` | Test suite (5/5 passing) |
 | `test_phase_dlatch.py` | D-latch/register tests |
 | `test_phase_automaton.py` | FSM tests |
+| `test_phase_full_adder.py` | Full adder + ripple carry tests (10/10) |
+| `test_phase_analog.py` | Analog/fuzzy gate tests (10/10) |
+| `test_phase_hopfield.py` | Hopfield recall/energy/capacity tests (8/8) |
+| `test_phase_oim_comparison.py` | OIM comparison tests (8/8) |
 | `reports/cnot_phase_gate_report.json` | CNOT benchmark: 200 seeds, noise sweep |
 | `reports/phase_gate_universal_report.json` | All gates benchmark |
+| `reports/phase_full_adder_report.json` | FA: 8/8 1-bit, 20/20 4-bit ripple |
+| `reports/phase_analog_report.json` | Fuzzy: NOT err=0.002, AND=0.069, XOR=0.066 |
+| `reports/phase_hopfield_report.json` | Hopfield: 100% recall@10%, 80%@20% noise |
+| `reports/phase_oim_comparison_report.json` | OIM: conditional vs standard, novelty proof |
 | `legacy/` | Old RLS/pure-mode experiments (kept for reference) |
 
 ---
@@ -112,6 +124,53 @@ Readout: `mean(cos(φ_out)) > 0 → bit=0`, else `bit=1`. **No RLS. No learned w
 | NOR  | 4 rows      | 4/4 ✓  |
 | Half-Adder | 4 rows | 4/4 ✓ |
 
+### Full Adder (phase_full_adder.py) — no RLS, no trained weights
+
+| Circuit | Score | Note |
+|---------|-------|------|
+| 1-bit Full Adder | **8/8** | All (A,B,Cin) combos correct |
+| 4-bit Ripple Carry | **20/20** | Random pairs, carry phase continuous |
+
+Key: carry phase φ_carry propagates directly between adder stages — no
+digital re-encoding between stages. Phase continuity = analog carry chain.
+
+### Analog / Fuzzy Logic (phase_analog.py)
+
+| Gate | Fuzzy operation | Mean error |
+|------|----------------|------------|
+| NOT  | 1 − x (exact complement) | **0.002** |
+| AND  | Threshold: 0 if x<0.5, y if x≥0.5 | 0.069 |
+| OR   | Threshold: y if x<0.5, 1 if x≥0.5 | 0.125 |
+| XOR  | Conditional flip: y if x<0.5, 1-y if x≥0.5 | 0.066 |
+
+**Finding**: Phase ODE implements fuzzy logic without explicit programming.
+Attractor structure of the ODE naturally encodes the fuzzy operation.
+NOT gate implements exact analytical complement (1-x) — no approximation.
+
+### Phase Hopfield Memory (phase_hopfield.py)
+
+| Noise (flip fraction) | Recall rate (N=32, P=3) |
+|-----------------------|------------------------|
+| 10% | **100%** (15/15) |
+| 20% | 80% (12/15) |
+| 30% | 73% (11/15) |
+
+**Proof**: At φ∈{0,π}: sin(φ_i−φ_j)=0 → dφ/dt=0. All {0,π}^N patterns
+are fixed points. Energy E = −½·Σ W_ij·cos(φ_i−φ_j) ≡ Hopfield Ising H.
+
+### OIM Comparison (phase_oim_comparison.py)
+
+**Novelty** — our framework `K·cos(φ_c)·sin(φ_t−φ_out)` vs literature:
+
+| Method | Equation | Constraint encoding |
+|--------|----------|---------------------|
+| Wang 2019 OIM | J_ij·sin(φ_j−φ_i) | penalty only |
+| 3-body Kuramoto | sin(φ_j+φ_k−2φ_i) | additive, no sign flip |
+| **Our framework** | **cos(φ_c)·sin(φ_t−φ_out)** | **exact hard constraint** |
+
+φ_c=0 → sync (same partition), φ_c=π → anti-sync (cut edge), φ_c=π/2 → disabled.
+Reduces to standard OIM when φ_c=π. Backward compatible.
+
 ---
 
 ## Quick Start
@@ -142,6 +201,30 @@ pytest -q
 
 ```bash
 python bench/memory_fsm_robustness.py --seeds 12 --out-json reports/memory_fsm_robustness.json --out-md reports/memory_fsm_robustness.md
+```
+
+### Run full adder (8/8 + 4-bit ripple)
+
+```bash
+python3 phase_full_adder.py --warmup 2000 --collect 400
+```
+
+### Run analog/fuzzy gate sweep
+
+```bash
+python3 phase_analog.py --warmup 2000 --collect 400 --grid 5
+```
+
+### Run Hopfield associative memory
+
+```bash
+python3 phase_hopfield.py
+```
+
+### Run OIM comparison
+
+```bash
+python3 phase_oim_comparison.py
 ```
 
 ---
