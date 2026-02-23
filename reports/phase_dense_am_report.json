@@ -1,0 +1,517 @@
+{
+  "title": "Dense Associative Memory on S\u00b9",
+  "framework": {
+    "energy": "E = -sum_mu F(sum_i cos(phi_i - xi_i^mu))",
+    "dynamics": "dphi_i/dt = K * sum_mu F'(m_mu) * sin(phi_i - xi_i^mu) + anchor",
+    "overlap": "m_mu = sum_i cos(phi_i - xi_i^mu)  in [-N, N]",
+    "fixed_point_proof": "At phi = xi^mu: sin(phi_i - xi_i^mu) = sin(0) = 0 for all i -> dphi_i/dt = 0. Fixed point proven. \u25a1",
+    "attention_analog": "F=exp: phi_i^new = circular_mean(xi_i^mu, softmax(m_mu)). = Phase analog of Transformer attention:   Q=phi (query), K=xi (keys), V=xi (values),   inner product = sum_i cos(phi_i - xi_i^mu)",
+    "novelty_vs_krotov2020": "Krotov-Hopfield 2020 (arXiv:2008.06996): sigma in {+-1}^N. This work: phi in S^1^N. New overlap: sum cos(phi_i - xi_i^mu). Physical substrate: RC oscillator arrays at 200 Hz anchor."
+  },
+  "capacity_comparison": {
+    "N": 32,
+    "P_values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      12,
+      16,
+      20,
+      24,
+      32
+    ],
+    "F_types": [
+      "linear",
+      "poly2",
+      "poly3",
+      "exp"
+    ],
+    "results": {
+      "linear": [
+        {
+          "P": 1,
+          "alpha": 0.031,
+          "success_rate": 1.0,
+          "ok": 3,
+          "total": 3
+        },
+        {
+          "P": 2,
+          "alpha": 0.062,
+          "success_rate": 0.167,
+          "ok": 1,
+          "total": 6
+        },
+        {
+          "P": 3,
+          "alpha": 0.094,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 9
+        },
+        {
+          "P": 4,
+          "alpha": 0.125,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 12
+        },
+        {
+          "P": 5,
+          "alpha": 0.156,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 15
+        },
+        {
+          "P": 6,
+          "alpha": 0.188,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 18
+        },
+        {
+          "P": 8,
+          "alpha": 0.25,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 24
+        },
+        {
+          "P": 9,
+          "alpha": 0.281,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 27
+        },
+        {
+          "P": 10,
+          "alpha": 0.312,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 30
+        },
+        {
+          "P": 12,
+          "alpha": 0.375,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 36
+        },
+        {
+          "P": 16,
+          "alpha": 0.5,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 48
+        },
+        {
+          "P": 20,
+          "alpha": 0.625,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 60
+        },
+        {
+          "P": 24,
+          "alpha": 0.75,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 72
+        },
+        {
+          "P": 32,
+          "alpha": 1.0,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 96
+        }
+      ],
+      "poly2": [
+        {
+          "P": 1,
+          "alpha": 0.031,
+          "success_rate": 1.0,
+          "ok": 3,
+          "total": 3
+        },
+        {
+          "P": 2,
+          "alpha": 0.062,
+          "success_rate": 1.0,
+          "ok": 6,
+          "total": 6
+        },
+        {
+          "P": 3,
+          "alpha": 0.094,
+          "success_rate": 1.0,
+          "ok": 9,
+          "total": 9
+        },
+        {
+          "P": 4,
+          "alpha": 0.125,
+          "success_rate": 1.0,
+          "ok": 12,
+          "total": 12
+        },
+        {
+          "P": 5,
+          "alpha": 0.156,
+          "success_rate": 0.933,
+          "ok": 14,
+          "total": 15
+        },
+        {
+          "P": 6,
+          "alpha": 0.188,
+          "success_rate": 0.944,
+          "ok": 17,
+          "total": 18
+        },
+        {
+          "P": 8,
+          "alpha": 0.25,
+          "success_rate": 0.833,
+          "ok": 20,
+          "total": 24
+        },
+        {
+          "P": 9,
+          "alpha": 0.281,
+          "success_rate": 0.852,
+          "ok": 23,
+          "total": 27
+        },
+        {
+          "P": 10,
+          "alpha": 0.312,
+          "success_rate": 0.267,
+          "ok": 8,
+          "total": 30
+        },
+        {
+          "P": 12,
+          "alpha": 0.375,
+          "success_rate": 0.361,
+          "ok": 13,
+          "total": 36
+        },
+        {
+          "P": 16,
+          "alpha": 0.5,
+          "success_rate": 0.312,
+          "ok": 15,
+          "total": 48
+        },
+        {
+          "P": 20,
+          "alpha": 0.625,
+          "success_rate": 0.133,
+          "ok": 8,
+          "total": 60
+        },
+        {
+          "P": 24,
+          "alpha": 0.75,
+          "success_rate": 0.097,
+          "ok": 7,
+          "total": 72
+        },
+        {
+          "P": 32,
+          "alpha": 1.0,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 96
+        }
+      ],
+      "poly3": [
+        {
+          "P": 1,
+          "alpha": 0.031,
+          "success_rate": 1.0,
+          "ok": 3,
+          "total": 3
+        },
+        {
+          "P": 2,
+          "alpha": 0.062,
+          "success_rate": 1.0,
+          "ok": 6,
+          "total": 6
+        },
+        {
+          "P": 3,
+          "alpha": 0.094,
+          "success_rate": 1.0,
+          "ok": 9,
+          "total": 9
+        },
+        {
+          "P": 4,
+          "alpha": 0.125,
+          "success_rate": 1.0,
+          "ok": 12,
+          "total": 12
+        },
+        {
+          "P": 5,
+          "alpha": 0.156,
+          "success_rate": 1.0,
+          "ok": 15,
+          "total": 15
+        },
+        {
+          "P": 6,
+          "alpha": 0.188,
+          "success_rate": 1.0,
+          "ok": 18,
+          "total": 18
+        },
+        {
+          "P": 8,
+          "alpha": 0.25,
+          "success_rate": 1.0,
+          "ok": 24,
+          "total": 24
+        },
+        {
+          "P": 9,
+          "alpha": 0.281,
+          "success_rate": 1.0,
+          "ok": 27,
+          "total": 27
+        },
+        {
+          "P": 10,
+          "alpha": 0.312,
+          "success_rate": 1.0,
+          "ok": 30,
+          "total": 30
+        },
+        {
+          "P": 12,
+          "alpha": 0.375,
+          "success_rate": 1.0,
+          "ok": 36,
+          "total": 36
+        },
+        {
+          "P": 16,
+          "alpha": 0.5,
+          "success_rate": 1.0,
+          "ok": 48,
+          "total": 48
+        },
+        {
+          "P": 20,
+          "alpha": 0.625,
+          "success_rate": 1.0,
+          "ok": 60,
+          "total": 60
+        },
+        {
+          "P": 24,
+          "alpha": 0.75,
+          "success_rate": 1.0,
+          "ok": 72,
+          "total": 72
+        },
+        {
+          "P": 32,
+          "alpha": 1.0,
+          "success_rate": 0.948,
+          "ok": 91,
+          "total": 96
+        }
+      ],
+      "exp": [
+        {
+          "P": 1,
+          "alpha": 0.031,
+          "success_rate": 1.0,
+          "ok": 3,
+          "total": 3
+        },
+        {
+          "P": 2,
+          "alpha": 0.062,
+          "success_rate": 1.0,
+          "ok": 6,
+          "total": 6
+        },
+        {
+          "P": 3,
+          "alpha": 0.094,
+          "success_rate": 1.0,
+          "ok": 9,
+          "total": 9
+        },
+        {
+          "P": 4,
+          "alpha": 0.125,
+          "success_rate": 1.0,
+          "ok": 12,
+          "total": 12
+        },
+        {
+          "P": 5,
+          "alpha": 0.156,
+          "success_rate": 1.0,
+          "ok": 15,
+          "total": 15
+        },
+        {
+          "P": 6,
+          "alpha": 0.188,
+          "success_rate": 1.0,
+          "ok": 18,
+          "total": 18
+        },
+        {
+          "P": 8,
+          "alpha": 0.25,
+          "success_rate": 1.0,
+          "ok": 24,
+          "total": 24
+        },
+        {
+          "P": 9,
+          "alpha": 0.281,
+          "success_rate": 1.0,
+          "ok": 27,
+          "total": 27
+        },
+        {
+          "P": 10,
+          "alpha": 0.312,
+          "success_rate": 1.0,
+          "ok": 30,
+          "total": 30
+        },
+        {
+          "P": 12,
+          "alpha": 0.375,
+          "success_rate": 1.0,
+          "ok": 36,
+          "total": 36
+        },
+        {
+          "P": 16,
+          "alpha": 0.5,
+          "success_rate": 1.0,
+          "ok": 48,
+          "total": 48
+        },
+        {
+          "P": 20,
+          "alpha": 0.625,
+          "success_rate": 1.0,
+          "ok": 60,
+          "total": 60
+        },
+        {
+          "P": 24,
+          "alpha": 0.75,
+          "success_rate": 1.0,
+          "ok": 72,
+          "total": 72
+        },
+        {
+          "P": 32,
+          "alpha": 1.0,
+          "success_rate": 1.0,
+          "ok": 96,
+          "total": 96
+        }
+      ]
+    },
+    "P_star": {
+      "linear": 1,
+      "poly2": 9,
+      "poly3": 32,
+      "exp": 32
+    },
+    "alpha_star": {
+      "linear": 0.031,
+      "poly2": 0.281,
+      "poly3": 1.0,
+      "exp": 1.0
+    }
+  },
+  "discrete_update_test": {
+    "N": 32,
+    "P": 5,
+    "flip_fraction": 0.1,
+    "n_flipped": 3,
+    "recovered": true,
+    "hamming_final": 0,
+    "trajectory": [
+      {
+        "step": 0,
+        "hamming": 3
+      },
+      {
+        "step": 1,
+        "hamming": 0
+      },
+      {
+        "step": 2,
+        "hamming": 0
+      },
+      {
+        "step": 3,
+        "hamming": 0
+      },
+      {
+        "step": 4,
+        "hamming": 0
+      },
+      {
+        "step": 5,
+        "hamming": 0
+      },
+      {
+        "step": 6,
+        "hamming": 0
+      },
+      {
+        "step": 7,
+        "hamming": 0
+      },
+      {
+        "step": 8,
+        "hamming": 0
+      },
+      {
+        "step": 9,
+        "hamming": 0
+      },
+      {
+        "step": 10,
+        "hamming": 0
+      }
+    ]
+  },
+  "params": {
+    "flip_fraction": 0.1,
+    "trials": 3,
+    "warmup_steps": 5000,
+    "recall_steps": 10000,
+    "K": 1.0,
+    "dt": 0.001,
+    "a_anchor": 0.08,
+    "N": 32
+  },
+  "anchor_hz": 200.0,
+  "ts": 1771835747,
+  "elapsed_s": 2418.1
+}
