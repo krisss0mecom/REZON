@@ -1,0 +1,355 @@
+{
+  "title": "Phase Hopfield Capacity Study",
+  "question": "What is the empirical storage capacity of Phase Hopfield?",
+  "prediction": "Binary {0,\u03c0}^N patterns: capacity \u2261 classical Hopfield (0.138N). Phase Hopfield restricted to {0,\u03c0} reduces exactly to Ising model. Empirical \u03b1* should match 0.138.",
+  "params": {
+    "flip_fraction": 0.1,
+    "trials": 3,
+    "warmup_steps": 4000,
+    "recall_steps": 8000,
+    "K": 3.0,
+    "dt": 0.001,
+    "a_anchor": 0.08,
+    "sizes": [
+      16,
+      32,
+      64
+    ]
+  },
+  "results": {
+    "N16": {
+      "N": 16,
+      "P_star": 3,
+      "alpha_star": 0.188,
+      "theoretical_Pmax": 2.2,
+      "theoretical_alpha": 0.138,
+      "rows": [
+        {
+          "N": 16,
+          "P": 1,
+          "success_rate": 1.0,
+          "ok": 3,
+          "total": 3,
+          "alpha": 0.062
+        },
+        {
+          "N": 16,
+          "P": 2,
+          "success_rate": 1.0,
+          "ok": 6,
+          "total": 6,
+          "alpha": 0.125
+        },
+        {
+          "N": 16,
+          "P": 3,
+          "success_rate": 1.0,
+          "ok": 9,
+          "total": 9,
+          "alpha": 0.188
+        },
+        {
+          "N": 16,
+          "P": 4,
+          "success_rate": 0.167,
+          "ok": 2,
+          "total": 12,
+          "alpha": 0.25
+        },
+        {
+          "N": 16,
+          "P": 5,
+          "success_rate": 0.267,
+          "ok": 4,
+          "total": 15,
+          "alpha": 0.312
+        }
+      ]
+    },
+    "N32": {
+      "N": 32,
+      "P_star": 4,
+      "alpha_star": 0.125,
+      "theoretical_Pmax": 4.4,
+      "theoretical_alpha": 0.138,
+      "rows": [
+        {
+          "N": 32,
+          "P": 1,
+          "success_rate": 1.0,
+          "ok": 3,
+          "total": 3,
+          "alpha": 0.031
+        },
+        {
+          "N": 32,
+          "P": 2,
+          "success_rate": 1.0,
+          "ok": 6,
+          "total": 6,
+          "alpha": 0.062
+        },
+        {
+          "N": 32,
+          "P": 3,
+          "success_rate": 1.0,
+          "ok": 9,
+          "total": 9,
+          "alpha": 0.094
+        },
+        {
+          "N": 32,
+          "P": 4,
+          "success_rate": 0.75,
+          "ok": 9,
+          "total": 12,
+          "alpha": 0.125
+        },
+        {
+          "N": 32,
+          "P": 5,
+          "success_rate": 0.067,
+          "ok": 1,
+          "total": 15,
+          "alpha": 0.156
+        },
+        {
+          "N": 32,
+          "P": 6,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 18,
+          "alpha": 0.188
+        },
+        {
+          "N": 32,
+          "P": 7,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 21,
+          "alpha": 0.219
+        },
+        {
+          "N": 32,
+          "P": 8,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 24,
+          "alpha": 0.25
+        },
+        {
+          "N": 32,
+          "P": 9,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 27,
+          "alpha": 0.281
+        },
+        {
+          "N": 32,
+          "P": 10,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 30,
+          "alpha": 0.312
+        },
+        {
+          "N": 32,
+          "P": 11,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 33,
+          "alpha": 0.344
+        }
+      ]
+    },
+    "N64": {
+      "N": 64,
+      "P_star": 7,
+      "alpha_star": 0.109,
+      "theoretical_Pmax": 8.8,
+      "theoretical_alpha": 0.138,
+      "rows": [
+        {
+          "N": 64,
+          "P": 1,
+          "success_rate": 1.0,
+          "ok": 3,
+          "total": 3,
+          "alpha": 0.016
+        },
+        {
+          "N": 64,
+          "P": 2,
+          "success_rate": 1.0,
+          "ok": 6,
+          "total": 6,
+          "alpha": 0.031
+        },
+        {
+          "N": 64,
+          "P": 3,
+          "success_rate": 1.0,
+          "ok": 9,
+          "total": 9,
+          "alpha": 0.047
+        },
+        {
+          "N": 64,
+          "P": 4,
+          "success_rate": 1.0,
+          "ok": 12,
+          "total": 12,
+          "alpha": 0.062
+        },
+        {
+          "N": 64,
+          "P": 5,
+          "success_rate": 0.8,
+          "ok": 12,
+          "total": 15,
+          "alpha": 0.078
+        },
+        {
+          "N": 64,
+          "P": 6,
+          "success_rate": 0.167,
+          "ok": 3,
+          "total": 18,
+          "alpha": 0.094
+        },
+        {
+          "N": 64,
+          "P": 7,
+          "success_rate": 0.81,
+          "ok": 17,
+          "total": 21,
+          "alpha": 0.109
+        },
+        {
+          "N": 64,
+          "P": 8,
+          "success_rate": 0.042,
+          "ok": 1,
+          "total": 24,
+          "alpha": 0.125
+        },
+        {
+          "N": 64,
+          "P": 9,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 27,
+          "alpha": 0.141
+        },
+        {
+          "N": 64,
+          "P": 10,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 30,
+          "alpha": 0.156
+        },
+        {
+          "N": 64,
+          "P": 11,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 33,
+          "alpha": 0.172
+        },
+        {
+          "N": 64,
+          "P": 12,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 36,
+          "alpha": 0.188
+        },
+        {
+          "N": 64,
+          "P": 13,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 39,
+          "alpha": 0.203
+        },
+        {
+          "N": 64,
+          "P": 14,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 42,
+          "alpha": 0.219
+        },
+        {
+          "N": 64,
+          "P": 15,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 45,
+          "alpha": 0.234
+        },
+        {
+          "N": 64,
+          "P": 16,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 48,
+          "alpha": 0.25
+        },
+        {
+          "N": 64,
+          "P": 17,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 51,
+          "alpha": 0.266
+        },
+        {
+          "N": 64,
+          "P": 18,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 54,
+          "alpha": 0.281
+        },
+        {
+          "N": 64,
+          "P": 19,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 57,
+          "alpha": 0.297
+        },
+        {
+          "N": 64,
+          "P": 20,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 60,
+          "alpha": 0.312
+        },
+        {
+          "N": 64,
+          "P": 21,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 63,
+          "alpha": 0.328
+        },
+        {
+          "N": 64,
+          "P": 22,
+          "success_rate": 0.0,
+          "ok": 0,
+          "total": 66,
+          "alpha": 0.344
+        }
+      ]
+    }
+  },
+  "anchor_hz": 200.0,
+  "ts": 1771833303,
+  "elapsed_s": 1524.3
+}
