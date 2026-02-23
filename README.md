@@ -64,6 +64,8 @@ Statistical power notes: `STATISTICAL_POWER.md`.
 | `phase_analog.py` | Analog phase computing — fuzzy logic from phase dynamics |
 | `phase_hopfield.py` | Phase Hopfield associative memory (Hebbian, 200 Hz anchor) |
 | `phase_oim_comparison.py` | Standard OIM vs Conditional OIM — hard constraint encoding |
+| `phase_dense_am.py` | Dense Associative Memory on S¹ — Modern Hopfield extension |
+| `phase_capacity_study.py` | Empirical storage capacity sweep (N=16,32,64) |
 | `test_cnot_phase_gate.py` | Test suite (5/5 passing) |
 | `test_phase_dlatch.py` | D-latch/register tests |
 | `test_phase_automaton.py` | FSM tests |
@@ -71,12 +73,15 @@ Statistical power notes: `STATISTICAL_POWER.md`.
 | `test_phase_analog.py` | Analog/fuzzy gate tests (10/10) |
 | `test_phase_hopfield.py` | Hopfield recall/energy/capacity tests (8/8) |
 | `test_phase_oim_comparison.py` | OIM comparison tests (8/8) |
+| `test_phase_dense_am.py` | Dense AM on S¹ tests (9/9) |
 | `reports/cnot_phase_gate_report.json` | CNOT benchmark: 200 seeds, noise sweep |
 | `reports/phase_gate_universal_report.json` | All gates benchmark |
 | `reports/phase_full_adder_report.json` | FA: 8/8 1-bit, 20/20 4-bit ripple |
 | `reports/phase_analog_report.json` | Fuzzy: NOT err=0.002, AND=0.069, XOR=0.066 |
 | `reports/phase_hopfield_report.json` | Hopfield: 100% recall@10%, 80%@20% noise |
 | `reports/phase_oim_comparison_report.json` | OIM: conditional vs standard, novelty proof |
+| `reports/phase_dense_am_report.json` | Dense AM: capacity by F-type, discrete update |
+| `reports/phase_capacity_report.json` | Capacity sweep: α*(N=16)=0.188, α*(N=64)=0.109 |
 | `legacy/` | Old RLS/pure-mode experiments (kept for reference) |
 
 ---
@@ -158,6 +163,54 @@ NOT gate implements exact analytical complement (1-x) — no approximation.
 **Proof**: At φ∈{0,π}: sin(φ_i−φ_j)=0 → dφ/dt=0. All {0,π}^N patterns
 are fixed points. Energy E = −½·Σ W_ij·cos(φ_i−φ_j) ≡ Hopfield Ising H.
 
+### Dense Associative Memory on S¹ (phase_dense_am.py)
+
+Extension of [Krotov & Hopfield 2020](https://arxiv.org/abs/2008.06996) to continuous phase state space S¹.
+
+**Energy:** `E = −Σ_μ F(Σ_i cos(φ_i − ξ_i^μ))`
+
+**Overlap (phase inner product):** `m_μ = Σ_i cos(φ_i − ξ_i^μ)` ∈ [−N, N]
+
+| F(x) | Model | P* (N=32) | α* | Theory |
+|------|-------|-----------|----|--------|
+| x | XY/linear | **1** | 0.031 | 0.138·N |
+| x²/2 | Dense AM n=2 | **9** | 0.281 | ~N |
+| x³/3 | Dense AM n=3 | **32** | 1.000 | ~N² |
+| exp(x) | **Modern Hopfield S¹** | **32** | **1.000** | ~exp(N) |
+
+**Modern Hopfield on S¹ (F=exp) stores P=N patterns with 100% recall.**
+
+**Discrete update (Phase Attention):**
+```
+φ_i^new = circular_mean(ξ_i^μ, weights=softmax(m_μ))
+```
+Recovers pattern in **1 step** (hamming 3→0 immediately).
+
+**Connection to Transformer attention:**
+- Query = φ (current state), Keys = ξ^μ (stored patterns), Values = ξ^μ
+- Inner product = `Σ cos(φ_i − ξ_i^μ)` (periodic, hardware-native)
+- RC oscillators compute this physically, no GPU needed
+
+**Fixed point proof:** At φ=ξ^μ: sin(φ_i−ξ_i^μ)=0 → dφ/dt=0. □
+
+**Novelty vs Krotov-Hopfield 2020:**
+- Their framework: σ ∈ {±1}^N (binary Ising spins)
+- This work: φ ∈ S¹^N (continuous phase oscillators, RC hardware-native)
+- New overlap: `Σ cos(φ_i − ξ_i^μ)` (periodic, naturally bounded, no normalization needed)
+
+### Phase Hopfield Capacity Study (phase_capacity_study.py)
+
+Empirical verification that binary {0,π}^N Phase Hopfield ≡ classical Hopfield universality class.
+
+| N | P* | α* (measured) | α* (theory AGS 1985) |
+|---|----|----|---|
+| 16 | 3 | 0.188 | 0.138 |
+| 32 | 4 | 0.125 | 0.138 |
+| 64 | 7 | 0.109 | 0.138 |
+
+Finite-size effects visible (α* converges to 0.138 as N→∞). Confirms Phase Hopfield
+restricted to {0,π}^N is in the same universality class as Ising Hopfield.
+
 ### OIM Comparison (phase_oim_comparison.py)
 
 **Novelty** — our framework `K·cos(φ_c)·sin(φ_t−φ_out)` vs literature:
@@ -225,6 +278,18 @@ python3 phase_hopfield.py
 
 ```bash
 python3 phase_oim_comparison.py
+```
+
+### Run Dense AM on S¹ (Modern Hopfield extension)
+
+```bash
+python3 phase_dense_am.py --N 32 --trials 3
+```
+
+### Run capacity study (N=16,32,64)
+
+```bash
+python3 phase_capacity_study.py --sizes 16 32 64 --trials 3
 ```
 
 ---
