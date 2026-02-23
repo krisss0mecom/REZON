@@ -1,5 +1,5 @@
 # REZON: Phase-Gate Computing
-[![DOI](https://zenodo.org/badge/1160630005.svg)](https://doi.org/10.5281/zenodo.18722898)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18746395.svg)](https://doi.org/10.5281/zenodo.18746395)
 
 Classical phase-oscillator logic gates — **no RLS, no learned weights, no machine learning.**
 
