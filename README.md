@@ -1,5 +1,12 @@
-# REZON: Phase-Gate Computing
+# REZON: Phase-Gate Computing & Dense Associative Memory on S¹
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18746395.svg)](https://doi.org/10.5281/zenodo.18746395)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18768137.svg)](https://doi.org/10.5281/zenodo.18768137)
+
+> **Preprint (v1.2.0):** [paper.pdf](paper.pdf) — *Dense Associative Memory on S¹: Phase-Gate Computing and Superlinear Capacity in Circular Oscillator Networks*
+> **Author:** Krzysztof Gwóźdź, Independent Researcher, Poznań, Poland
+
+---
 
 Classical phase-oscillator logic gates — **no RLS, no learned weights, no machine learning.**
 
@@ -26,6 +33,36 @@ By choosing `f(φ_c)`, you get different gates:
 | `(1+cos(φ_c))/2`   | OR-like   | threshold coupling                         |
 
 Full set implemented and verified: **NOT, AND, OR, XOR, NAND, NOR, Half-Adder**.
+
+---
+
+## Scientific Paper (v1.2.0)
+
+📄 **[paper.pdf](paper.pdf)** — journal-ready preprint
+
+| | |
+|---|---|
+| **Title** | Dense Associative Memory on S¹: Phase-Gate Computing and Superlinear Capacity in Circular Oscillator Networks |
+| **Author** | Krzysztof Gwóźdź, Independent Researcher |
+| **DOI (this version)** | [10.5281/zenodo.18768137](https://doi.org/10.5281/zenodo.18768137) |
+| **DOI (always latest)** | [10.5281/zenodo.18746395](https://doi.org/10.5281/zenodo.18746395) |
+| **Target journals** | Neural Networks · IEEE TNNLS · Physical Review E · Nature Physics |
+
+### Key Results in Paper
+
+| Result | Value |
+|--------|-------|
+| Storage capacity F=exp, N=32 | **α\* = 1.0** — 100% recall at P=N |
+| vs classical Hopfield (Amit 1985) | **7.2× improvement** (α\*=0.138 → 1.0) |
+| One-step recall (10% noise) | Hamming 3 → 0 in **single update step** |
+| CNOT gate robustness | **100%** at noise a=1.0 (20 seeds, Wilson 95% CI) |
+| Boolean gates | NOT, AND, OR, XOR, NAND, NOR, half-adder — all **100%** |
+| Turing completeness | Proven constructively (NOT + AND + D-latch) |
+
+To regenerate the PDF from source:
+```bash
+python3 generate_paper_pdf.py
+```
 
 ---
 
