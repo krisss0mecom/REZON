@@ -2,8 +2,10 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18746395.svg)](https://doi.org/10.5281/zenodo.18746395)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18768137.svg)](https://doi.org/10.5281/zenodo.18768137)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18773272.svg)](https://doi.org/10.5281/zenodo.18773272)
 
-> **Preprint (v1.2.0):** [paper.pdf](paper.pdf) — *Dense Associative Memory on S¹: Phase-Gate Computing and Superlinear Capacity in Circular Oscillator Networks*
+> **Preprint:** [paper.pdf](paper.pdf) — *Dense Associative Memory on S¹: Phase-Gate Computing and Superlinear Capacity in Circular Oscillator Networks*
+> **Preprint DOI:** [10.5281/zenodo.18773272](https://doi.org/10.5281/zenodo.18773272)
 > **Author:** Krzysztof Gwóźdź, Independent Researcher, Poznań, Poland
 
 ---
@@ -44,8 +46,9 @@ Full set implemented and verified: **NOT, AND, OR, XOR, NAND, NOR, Half-Adder**.
 |---|---|
 | **Title** | Dense Associative Memory on S¹: Phase-Gate Computing and Superlinear Capacity in Circular Oscillator Networks |
 | **Author** | Krzysztof Gwóźdź, Independent Researcher |
-| **DOI (this version)** | [10.5281/zenodo.18768137](https://doi.org/10.5281/zenodo.18768137) |
-| **DOI (always latest)** | [10.5281/zenodo.18746395](https://doi.org/10.5281/zenodo.18746395) |
+| **Preprint DOI** | [10.5281/zenodo.18773272](https://doi.org/10.5281/zenodo.18773272) |
+| **Code archive DOI** | [10.5281/zenodo.18768137](https://doi.org/10.5281/zenodo.18768137) |
+| **Concept DOI (always latest)** | [10.5281/zenodo.18746395](https://doi.org/10.5281/zenodo.18746395) |
 | **Target journals** | Neural Networks · IEEE TNNLS · Physical Review E · Nature Physics |
 
 ### Key Results in Paper
