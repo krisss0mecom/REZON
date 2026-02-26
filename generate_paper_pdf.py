@@ -763,8 +763,9 @@ def build_pdf(fig_paths):
         "The energy function E = \u2212\u03a3\u03bc F(\u03a3\u1d62 cos(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc)) generalizes the "
         "Krotov-Hopfield Dense AM framework from {\u00b11}^N to S^{1N}. "
         "We prove fixed-point stability analytically and show empirically that "
-        "F = exp and F = x\u00b3 achieve storage capacity \u03b1* = P*/N = 1.0 for N = 32 oscillators "
-        "\u2014 a 7.2\u00d7 improvement over the classical Hopfield limit (\u03b1* \u2248 0.138). "
+        "F = exp achieves storage capacity \u03b1* = P*/N = 1.0 for both N = 32 and N = 64 oscillators "
+        "\u2014 a 7.2\u00d7 improvement over the classical Hopfield limit (\u03b1* \u2248 0.138), "
+        "confirmed at two independent system sizes. "
         "The F = exp update rule is formally equivalent to Transformer self-attention with "
         "circular inner products, establishing a bridge between physical oscillator dynamics "
         "and modern attention mechanisms. "
@@ -954,20 +955,20 @@ def build_pdf(fig_paths):
 
     pdf.subsection("4.2 Main Results: Capacity Table")
     pdf.col_table(
-        ["Interaction F", "P* (N=32)", "\u03b1* = P*/N", "Gain vs. classical"],
+        ["Interaction F", "P*(N=32)", "\u03b1*(N=32)", "P*(N=64)", "\u03b1*(N=64)"],
         [
-            ["Linear (F = x)", "1", "0.031", "0.22\u00d7"],
-            ["Quadratic (F = x\u00b2)", "9", "0.281", "2.0\u00d7"],
-            ["Cubic (F = x\u00b3)", "32", "1.000", "7.2\u00d7"],
-            ["Exponential (F = e^x)", "32", "1.000 (100%)", "7.2x  [BEST]"],
-            ["Classical Hopfield", "~4", "0.138", "(baseline)"],
+            ["Linear (F = x)",       "1",  "0.031", "1",  "0.016"],
+            ["Quadratic (F = x\u00b2)","9",  "0.281", "12", "0.188"],
+            ["Cubic (F = x\u00b3)",   "32", "1.000", "6",  "0.094"],
+            ["Exponential (F = e^x)","32", "1.000", "64", "1.000 \u2605"],
+            ["Classical Hopfield",   "~4", "0.138", "~9", "0.141"],
         ],
-        col_widths=[48, 30, 40, 52]
+        col_widths=[48, 24, 30, 24, 44]
     )
     pdf.set_font("sans", "", 8.5)
     pdf.set_text_color(*pdf.GREY_COL)
     pdf.cell(0, 5,
-             "Table 3. Storage capacity. \u2605 = 100% success on all 96 trials at P=N=32.",
+             "Table 3. Storage capacity at N=32 and N=64. \u2605 = 100% recall at P=N for F=exp.",
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_text_color(*pdf.TEXT_COL)
     pdf.ln(2)
