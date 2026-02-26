@@ -42,17 +42,18 @@ $E(\bm{\varphi}) = -\sum_\mu F\!\left(\sum_i \cos(\varphi_i - \xi_i^\mu)\right)$
 generalizes the Krotov-Hopfield Dense Associative Memory
 \cite{krotov2020} from $\{{\pm}1\}^N$ to $S^{1N}$.
 We prove fixed-point stability analytically and demonstrate empirically that
-the exponential interaction $F = \exp$ achieves storage capacity
-$\alpha^* = P^*/N = 1.0$ at both $N=32$ and $N=64$
+the exponential interaction $F(m) = e^m$ achieves storage capacity
+$\alpha^* = P^*/N = 1.0$ at $N \in \{32, 64, 128\}$
 (consistent with exponential capacity theory \cite{ramsauer2020})---a
-factor of $\mathbf{7.2}{\times}$ above the classical Hopfield limit
+\textbf{7.2-fold} improvement above the classical Hopfield limit
 ($\alpha^* \approx 0.138$).
-The polynomial interaction $F = x^3$ also reaches $\alpha^* = 1.0$ at $N=32$
-but shows capacity roll-off at $N=64$ ($\alpha^*=0.094$), confirming that
-only the exponential function maintains unit load as $N$ grows.
-The update rule for $F = \exp$ is formally equivalent to Transformer
-self-attention \cite{vaswani2017} with circular inner products, establishing
-a bridge between physical oscillator dynamics and modern attention mechanisms.
+Unlike polynomial interactions, $F=\exp$ is numerically stable at any $N$
+due to implicit softmax normalization in the one-step update rule.
+The update rule for $F(m) = e^m$ is formally equivalent to Transformer
+self-attention \cite{vaswani2017} with circular inner products
+(extending Ramsauer et al.\ \cite{ramsauer2020} to circular geometry),
+establishing a bridge between physical oscillator dynamics and modern
+attention mechanisms.
 We demonstrate statistically robust operation across 20 random seeds with Wilson 95\% confidence intervals, achieving 100\% pass rate on the CNOT gate at noise amplitudes up to $a=1.0$.
 The same phase-coherent dynamics implement universal Boolean gates
 (NOT, AND, XOR, OR, NAND, NOR) at 100\% accuracy, and a cascaded
@@ -364,19 +365,24 @@ Figure~\ref{fig:capacity_ascii} visualizes the capacity curves.
 
 \begin{table}[h]
 \centering
-\caption{Storage capacity by interaction function $F$ and network size $N$.}
+\caption{Storage capacity $\alpha^* = P^*/N$ by interaction function $F$ and
+network size $N$. ($*$): $F=x^3$ is Euler-unstable at $N \ge 64$
+because $\Delta t \cdot F'(N) = \Delta t \cdot N^2 \gg 1$
+($= 4.1$ at $N=64$, $= 16.4$ at $N=128$); capacity there is
+not meaningful. $F=\exp$ is numerically stable at all $N$ via
+softmax normalization.}
 \label{tab:capacity}
-\begin{tabular}{lrrrr}
+\begin{tabular}{lrrrrrr}
 \toprule
-Interaction $F$ & \multicolumn{2}{c}{$N=32$} & \multicolumn{2}{c}{$N=64$} \\
- & $P^*$ & $\alpha^*$ & $P^*$ & $\alpha^*$ \\
+Interaction $F$ & \multicolumn{2}{c}{$N=32$} & \multicolumn{2}{c}{$N=64$} & \multicolumn{2}{c}{$N=128$} \\
+ & $P^*$ & $\alpha^*$ & $P^*$ & $\alpha^*$ & $P^*$ & $\alpha^*$ \\
 \midrule
-Linear ($F=x$)       & 1  & 0.031 & 1  & 0.016 \\
-Quadratic ($F=x^2$)  & 9  & 0.281 & 12 & 0.188 \\
-Cubic ($F=x^3$)      & 32 & 1.000 & 6  & 0.094 \\
-Exponential ($F=e^x$)& 32 & \textbf{1.000} & 64 & \textbf{1.000} \\
+Linear ($F=x$)       & 1  & 0.031 & 1  & 0.016 & 1  & 0.008 \\
+Quadratic ($F=x^2$)  & 9  & 0.281 & 12 & 0.188 & 16 & 0.125 \\
+Cubic ($F=x^3$)      & 32 & 1.000 & \multicolumn{2}{c}{unstable$^*$} & \multicolumn{2}{c}{unstable$^*$} \\
+Exponential ($F=e^x$)& 32 & \textbf{1.000} & 64 & \textbf{1.000} & 128 & \textbf{1.000} \\
 \midrule
-Classical Hopfield \cite{amit1985} & 4 & 0.138 & 9 & 0.141 \\
+Classical Hopfield \cite{amit1985} & 4 & 0.138 & 9 & 0.141 & 18 & 0.141 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -401,11 +407,18 @@ range $\alpha \in [0,1]$.}
 \end{figure}
 
 The key finding is that $F = \exp$ achieves perfect recall at $P = N$
-for both $N=32$ ($\alpha^*=1.0$, 100\% trials) and $N=64$ ($\alpha^*=1.0$),
-exceeding the classical Hopfield limit by a factor of $7.2\times$ in both cases.
-$F=x^3$ also achieves $\alpha^*=1.0$ for $N=32$ (94.8\% trials) but shows
-capacity roll-off at $N=64$ ($\alpha^*=0.094$), confirming that only
-the exponential interaction maintains unit-load capacity as $N$ scales.
+for $N \in \{32, 64, 128\}$, with $\alpha^*=1.0$ in all three cases,
+exceeding the classical Hopfield limit by a \textbf{7.2-fold} improvement.
+$F=x^3$ achieves $\alpha^*=1.0$ at $N=32$ (94.8\% trials) but becomes
+numerically unstable under Euler integration for $N \ge 64$, because
+$\Delta t \cdot F'(N) = \Delta t \cdot N^2$ exceeds unity (4.1 at $N=64$,
+16.4 at $N=128$), causing gradient explosion.
+This is not a fundamental capacity limit of $F=x^3$ but an artifact of
+the fixed step size; adaptive integrators would be required to evaluate
+$F=x^3$ at large $N$.
+In contrast, $F=\exp$ is inherently stable at any $N$: the softmax
+normalization in the one-step update~\eqref{eq:exp_update} bounds
+phase increments regardless of $N$.
 
 \subsection{Baseline Verification}
 
@@ -603,7 +616,8 @@ No quantum entanglement or quantum speedup is claimed.
 
 \textbf{Open questions.}
 Can capacity $\alpha^* = 1$ be proven rigorously for $F = \exp$ on $S^{1N}$?
-What is the finite-size scaling of $\alpha^*(N)$ for $N \gg 64$?
+What is the finite-size scaling of $\alpha^*(N)$ for $N \gg 128$?
+Can $F=x^3$ be stabilized at large $N$ via adaptive integration or gradient clipping?
 Can the 200\,Hz anchor be relaxed while maintaining capacity?
 
 %-----------------------------------------------------------------------
@@ -615,9 +629,9 @@ for memory, logic, and learning in continuous-phase oscillator networks.
 The key results are:
 
 \begin{enumerate}
-\item Storage capacity $\alpha^* = 1.0$ for $F=\exp$ at $N=32$ and $N=64$
-  (and $F=x^3$ at $N=32$), a $7.2\times$ improvement over classical Hopfield.
-  Only $F=\exp$ maintains unit load as $N$ scales.
+\item Storage capacity $\alpha^* = 1.0$ for $F=\exp$ at $N \in \{32, 64, 128\}$
+  (and $F=x^3$ at $N=32$), a 7.2-fold improvement over classical Hopfield.
+  Only $F=\exp$ is numerically stable at large $N$ due to softmax normalization.
 \item Local asymptotic stability proven analytically via Hessian analysis
   (Theorem~1), with anchor robustness guaranteed by structural stability
   (Proposition~1).
