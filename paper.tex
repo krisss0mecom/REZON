@@ -13,7 +13,7 @@
   citecolor=blue!60!black,
   urlcolor=blue!60!black,
   pdftitle={Dense Associative Memory on S1: Phase-Gate Computing and Superlinear Capacity in Circular Oscillator Networks},
-  pdfauthor={Krzysztof Gwozdzz},
+  pdfauthor={Krzysztof Gwozdz},
   pdfsubject={Associative Memory, Phase Oscillators, Reservoir Computing, Neural Networks},
   pdfkeywords={associative memory, phase oscillators, Kuramoto, dense Hopfield, attention, Turing completeness, reservoir computing}
 }
@@ -34,7 +34,7 @@ in Circular Oscillator Networks}
 We present the first formal Dense Associative Memory (DAM) framework on
 the unit circle $S^1$, where each neuron carries a phase
 $\varphi_i \in [0, 2\pi)$ rather than a binary spin.
-Unlike prior rotor and complex-valued Hopfield models \cite{aoyagi1993,tanaka1998},
+Unlike prior rotor and complex-valued Hopfield models \cite{aoyagi1995,tanaka1998},
 our construction couples a 200\,Hz anchor term that breaks rotational symmetry
 and enables injection-locking logic gates---features absent from all previous work.
 The energy function
@@ -42,11 +42,14 @@ $E(\bm{\varphi}) = -\sum_\mu F\!\left(\sum_i \cos(\varphi_i - \xi_i^\mu)\right)$
 generalizes the Krotov-Hopfield Dense Associative Memory
 \cite{krotov2020} from $\{{\pm}1\}^N$ to $S^{1N}$.
 We prove fixed-point stability analytically and demonstrate empirically that
-nonlinear interaction functions $F = \exp$ and $F = x^3$
-achieve storage capacity $\alpha^* = P^*/N = 1.0$ for $N=32$ \emph{and} $N=64$
-oscillators (empirical; consistent with exponential capacity theory \cite{ramsauer2020})---a
-factor of $\mathbf{7.2}{\times}$ above the classical
-Hopfield limit ($\alpha^* \approx 0.138$).
+the exponential interaction $F = \exp$ achieves storage capacity
+$\alpha^* = P^*/N = 1.0$ at both $N=32$ and $N=64$
+(consistent with exponential capacity theory \cite{ramsauer2020})---a
+factor of $\mathbf{7.2}{\times}$ above the classical Hopfield limit
+($\alpha^* \approx 0.138$).
+The polynomial interaction $F = x^3$ also reaches $\alpha^* = 1.0$ at $N=32$
+but shows capacity roll-off at $N=64$ ($\alpha^*=0.094$), confirming that
+only the exponential function maintains unit load as $N$ grows.
 The update rule for $F = \exp$ is formally equivalent to Transformer
 self-attention \cite{vaswani2017} with circular inner products, establishing
 a bridge between physical oscillator dynamics and modern attention mechanisms.
@@ -80,7 +83,7 @@ functions $F$ lifts capacity exponentially, and the $F=\exp$ variant
 is formally equivalent to the Transformer attention mechanism
 \cite{vaswani2017}.
 
-While rotor and complex-valued Hopfield networks \cite{aoyagi1993,tanaka1998,noest1988,chaudhuri1993}
+While rotor and complex-valued Hopfield networks \cite{aoyagi1995,tanaka1998,noest1988,chaudhuri1993}
 have explored continuous-phase state spaces, all such work is restricted
 to pairwise ($F = \text{linear}$) interactions and lacks anchor terms,
 nonlinear capacity scaling, or logic gate functionality
@@ -98,8 +101,9 @@ In this paper we:
   $m_\mu = \sum_i \cos(\varphi_i - \xi_i^\mu)$ (Section~\ref{sec:theory}).
 \item Prove fixed-point stability and local asymptotic stability analytically
   (Section~\ref{sec:theory}).
-\item Show empirically that $F=\exp$ and $F=x^3$ achieve $\alpha^*=1.0$
-  for $N=32$ (Section~\ref{sec:results}).
+\item Show empirically that $F=\exp$ achieves $\alpha^*=1.0$ for
+  $N=32$ and $N=64$, while $F=x^3$ shows capacity roll-off at $N=64$
+  (Section~\ref{sec:results}).
 \item Identify the $F=\exp$ update as circular Transformer attention
   (Section~\ref{sec:attention}).
 \item Demonstrate universal Boolean logic via phase-coherent coupling,
@@ -113,7 +117,7 @@ In this paper we:
 %-----------------------------------------------------------------------
 
 \textbf{Rotor and complex-valued Hopfield networks.}
-Aoyagi \cite{aoyagi1993} and Tanaka \& Edwards \cite{tanaka1998} studied
+Aoyagi \cite{aoyagi1995} and Tanaka \& Edwards \cite{tanaka1998} studied
 associative memory with phase/rotor states $\varphi_i \in [0,2\pi)$
 using pairwise ($F = \text{linear}$) couplings, showing capacity roughly
 twice that of binary Hopfield.
@@ -154,7 +158,7 @@ Our empirical $\alpha^* = 1.0$ (for $N=32$) is consistent with these
 bounds for exponential interactions.
 
 \textbf{Physical oscillator implementations.}
-Spin-torque nano-oscillator (STNO) arrays \cite{stno2023} have been
+Spin-torque nano-oscillator (STNO) arrays \cite{grollier2016,romera2018} have been
 proposed for hardware realization of complex Hopfield-type computation.
 The REZON architecture presented here is distinguished by the 200\,Hz
 anchor and resistive $W \cdot \sin(\varphi_i - \varphi_j)$ coupling,
@@ -166,7 +170,7 @@ Table~\ref{tab:novelty} summarizes this work versus prior art.
 \centering
 \caption{This work vs.\ prior art.}
 \label{tab:novelty}
-\begin{tabular}{lccccc}
+\begin{tabular}{lcccc}
 \toprule
 Feature & Rotor HNN & Complex HNN & Kuramoto 2025 & This work \\
 \midrule
@@ -267,7 +271,7 @@ with probability $\to 1$, confirming local asymptotic stability.
 Adding the bounded anchor term $a_{\rm anc}\sin(\omega_{\rm anc}t-\varphi_i)$
 to~\eqref{eq:dynamics} constitutes a small non-autonomous perturbation.
 For $a_{\rm anc}$ sufficiently small, hyperbolic attractors of the autonomous
-system persist by structural stability (Shilnikov, 1965).}
+system persist by structural stability \cite{hirsch1974}.}
 
 In practice we use $a_{\rm anc}=0.08\ll 1$, which satisfies this condition
 for all tested configurations.
@@ -305,10 +309,11 @@ takes the closed form:
 \begin{equation}
   \varphi_i^{(t+1)}
   = \arg\!\left(\sum_\mu e^{\beta m_\mu(\bm{\varphi}^{(t)})}\,
-    e^{i\xi_i^\mu}\right),
+    e^{\mathrm{j}\xi_i^\mu}\right),
 \label{eq:exp_update}
 \end{equation}
-where $\arg(\cdot)$ denotes the argument (angle) of a complex number.
+where $\arg(\cdot)$ denotes the argument (angle) of a complex number
+and $\mathrm{j} = \sqrt{-1}$ is the imaginary unit (distinct from index $i$).
 This is the softmax-weighted circular mean of stored patterns:
 $\bm{\varphi}^{\rm new} = \mathrm{circ\_mean}(\bm{\xi}^\mu,\, \mathrm{softmax}(\beta\bm{m}))$,
 formally equivalent to Transformer self-attention with circular inner products.
@@ -340,14 +345,15 @@ single step (empirically confirmed, Section~\ref{sec:results}).
 
 We simulate~\eqref{eq:dynamics} with Euler integration
 ($\Delta t = 10^{-3}$\,s, $K=1$, $a_{\rm anc}=0.08$)
-for $N=32$ oscillators.
+for $N \in \{32, 64\}$ oscillators.
 Patterns $\bm{\xi}^\mu$ are drawn uniformly from $[0, 2\pi)^N$.
-For each $(P, F)$ pair we run 3 trials:
+For each $(P, F, N)$ combination we run 3 independent trials:
 each trial perturbs one stored pattern by $\delta\varphi = 10\%\pi$
 on a random subset of $0.1N$ oscillators, then evolves for 5000 warmup
 and 10000 recall steps.
 Recovery is declared if the Hamming distance to the target pattern
 (after quantization to $\{0, \pi\}$) equals zero.
+We report $\alpha^* = P^*/N$ as the highest load with $\ge 85\%$ success rate.
 
 \subsection{Storage Capacity}
 
@@ -584,6 +590,17 @@ and does not implement logic gates or prove Turing completeness.
 Our gradient-flow formulation with $F(m_\mu)$ and injection-locking anchor
 is architecturally distinct and achieves $\alpha^*=1.0$ empirically for $N=32, 64$.
 
+\textbf{Limitations.}
+Current results are based on software simulation; hardware transfer
+(fabrication noise, ADC quantization, coupling mismatch) is not yet characterized.
+Capacity measurements use 3 trials per $(P, F, N)$ point---sufficient for
+exploratory mapping but not for high-precision confidence intervals on the
+critical load.
+The Turing completeness result is constructive under a standard
+unbounded-memory assumption; no physical implementation with literally
+unbounded memory is claimed.
+No quantum entanglement or quantum speedup is claimed.
+
 \textbf{Open questions.}
 Can capacity $\alpha^* = 1$ be proven rigorously for $F = \exp$ on $S^{1N}$?
 What is the finite-size scaling of $\alpha^*(N)$ for $N \gg 64$?
@@ -598,8 +615,9 @@ for memory, logic, and learning in continuous-phase oscillator networks.
 The key results are:
 
 \begin{enumerate}
-\item Storage capacity $\alpha^* = 1.0$ for $F=\exp$ and $F=x^3$,
-  a $7.2\times$ improvement over classical Hopfield.
+\item Storage capacity $\alpha^* = 1.0$ for $F=\exp$ at $N=32$ and $N=64$
+  (and $F=x^3$ at $N=32$), a $7.2\times$ improvement over classical Hopfield.
+  Only $F=\exp$ maintains unit load as $N$ scales.
 \item Local asymptotic stability proven analytically via Hessian analysis
   (Theorem~1), with anchor robustness guaranteed by structural stability
   (Proposition~1).
@@ -716,7 +734,12 @@ K.~Gwó\'zd\'z,
 \textit{Phase Entanglement RC --- REZON oscillator network experiments},
 Zenodo, \href{https://doi.org/10.5281/zenodo.18746395}{doi:10.5281/zenodo.18746395} (2025).
 
-\bibitem{aoyagi1993}
+\bibitem{hirsch1974}
+M.~W.~Hirsch and S.~Smale,
+\textit{Differential Equations, Dynamical Systems, and Linear Algebra}
+(Academic Press, New York, 1974).
+
+\bibitem{aoyagi1995}
 T.~Aoyagi,
 \textit{Network of neural oscillators for retrieving phase information},
 Phys.\ Rev.\ Lett.\ \textbf{74}, 4075 (1995).
@@ -743,16 +766,22 @@ P.~S.~Skardal and A.~Arenas,
 arXiv:2507.21984 (2025).
 
 \bibitem{optimcap2024}
-J.~S.~Author \textit{et al.},
-\textit{Optimal capacity of continuous-state associative memories:
-spherical codes and tight bounds},
-arXiv:2410.23126 (2024).
+J.~Y.-C.~Hu, D.~Wu, and H.~Liu,
+\textit{Provably optimal memory capacity for modern Hopfield models:
+Transformer-compatible dense associative memories as spherical codes},
+Adv.\ Neural Inf.\ Process.\ Syst.\ \textbf{37} (NeurIPS 2024);
+arXiv:2410.23126.
 
-\bibitem{stno2023}
+\bibitem{grollier2016}
 J.~Grollier, D.~Querlioz, and M.~D.~Stiles,
 \textit{Spintronic nanodevices for bioinspired computing},
-Proc.\ IEEE \textbf{104}, 2024 (2016); see also
-P.~Romera \textit{et al.},
+Proc.\ IEEE \textbf{104}, 2024 (2016).
+
+\bibitem{romera2018}
+P.~Romera, P.~Talatchian, S.~Tsunegi, F.~Abreu~Araujo,
+V.~Cros, P.~Bortolotti, K.~Yakushiji, A.~Fukushima,
+H.~Kubota, S.~Yuasa, M.~Ernoult, D.~Vodenicarevic,
+T.~Hirtzlin, N.~Locatelli, D.~Querlioz, and J.~Grollier,
 \textit{Vowel recognition with four coupled spin-torque nano-oscillators},
 Nature \textbf{563}, 230 (2018).
 
