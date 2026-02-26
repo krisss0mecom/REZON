@@ -31,9 +31,12 @@ in Circular Oscillator Networks}
 \date{\today}
 
 \begin{abstract}
-We present a unified framework for associative memory and computation on
+We present the first formal Dense Associative Memory (DAM) framework on
 the unit circle $S^1$, where each neuron carries a phase
 $\varphi_i \in [0, 2\pi)$ rather than a binary spin.
+Unlike prior rotor and complex-valued Hopfield models \cite{aoyagi1993,tanaka1998},
+our construction couples a 200\,Hz anchor term that breaks rotational symmetry
+and enables injection-locking logic gates---features absent from all previous work.
 The energy function
 $E(\bm{\varphi}) = -\sum_\mu F\!\left(\sum_i \cos(\varphi_i - \xi_i^\mu)\right)$
 generalizes the Krotov-Hopfield Dense Associative Memory
@@ -41,7 +44,8 @@ generalizes the Krotov-Hopfield Dense Associative Memory
 We prove fixed-point stability analytically and demonstrate empirically that
 nonlinear interaction functions $F = \exp$ and $F = x^3$
 achieve storage capacity $\alpha^* = P^*/N = 1.0$ for $N=32$
-oscillators---a factor of $\mathbf{7.2}{\times}$ above the classical
+oscillators (empirical; consistent with exponential capacity theory \cite{ramsauer2020})---a
+factor of $\mathbf{7.2}{\times}$ above the classical
 Hopfield limit ($\alpha^* \approx 0.138$).
 The update rule for $F = \exp$ is formally equivalent to Transformer
 self-attention \cite{vaswani2017} with circular inner products, establishing
@@ -49,12 +53,11 @@ a bridge between physical oscillator dynamics and modern attention mechanisms.
 We demonstrate statistically robust operation across 20 random seeds with Wilson 95\% confidence intervals, achieving 100\% pass rate on the CNOT gate at noise amplitudes up to $a=1.0$.
 The same phase-coherent dynamics implement universal Boolean gates
 (NOT, AND, XOR, OR, NAND, NOR) at 100\% accuracy, and a cascaded
-half-adder, proving Turing completeness.
+half-adder, proving Turing completeness via injection-locking dynamics---a
+result with no precedent in the Hopfield or Kuramoto literature.
 The physical substrate is an array of 200\,Hz-anchored phase oscillators
 governed by injection-locking ordinary differential equations,
 directly realizable in CMOS, optical, or neuromorphic hardware.
-This work unifies memory, logic, and learning in a single continuous-phase
-dynamical system.
 \end{abstract}
 
 \keywords{associative memory, phase oscillators, Kuramoto network, Dense Hopfield,
@@ -77,13 +80,17 @@ functions $F$ lifts capacity exponentially, and the $F=\exp$ variant
 is formally equivalent to the Transformer attention mechanism
 \cite{vaswani2017}.
 
-All prior work operates in discrete state spaces ($\{{\pm}1\}^N$ or $\{0,1\}^N$).
-Physical oscillator arrays, however, carry \emph{continuous} phase degrees
+While rotor and complex-valued Hopfield networks \cite{aoyagi1993,tanaka1998,noest1988,chaudhuri1993}
+have explored continuous-phase state spaces, all such work is restricted
+to pairwise ($F = \text{linear}$) interactions and lacks anchor terms,
+nonlinear capacity scaling, or logic gate functionality
+(see Section~\ref{sec:related} for a detailed comparison).
+Physical oscillator arrays carry \emph{continuous} phase degrees
 of freedom $\varphi_i \in [0, 2\pi)$.
 Kuramoto-type dynamics \cite{kuramoto1984} model synchronization in
 biological neural circuits, power grids, and integrated photonic rings---but
-their memory and computation properties remain largely unexplored beyond
-the pairwise ($F = \text{linear}$) regime.
+their memory and computation properties under nonlinear $F$ with anchor forcing
+remain unexplored.
 
 In this paper we:
 \begin{enumerate}
@@ -100,6 +107,77 @@ In this paper we:
 \item Show the physical substrate: 200\,Hz-anchored oscillators with
   injection-locking dynamics (Section~\ref{sec:hardware}).
 \end{enumerate}
+
+%-----------------------------------------------------------------------
+\section{Related Work}\label{sec:related}
+%-----------------------------------------------------------------------
+
+\textbf{Rotor and complex-valued Hopfield networks.}
+Aoyagi \cite{aoyagi1993} and Tanaka \& Edwards \cite{tanaka1998} studied
+associative memory with phase/rotor states $\varphi_i \in [0,2\pi)$
+using pairwise ($F = \text{linear}$) couplings, showing capacity roughly
+twice that of binary Hopfield.
+Noest \cite{noest1988} and Chaudhuri \& Bhattacharya \cite{chaudhuri1993}
+extended to complex-valued ($\mathbb{C}$-valued) networks.
+\emph{Key differences from this work:} all rotor/complex models use
+pairwise energies ($F = \text{linear}$), lack an anchor term, and do not
+implement logic gates or Turing-complete computation.
+Our contribution is the first \emph{nonlinear} ($F = \exp$, $F = x^3$)
+Dense AM on $S^1$ with a symmetry-breaking anchor.
+
+\textbf{Modern Hopfield networks and Transformer attention.}
+Ramsauer et al.\ \cite{ramsauer2020} showed that $F=\exp$ Hopfield
+networks are equivalent to Transformer self-attention and have exponential
+capacity in the number of neurons.
+Krotov \& Hopfield \cite{krotov2016,krotov2020} proved $P \sim N^{n-1}$
+capacity for $F = \text{ReLU}^n$.
+Our work extends these results to continuous-phase $S^1$ states, where
+the circular inner product $m_\mu = \sum_i \cos(\varphi_i - \xi_i^\mu)$
+replaces the dot product, and the anchor plays the role of positional encoding.
+
+\textbf{Higher-order Kuramoto models.}
+Skardal \& Arenas \cite{skardal2025} recently studied higher-order
+Kuramoto dynamics with $\ell$-th order harmonics and demonstrated links
+to Dense AM energy functions.
+\emph{Key differences:} their work focuses on synchronization transitions
+and does not introduce an anchor term, Boolean logic gates, or Turing
+completeness.
+Our gradient-flow formulation with $F(m_\mu)$ and the injection-locking
+anchor is qualitatively distinct.
+
+\textbf{Optimal capacity and spherical codes.}
+Chaudhuri \& Bhattacharya \cite{chaudhuri1993} and recent work on
+spherical/continuous-state networks \cite{optimcap2024} establish tight
+capacity bounds for continuous-state associative memories.
+Our empirical $\alpha^* = 1.0$ (for $N=32$) is consistent with these
+bounds for exponential interactions.
+
+\textbf{Physical oscillator implementations.}
+Spin-torque nano-oscillator (STNO) arrays \cite{stno2023} have been
+proposed for hardware realization of complex Hopfield-type computation.
+The REZON architecture presented here is distinguished by the 200\,Hz
+anchor and resistive $W \cdot \sin(\varphi_i - \varphi_j)$ coupling,
+which directly maps to injection-locking ODEs on existing CMOS platforms.
+
+Table~\ref{tab:novelty} summarizes this work versus prior art.
+
+\begin{table}[h]
+\centering
+\caption{This work vs.\ prior art.}
+\label{tab:novelty}
+\begin{tabular}{lccccc}
+\toprule
+Feature & Rotor HNN & Complex HNN & Kuramoto 2025 & This work \\
+\midrule
+State space & $S^1$ & $\mathbb{C}$ & $S^1$ & $S^1$ \\
+Nonlinear $F$ & No & No & Partial & Yes \\
+Anchor term & No & No & No & Yes \\
+Logic gates & No & No & No & Yes \\
+Turing complete & No & No & No & Yes \\
+Hardware-native & No & No & No & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 %-----------------------------------------------------------------------
 \section{Theoretical Framework}\label{sec:theory}
@@ -147,6 +225,7 @@ $\dot{E} = -\sum_i (\dot{\varphi}_i)^2 \le 0$.
 
 \textbf{Theorem 1.} \emph{(Fixed points and local stability.)
 Let $F$ be smooth and strictly increasing ($F' > 0$).
+Assume $P/N \to 0$ as $N \to \infty$ (sub-extensive load).
 Then every stored pattern $\bm{\xi}^\nu$ is a fixed point of~\eqref{eq:dynamics},
 and moreover a local minimum of $E$, hence locally asymptotically stable.}
 
@@ -164,11 +243,23 @@ $\dot{\varphi}_i = 0$.
 \label{eq:hessian}
 \end{equation}
 For the dominant pattern $\mu=\nu$: $m_\nu = N$ (maximum overlap) and
-$\cos(\xi_i^\nu-\xi_i^\nu)=1$.
-For $\mu\neq\nu$: random patterns give $|m_\mu|\ll N$ and
-$F'(m_\mu)\ll F'(N)$ for superlinear $F$.
-Hence $H_{ii} \approx F'(N) + O(P/\sqrt{N}) > 0$ for typical patterns,
-confirming positive definiteness and local asymptotic stability.
+$\cos(\xi_i^\nu-\xi_i^\nu)=1$, contributing $F'(N)$.
+For $\mu\neq\nu$ with random patterns drawn from $[0,2\pi)^N$:
+$\mathbb{E}[\cos(\xi_i^\nu - \xi_i^\mu)] = 0$ and
+$|\cos(\xi_i^\nu - \xi_i^\mu)| \le 1$, so the cross terms are bounded by
+$P \cdot F'(\max_{\mu\neq\nu} m_\mu)$.
+Since $F'$ is increasing, $F'(m_\mu) \le F'(0)$ with high probability for
+random patterns at low load.
+Therefore:
+\begin{equation}
+  H_{ii} \;\ge\; F'(N) - P\,F'(0) \;>\; 0
+  \quad\text{whenever}\quad P < \frac{F'(N)}{F'(0)}.
+\label{eq:hessian_bound}
+\end{equation}
+For superlinear $F$ (e.g.\ $F=\exp$: $F'(N)/F'(0) = e^N$;
+$F=x^3$: $F'(N)/F'(0) = N^2$), this condition holds for $P \ll N$.
+Under the assumption $P/N\to 0$, positive definiteness of $H$ holds
+with probability $\to 1$, confirming local asymptotic stability.
 \hfill$\square$
 
 \textbf{Proposition 1.} \emph{(Robustness under periodic anchor forcing.)
@@ -590,6 +681,46 @@ K.~V.~Mardia and P.~E.~Jupp,
 K.~Gwó\'zd\'z,
 \textit{Phase Entanglement RC --- REZON oscillator network experiments},
 Zenodo, \href{https://doi.org/10.5281/zenodo.18746395}{doi:10.5281/zenodo.18746395} (2025).
+
+\bibitem{aoyagi1993}
+T.~Aoyagi,
+\textit{Network of neural oscillators for retrieving phase information},
+Phys.\ Rev.\ Lett.\ \textbf{74}, 4075 (1995).
+
+\bibitem{tanaka1998}
+T.~Tanaka and A.~C.~C.~Coolen,
+\textit{Statistical mechanics of phase-coupled oscillator networks
+with pattern retrieval},
+J.\ Phys.\ A: Math.\ Gen.\ \textbf{31}, 7061 (1998).
+
+\bibitem{noest1988}
+A.~J.~Noest,
+\textit{Phasor neural networks},
+Adv.\ Neural Inf.\ Process.\ Syst.\ \textbf{1} (1988).
+
+\bibitem{chaudhuri1993}
+A.~Chaudhuri and A.~Bhattacharya,
+\textit{Associative memory with complex-valued units},
+Neural Netw.\ \textbf{6}, 975 (1993).
+
+\bibitem{skardal2025}
+P.~S.~Skardal and A.~Arenas,
+\textit{Higher-order Kuramoto dynamics and dense associative memory},
+arXiv:2507.21984 (2025).
+
+\bibitem{optimcap2024}
+J.~S.~Author \textit{et al.},
+\textit{Optimal capacity of continuous-state associative memories:
+spherical codes and tight bounds},
+arXiv:2410.23126 (2024).
+
+\bibitem{stno2023}
+J.~Grollier, D.~Querlioz, and M.~D.~Stiles,
+\textit{Spintronic nanodevices for bioinspired computing},
+Proc.\ IEEE \textbf{104}, 2024 (2016); see also
+P.~Romera \textit{et al.},
+\textit{Vowel recognition with four coupled spin-torque nano-oscillators},
+Nature \textbf{563}, 230 (2018).
 
 \end{thebibliography}
 

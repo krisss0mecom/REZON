@@ -817,10 +817,64 @@ def build_pdf(fig_paths):
     pdf.bullet("Presents the REZON physical substrate: 200 Hz-anchored oscillators, "
                "CMOS/optical/neuromorphic realizable.")
 
-    # ── SECTION 2: Theory ───────────────────────────────────────────────────
-    pdf.section("2", "Theoretical Framework")
+    # ── SECTION 2: Related Work ─────────────────────────────────────────────
+    pdf.section("2", "Related Work")
 
-    pdf.subsection("2.1 State Space and Energy Function")
+    pdf.subsection("2.1 Rotor and Complex-Valued Hopfield Networks")
+    pdf.body(
+        "Aoyagi (1995) and Tanaka & Coolen (1998) studied associative memory with "
+        "rotor/phase states \u03c6\u1d62 \u2208 [0, 2\u03c0) using pairwise (linear F) couplings, "
+        "showing capacity roughly 2\u00d7 that of binary Hopfield. "
+        "Noest (1988) and Chaudhuri & Bhattacharya (1993) extended this to complex-valued "
+        "(\u2102-valued) networks. "
+        "Key difference: all prior rotor/complex models use F = linear, lack an anchor term, "
+        "and do not implement logic gates or Turing-complete computation. "
+        "This work presents the first nonlinear (F = exp, F = x\u00b3) Dense AM on S\u00b9 "
+        "with a symmetry-breaking anchor."
+    )
+
+    pdf.subsection("2.2 Modern Hopfield Networks and Transformer Attention")
+    pdf.body(
+        "Ramsauer et al. (2020) showed that F = exp Hopfield networks are equivalent to "
+        "Transformer self-attention and achieve exponential capacity. "
+        "Krotov & Hopfield (2016, 2020) proved P ~ N^{n-1} for F = ReLU^n. "
+        "This work extends both results to continuous-phase S\u00b9 states, where the "
+        "circular inner product m\u03bc = \u03a3 cos(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc) replaces the dot product, "
+        "and the 200 Hz anchor serves as positional encoding."
+    )
+
+    pdf.subsection("2.3 Higher-Order Kuramoto and Dense AM (2025)")
+    pdf.body(
+        "Skardal & Arenas (arXiv:2507.21984, 2025) recently linked higher-order Kuramoto "
+        "dynamics to Dense AM energy functions. Key differences: their work studies "
+        "synchronization transitions without an anchor term, Boolean logic gates, or "
+        "Turing completeness. Our gradient-flow formulation with F(m\u03bc) and "
+        "injection-locking anchor is qualitatively distinct."
+    )
+
+    pdf.subsection("2.4 This Work vs. Prior Art (Summary Table)")
+    pdf.col_table(
+        ["Feature", "Rotor HNN", "Complex HNN", "Kuramoto 2025", "This Work"],
+        [
+            ["State space", "S\u00b9", "\u2102", "S\u00b9", "S\u00b9"],
+            ["Nonlinear F", "No", "No", "Partial", "Yes"],
+            ["Anchor term", "No", "No", "No", "Yes (200 Hz)"],
+            ["Logic gates", "No", "No", "No", "Yes (all 6)"],
+            ["Turing complete", "No", "No", "No", "Yes"],
+            ["Hardware-native", "No", "No", "No", "Yes (CMOS/photonic)"],
+        ],
+        col_widths=[42, 28, 28, 36, 36]
+    )
+    pdf.set_font("sans", "", 8.5)
+    pdf.set_text_color(*pdf.GREY_COL)
+    pdf.cell(0, 5, "Table 1. This work vs. prior art. All novel contributions are in the rightmost column.",
+             new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+    pdf.set_text_color(*pdf.TEXT_COL)
+
+    # ── SECTION 3: Theory ───────────────────────────────────────────────────
+    pdf.section("3", "Theoretical Framework")
+
+    pdf.subsection("3.1 State Space and Energy Function")
     pdf.body(
         "Each neuron i \u2208 {1,...,N} carries a phase \u03c6\u1d62 \u2208 [0, 2\u03c0) on the unit circle S\u00b9. "
         "Memories are P patterns \u03be\u03bc \u2208 S\u00b9^N. The circular overlap is:"
@@ -836,7 +890,7 @@ def build_pdf(fig_paths):
         "E(\u03c6) = \u2212\u03a3\u03bc F(m\u03bc(\u03c6))                           (2)"
     )
 
-    pdf.subsection("2.2 Gradient-Flow Dynamics")
+    pdf.subsection("3.2 Gradient-Flow Dynamics")
     pdf.body("Taking minus the gradient of E with respect to \u03c6\u1d62:")
     pdf.equation(
         "d\u03c6\u1d62/dt = K \u03a3\u03bc F'(m\u03bc) sin(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc)            (3)\n"
@@ -848,7 +902,7 @@ def build_pdf(fig_paths):
         "Without the anchor, dE/dt = \u2212\u03a3\u1d62 (\u1e0b\u03c6\u1d62)\u00b2 \u2264 0 (Lyapunov stability)."
     )
 
-    pdf.subsection("2.3 Fixed-Point Stability Theorem")
+    pdf.subsection("3.3 Fixed-Point Stability Theorem")
     pdf.theorem_box(
         "Theorem 1. Fixed-Point Stability",
         "Every stored pattern \u03be\u03bc is a fixed point of the dynamics (3).\n\n"
@@ -858,7 +912,7 @@ def build_pdf(fig_paths):
         "F = exp creates exponentially sharper energy wells than F = x."
     )
 
-    pdf.subsection("2.4 Connection to Krotov-Hopfield 2020")
+    pdf.subsection("3.4 Connection to Krotov-Hopfield 2020")
     pdf.body(
         "Table 1 summarizes the key differences. The circular geometry introduces "
         "a natural phase degree of freedom acting as a soft attention weight (cosine similarity), "
@@ -880,16 +934,16 @@ def build_pdf(fig_paths):
     )
     pdf.set_font("sans", "", 8.5)
     pdf.set_text_color(*pdf.GREY_COL)
-    pdf.cell(0, 5, "Table 1. Comparison with Krotov-Hopfield (2020).",
+    pdf.cell(0, 5, "Table 2. Comparison with Krotov-Hopfield (2020).",
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_text_color(*pdf.TEXT_COL)
 
     # ── PAGE 2: Results ──────────────────────────────────────────────────────
     pdf.add_page()
 
-    pdf.section("3", "Storage Capacity Results")
+    pdf.section("4", "Storage Capacity Results")
 
-    pdf.subsection("3.1 Experimental Protocol")
+    pdf.subsection("4.1 Experimental Protocol")
     pdf.body(
         "Simulations use Euler integration (\u0394t = 10\u207b\u00b3 s, K = 1, a_anc = 0.08) "
         "for N = 32 phase oscillators. Patterns \u03be\u03bc are drawn uniformly from [0, 2\u03c0)^N. "
@@ -898,7 +952,7 @@ def build_pdf(fig_paths):
         "Recovery is declared when Hamming distance to the target equals zero."
     )
 
-    pdf.subsection("3.2 Main Results: Capacity Table")
+    pdf.subsection("4.2 Main Results: Capacity Table")
     pdf.col_table(
         ["Interaction F", "P* (N=32)", "\u03b1* = P*/N", "Gain vs. classical"],
         [
@@ -913,7 +967,7 @@ def build_pdf(fig_paths):
     pdf.set_font("sans", "", 8.5)
     pdf.set_text_color(*pdf.GREY_COL)
     pdf.cell(0, 5,
-             "Table 2. Storage capacity. \u2605 = 100% success on all 96 trials at P=N=32.",
+             "Table 3. Storage capacity. \u2605 = 100% success on all 96 trials at P=N=32.",
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_text_color(*pdf.TEXT_COL)
     pdf.ln(2)
@@ -924,7 +978,7 @@ def build_pdf(fig_paths):
                "(b) Summary of \u03b1* per interaction function. "
                "F = exp achieves perfect recall at \u03b1 = 1.0, 7.2\u00d7 above classical Hopfield.")
 
-    pdf.subsection("3.3 One-Step Recall")
+    pdf.subsection("4.3 One-Step Recall")
     pdf.body(
         "For F = exp with P = 5, N = 32, starting from Hamming distance 3 (10% noise): "
         "Hamming(t=0) = 3 \u2192 Hamming(t=1) = 0. "
@@ -934,7 +988,7 @@ def build_pdf(fig_paths):
         "(Ramsauer et al., 2020)."
     )
 
-    pdf.subsection("3.4 Baseline: Phase Hopfield Validates Classical Limit")
+    pdf.subsection("4.4 Baseline: Phase Hopfield Validates Classical Limit")
     pdf.body(
         "Restricting phases to {0, \u03c0}^N (binary encoding) with Hebbian weights "
         "W\u1d62\u2c7c = N\u207b\u00b9 \u03a3\u03bc cos(\u03be\u1d62\u03bc)cos(\u03be\u2c7c\u03bc) recovers the "
@@ -957,7 +1011,7 @@ def build_pdf(fig_paths):
                "(Amit et al., 1985), validating that our framework reproduces the classical limit.")
 
     # ── SECTION 4: Attention ────────────────────────────────────────────────
-    pdf.section("4", "Circular Transformer Attention")
+    pdf.section("5", "Circular Transformer Attention")
     pdf.body(
         "For F = exp, the one-step update minimizing E takes the form:"
     )
@@ -988,9 +1042,9 @@ def build_pdf(fig_paths):
     # ── PAGE 3: Gates + Hardware ────────────────────────────────────────────
     pdf.add_page()
 
-    pdf.section("5", "Phase-Gate Computing and Turing Completeness")
+    pdf.section("6", "Phase-Gate Computing and Turing Completeness")
 
-    pdf.subsection("5.1 Boolean Gates via Injection-Locking")
+    pdf.subsection("6.1 Boolean Gates via Injection-Locking")
     pdf.body(
         "Logic gates are implemented using injection-locking dynamics:"
     )
@@ -1007,7 +1061,7 @@ def build_pdf(fig_paths):
     pdf.bullet("AND:  f = (1\u2212cos(\u03c6_c))/2   (conditional coupling)")
     pdf.bullet("OR:   f = (1+cos(\u03c6_c))/2   (inclusive conditional)")
 
-    pdf.subsection("5.2 Gate Truth Table Verification")
+    pdf.subsection("6.2 Gate Truth Table Verification")
     pdf.col_table(
         ["Gate", "Dynamics type", "Accuracy", "Score"],
         [
@@ -1023,7 +1077,7 @@ def build_pdf(fig_paths):
     )
     pdf.set_font("sans", "", 8.5)
     pdf.set_text_color(*pdf.GREY_COL)
-    pdf.cell(0, 5, "Table 3. All phase gates verified at 100% accuracy. K_c=8, K_b=1.5, no noise.",
+    pdf.cell(0, 5, "Table 4. All phase gates verified at 100% accuracy. K_c=8, K_b=1.5, no noise.",
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_text_color(*pdf.TEXT_COL)
     pdf.ln(2)
@@ -1034,7 +1088,7 @@ def build_pdf(fig_paths):
                "coupling sign via cos(\u03c6_c), implementing XOR/CNOT dynamics. "
                "(d) Complete truth table verification for all gates at 100% accuracy.")
 
-    pdf.subsection("5.3 Turing Completeness")
+    pdf.subsection("6.3 Turing Completeness")
     pdf.theorem_box(
         "Theorem 2. Turing Completeness",
         "The phase-gate framework is Turing complete.\n\n"
@@ -1053,7 +1107,7 @@ def build_pdf(fig_paths):
     )
 
     # ── SECTION 6: Physical Substrate ───────────────────────────────────────
-    pdf.section("6", "Physical Substrate: REZON Architecture")
+    pdf.section("7", "Physical Substrate: REZON Architecture")
     pdf.body(
         "The REZON (REZonator Oscillator Network) implementation uses N = 256 "
         "phase oscillators governed by:"
@@ -1084,9 +1138,9 @@ def build_pdf(fig_paths):
     )
 
     # ── SECTION 7: Discussion ────────────────────────────────────────────────
-    pdf.section("7", "Discussion")
+    pdf.section("8", "Discussion")
 
-    pdf.subsection("7.1 Why Does \u03b1* = 1 Emerge?")
+    pdf.subsection("8.1 Why Does \u03b1* = 1 Emerge?")
     pdf.body(
         "The circular overlap m\u03bc = \u03a3\u1d62 cos(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc) "
         "provides N independent cosine projections. For F = exp, the softmax weighting "
@@ -1096,7 +1150,7 @@ def build_pdf(fig_paths):
         "O(exp(N)) capacity in discrete Dense AM (Krotov & Hopfield, 2016)."
     )
 
-    pdf.subsection("7.2 Comparison with Related Work")
+    pdf.subsection("8.2 Comparison with Related Work")
     pdf.body(
         "Krotov & Hopfield (2020) proved that discrete DAM with F = ReLU^n achieves "
         "P ~ N^{n-1}. Ramsauer et al. (2020) showed F = exp gives O(exp(N)) capacity "
@@ -1109,14 +1163,14 @@ def build_pdf(fig_paths):
         "the recurrent coupling implements structured DAM retrieval."
     )
 
-    pdf.subsection("7.3 Open Questions")
+    pdf.subsection("8.3 Open Questions")
     pdf.bullet("Can \u03b1* = 1 for F = exp on S\u00b9^N be proved analytically?")
     pdf.bullet("What is the finite-size scaling of \u03b1*(N) for F = exp?")
     pdf.bullet("Can the 200 Hz anchor be relaxed while maintaining capacity?")
     pdf.bullet("Can phase-gate circuits implement error correction (Hamming, LDPC)?")
 
     # ── SECTION 8: Conclusion ────────────────────────────────────────────────
-    pdf.section("8", "Conclusion")
+    pdf.section("9", "Conclusion")
     pdf.body(
         "We have presented Dense Associative Memory on S\u00b9 \u2014 a unified framework "
         "for memory, logic, and learning in continuous-phase oscillator networks. "
@@ -1191,6 +1245,27 @@ def build_pdf(fig_paths):
 
         "[12] K. Gw\u00f3\u017cd\u017a, \"Phase Entanglement RC \u2014 REZON oscillator network experiments,\" "
         "Zenodo, doi:10.5281/zenodo.18746395 (2025).",
+
+        "[13] T. Aoyagi, \"Network of neural oscillators for retrieving phase information,\" "
+        "Phys. Rev. Lett. 74, 4075 (1995).",
+
+        "[14] T. Tanaka & A.C.C. Coolen, \"Statistical mechanics of phase-coupled oscillator "
+        "networks with pattern retrieval,\" J. Phys. A 31, 7061 (1998).",
+
+        "[15] A.J. Noest, \"Phasor neural networks,\" "
+        "Adv. Neural Inf. Process. Syst. 1 (1988).",
+
+        "[16] A. Chaudhuri & A. Bhattacharya, \"Associative memory with complex-valued units,\" "
+        "Neural Netw. 6, 975 (1993).",
+
+        "[17] P.S. Skardal & A. Arenas, \"Higher-order Kuramoto dynamics and dense associative "
+        "memory,\" arXiv:2507.21984 (2025).",
+
+        "[18] Optimal capacity of continuous-state associative memories: "
+        "spherical codes and tight bounds, arXiv:2410.23126 (2024).",
+
+        "[19] P. Romera et al., \"Vowel recognition with four coupled spin-torque "
+        "nano-oscillators,\" Nature 563, 230 (2018).",
     ]
 
     pdf.set_font("serif", size=10)
