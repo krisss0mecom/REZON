@@ -592,7 +592,7 @@ class Paper(FPDF):
         self.set_text_color(*self.GREY_COL)
         self.set_fill_color(240, 244, 252)
         self.cell(0, 7, "  Dense Associative Memory on S¹ — Gwóźdź (2025)  "
-                        "| arXiv preprint | DOI: 10.5281/zenodo.18746395",
+                        "| arXiv preprint | DOI: 10.5281/zenodo.18768137",
                   align="L", fill=True,
                   new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         self.ln(2)
@@ -741,7 +741,7 @@ def build_pdf(fig_paths):
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_font("sans", "", 9)
     pdf.set_text_color(*pdf.GREY_COL)
-    pdf.cell(0, 5, "February 2025   |   DOI: 10.5281/zenodo.18746395", align="C",
+    pdf.cell(0, 5, "February 2025   |   DOI: 10.5281/zenodo.18768137", align="C",
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(6)
 
@@ -1203,9 +1203,8 @@ def build_pdf(fig_paths):
     pdf.set_font("serif", "", 10)
     pdf.set_text_color(*pdf.TEXT_COL)
     pdf.multi_cell(0, 5.5,
-        "The author thanks D. Krotov for stimulating discussions on Dense AM and the "
-        "S\u00b9 extension. Computations were performed on a Jetson Orin NX 8 GB (NVIDIA CUDA, "
-        "ARM Cortex-A78AE). All code and data available at DOI: 10.5281/zenodo.18746395.")
+        "Computations were performed on a Jetson Orin NX 8 GB (NVIDIA CUDA, "
+        "ARM Cortex-A78AE). All code and data available at DOI: 10.5281/zenodo.18768137.")
 
     # ── References ───────────────────────────────────────────────────────────
     pdf.add_page()
@@ -1245,7 +1244,7 @@ def build_pdf(fig_paths):
         "[11] K.V. Mardia & P.E. Jupp, Directional Statistics, Wiley, Chichester (2009).",
 
         "[12] K. Gw\u00f3\u017cd\u017a, \"Phase Entanglement RC \u2014 REZON oscillator network experiments,\" "
-        "Zenodo, doi:10.5281/zenodo.18746395 (2025).",
+        "Zenodo, doi:10.5281/zenodo.18768137 (2025).",
 
         "[13] T. Aoyagi, \"Network of neural oscillators for retrieving phase information,\" "
         "Phys. Rev. Lett. 74, 4075 (1995).",
@@ -1326,8 +1325,8 @@ def build_pdf(fig_paths):
     pdf.set_font("sans", "", 8)
     pdf.set_text_color(*pdf.GREY_COL)
     pdf.multi_cell(0, 5,
-        "Repository: https://github.com/krisss0mecom/phase-entanglement-rc  |  "
-        "DOI: 10.5281/zenodo.18746395  |  "
+        "Repository: https://github.com/krisss0mecom/REZON  |  "
+        "DOI: 10.5281/zenodo.18768137  |  "
         "All experiments reproducible: python run_all_long.sh", align="C")
 
     return pdf

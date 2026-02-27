@@ -305,8 +305,8 @@ Attention analog & Yes (Hopfield network) & Yes (circular attention) \\
 \section{The Attention Analogy}\label{sec:attention}
 %-----------------------------------------------------------------------
 
-For $F(x) = e^{\beta x}$, the one-step discrete update minimizing $E$
-takes the closed form:
+For $F(x) = e^{\beta x}$ (with $\beta = 1$ throughout this work unless stated otherwise),
+the one-step discrete update minimizing $E$ takes the closed form:
 \begin{equation}
   \varphi_i^{(t+1)}
   = \arg\!\left(\sum_\mu e^{\beta m_\mu(\bm{\varphi}^{(t)})}\,
@@ -400,9 +400,10 @@ Success rate vs. load alpha = P/N  (N=32)
     |         classical Hopfield limit
     alpha* (exp,poly3) = 1.0
 \end{verbatim}
-\caption{Storage capacity curves.
-$F=\exp$ and $F=x^3$ maintain $\ge 95\%$ success rate across the entire
-range $\alpha \in [0,1]$.}
+\caption{Storage capacity curves at $N=32$.
+$F=\exp$ achieves 100\% success rate across the entire range $\alpha \in [0,1]$.
+$F=x^3$ reaches $\alpha^*=1.0$ with 94.8\% success rate at $P=N=32$;
+results for $N \ge 64$ are excluded due to Euler numerical instability.}
 \label{fig:capacity_ascii}
 \end{figure}
 
@@ -591,6 +592,11 @@ as $\beta \to \infty$, producing winner-take-all retrieval.
 This suppression is exponential in $N$ and independent of $P$,
 consistent with the exponential capacity $P_{\max} \sim e^N$
 proved for discrete DAM by Ramsauer et al.\ \cite{ramsauer2020}.
+\emph{Clarification}: our empirical result $\alpha^* = 1.0$ means $P^* = N$
+(linear in $N$), which is far below the theoretical maximum $P_{\max} \sim e^N$.
+We do \emph{not} claim exponential capacity; rather, we show that even at
+$P = N$ (a demanding load), perfect recall is achieved for $N \in \{32,64,128\}$.
+Whether $\alpha^*$ saturates at 1.0 or continues to grow with $N$ is an open question.
 For finite $\beta$ and $P = N$, the cross-talk terms scale as
 $\mathbb{E}[e^{\beta m_\mu}] \approx I_0(\beta)^N / e^{\beta N}$
 (where $I_0$ is the modified Bessel function), which becomes negligible
@@ -662,8 +668,6 @@ Neural Networks and Learning Systems (TNNLS), and Physical Review E.
 
 %-----------------------------------------------------------------------
 \begin{acknowledgments}
-The author thanks D.~Krotov for stimulating discussions on Dense AM and
-the $S^1$ extension.
 Computations were performed on a Jetson Orin NX 8\,GB (NVIDIA CUDA).
 \end{acknowledgments}
 
@@ -750,7 +754,7 @@ K.~V.~Mardia and P.~E.~Jupp,
 \bibitem{zenodo2025}
 K.~Gwó\'zd\'z,
 \textit{Phase Entanglement RC --- REZON oscillator network experiments},
-Zenodo, \href{https://doi.org/10.5281/zenodo.18746395}{doi:10.5281/zenodo.18746395} (2025).
+Zenodo, \href{https://doi.org/10.5281/zenodo.18768137}{doi:10.5281/zenodo.18768137} (2025).
 
 \bibitem{hirsch1974}
 M.~W.~Hirsch and S.~Smale,
