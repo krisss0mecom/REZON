@@ -909,11 +909,12 @@ def build_pdf(fig_paths):
     pdf.subsection("3.3 Fixed-Point Stability Theorem")
     pdf.theorem_box(
         "Theorem 1. Fixed Points and Local Asymptotic Stability",
-        "Every stored pattern \u03be\u03bc is a (i) fixed point and (ii) local minimum "
-        "of E, hence (iii) locally asymptotically stable equilibrium of (3).\n\n"
+        "Assumption: F smooth, strictly increasing (F'>0), P < F'(N)/F'(0).\n"
+        "For F=exp: F'(N)/F'(0) = e^N, so condition holds for all P \u2264 N (and far beyond) "
+        "\u2014 directly covering the empirically tested regime P = N.\n\n"
         "Proof. (i) Fixed point: At \u03c6 = \u03be\u03bc, sin(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc) = 0 for all i, so d\u03c6\u1d62/dt = 0.\n\n"
-        "(ii) Local minimum: The Hessian at \u03be\u03bc satisfies H_ii \u2265 F'(N) \u2212 P\u00b7F'(0) > 0 "
-        "for P < F'(N)/F'(0), holding with probability \u2192 1 under P/N \u2192 0.\n\n"
+        "(ii) Local minimum: H_ii \u2265 F'(N) \u2212 P\u00b7F'(0) > 0 whenever P < F'(N)/F'(0). "
+        "For F=exp at P=N: H_ii \u2265 e^N \u2212 N > 0 for all N \u2265 1.\n\n"
         "(iii) Asymptotic stability: Since (3) is a gradient flow \u03c6\u0307 = \u2212\u2207E, "
         "the Jacobian at \u03be\u03bc equals \u2212H. Positive-definiteness of H implies all "
         "Jacobian eigenvalues are negative, hence local asymptotic stability.  \u25a1"
@@ -981,7 +982,9 @@ def build_pdf(fig_paths):
     pdf.set_text_color(*pdf.GREY_COL)
     pdf.cell(0, 5,
              "Table 3. Storage capacity at N=32, N=64, N=128. \u2605 = 100% recall at P=N. "
-             "\u2020 F=x\u00b3 Euler-unstable at N\u226564 (\u0394t\u00b7N\u00b2\u003e1).",
+             "\u2020 F=x\u00b3 Euler-unstable at N\u226564: Lipschitz bound \u03c1(H)\u2264P\u00b7F'(N)=3N\u00b2; "
+             "Euler stable iff \u0394t\u00b73N\u00b2<2, i.e. \u0394t\u00b7N\u00b2<2/3. "
+             "At N=64: \u0394t\u00b7N\u00b2=4.1\u226b2/3; at N=128: =16.4\u226b2/3.",
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_text_color(*pdf.TEXT_COL)
     pdf.ln(2)
@@ -1210,7 +1213,9 @@ def build_pdf(fig_paths):
         "Key contributions:"
     )
     pdf.bullet("Storage capacity \u03b1* = 1.0 for F = exp at N \u2208 {32, 64, 128} "
-               "(and F = x\u00b3 at N=32), a 7.2-fold improvement over classical Hopfield (\u03b1* \u2248 0.138).")
+               "(and F = x\u00b3 at N=32), a 7.2-fold improvement over classical Hopfield (\u03b1* \u2248 0.138) "
+               "in the same metric \u03b1*=P*/N. Note: comparison is across different model families "
+               "(continuous-phase S\u00b9 vs. binary {\u00b11}^N, nonlinear F, anchor term).")
     pdf.bullet("Formal equivalence between F = exp DAM on S\u00b9 and "
                "Transformer self-attention with circular inner products.")
     pdf.bullet("Universal Boolean logic (NOT, AND, XOR, OR, NAND, NOR, half-adder) "
