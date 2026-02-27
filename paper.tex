@@ -235,9 +235,11 @@ $\dot{E} = -\sum_i (\dot{\varphi}_i)^2 \le 0$.
 
 \textbf{Theorem 1.} \emph{(Fixed points and local stability.)
 Let $F$ be smooth and strictly increasing ($F' > 0$).
-Assume $P/N \to 0$ as $N \to \infty$ (sub-extensive load).
+Assume $P < F'(N)/F'(0)$.
 Then every stored pattern $\bm{\xi}^\nu$ is a fixed point of~\eqref{eq:dynamics},
-and moreover a local minimum of $E$, hence locally asymptotically stable.}
+and moreover a local minimum of $E$, hence locally asymptotically stable.
+For $F(m) = e^m$: $F'(N)/F'(0) = e^N$, so the condition holds for all
+$P \le N$ (and far beyond), directly covering the empirically tested regime $P = N$.}
 
 \textit{Proof.}
 (i)~Fixed point: at $\bm{\varphi} = \bm{\xi}^\nu$,
@@ -266,10 +268,16 @@ Therefore:
   \quad\text{whenever}\quad P < \frac{F'(N)}{F'(0)}.
 \label{eq:hessian_bound}
 \end{equation}
-For superlinear $F$ (e.g.\ $F=\exp$: $F'(N)/F'(0) = e^N$;
-$F=x^3$: $F'(N)/F'(0) = N^2$), this condition holds for $P \ll N$.
-Under the assumption $P/N\to 0$, positive definiteness of $H$ holds
-with probability $\to 1$.
+For superlinear $F$, the threshold $F'(N)/F'(0)$ far exceeds $N$:
+\begin{itemize}
+  \item $F=\exp$: $F'(N)/F'(0) = e^N/e^0 = e^N \gg N$,
+    so the bound holds for $P \le N$ and far beyond.
+    At $P=N$: $H_{ii} \ge e^N - N > 0$ for all $N \ge 1$.
+  \item $F=x^3$: $F'(N)/F'(0) = 3N^2/0$ is unbounded
+    (since $F'(0)=0$), but near the origin the bound applies for $P \ll N^2$.
+\end{itemize}
+Positive definiteness of $H$ holds with probability $\to 1$
+(over random pattern draws) for any $P$ satisfying the above.
 
 (iii)~Asymptotic stability: since \eqref{eq:dynamics} is a gradient
 flow $\dot{\bm{\varphi}} = -\nabla_{\bm{\varphi}} E$, the Jacobian of
@@ -388,11 +396,17 @@ Figure~\ref{fig:capacity_ascii} visualizes the capacity curves.
 \begin{table}[h]
 \centering
 \caption{Storage capacity $\alpha^* = P^*/N$ by interaction function $F$ and
-network size $N$. ($*$): $F=x^3$ is Euler-unstable at $N \ge 64$
-because $\Delta t \cdot F'(N) = \Delta t \cdot N^2 \gg 1$
-($= 4.1$ at $N=64$, $= 16.4$ at $N=128$); capacity there is
-not meaningful. $F=\exp$ is numerically stable at all $N$ via
-softmax normalization.}
+network size $N$.
+($*$): $F=x^3$ is Euler-unstable at $N \ge 64$.
+\emph{Derivation:} the Lipschitz constant of the gradient flow
+$\dot{\bm{\varphi}} = -\nabla E$ is bounded by the spectral radius of the
+Hessian $\rho(H) \le P \cdot F'(N)$ (dominant self-coupling).
+For $F=x^3$: $F'(m) = 3m^2$, so $F'(N) = 3N^2$.
+Euler's method is stable iff $\Delta t \cdot \rho(H) < 2$,
+giving the condition $\Delta t \cdot 3N^2 < 2$, i.e.\ $\Delta t \cdot N^2 < 2/3$.
+At $N=64$: $\Delta t \cdot N^2 = 4.1 \gg 2/3$; at $N=128$: $= 16.4 \gg 2/3$.
+$F=\exp$ is stable at all $N$ because the one-step softmax update
+in~\eqref{eq:exp_update} is bounded regardless of $N$.}
 \label{tab:capacity}
 \begin{tabular}{lrrrrrr}
 \toprule
@@ -431,7 +445,12 @@ results for $N \ge 64$ are excluded due to Euler numerical instability.}
 
 The key finding is that $F = \exp$ achieves perfect recall at $P = N$
 for $N \in \{32, 64, 128\}$, with $\alpha^*=1.0$ in all three cases,
-exceeding the classical Hopfield limit by a \textbf{7.2-fold} improvement.
+exceeding the classical Hopfield limit ($\alpha^*\approx 0.138$) by a
+\textbf{7.2-fold} improvement in the same metric $\alpha^* = P^*/N$.
+We note that this comparison is across different model families
+(continuous-phase $S^1$ vs.\ binary $\{{\pm}1\}^N$, nonlinear $F$ vs.\ Hebbian,
+with vs.\ without anchor); the improvement reflects both the richer state space
+and the nonlinear interaction function.
 $F=x^3$ achieves $\alpha^*=1.0$ at $N=32$ (94.8\% trials) but becomes
 numerically unstable under Euler integration for $N \ge 64$, because
 $\Delta t \cdot F'(N) = \Delta t \cdot N^2$ exceeds unity (4.1 at $N=64$,
