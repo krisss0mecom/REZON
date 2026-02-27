@@ -56,8 +56,11 @@ Full set implemented and verified: **NOT, AND, OR, XOR, NAND, NOR, Half-Adder**.
 | Result | Value |
 |--------|-------|
 | Storage capacity F=exp, N=32 | **α\* = 1.0** — 100% recall at P=N |
-| vs classical Hopfield (Amit 1985) | **7.2× improvement** (α\*=0.138 → 1.0) |
-| One-step recall (10% noise) | Hamming 3 → 0 in **single update step** |
+| Storage capacity F=exp, N=64 | **α\* = 1.0** — 100% recall at P=N |
+| Storage capacity F=exp, N=128 | **α\* = 1.0** — 384/384 trials, 100% at every load |
+| vs classical Hopfield (Amit 1985) | **7.2-fold improvement** (α\*=0.138 → 1.0) |
+| One-step recall N=32 (10% noise) | Hamming 3 → 0 in **single update step** |
+| One-step recall N=128 (10% noise) | Hamming 12 → 0 in **single update step** |
 | CNOT gate robustness | **100%** at noise a=1.0 (20 seeds, Wilson 95% CI) |
 | Boolean gates | NOT, AND, OR, XOR, NAND, NOR, half-adder — all **100%** |
 | Turing completeness | Proven constructively (NOT + AND + D-latch) |
@@ -113,14 +116,16 @@ Statistical power notes: `STATISTICAL_POWER.md`.
 | `test_phase_analog.py` | Analog/fuzzy gate tests (10/10) |
 | `test_phase_hopfield.py` | Hopfield recall/energy/capacity tests (8/8) |
 | `test_phase_oim_comparison.py` | OIM comparison tests (8/8) |
-| `test_phase_dense_am.py` | Dense AM on S¹ tests (9/9) |
+| `test_phase_dense_am.py` | Dense AM on S¹ tests (12/12) — incl. N=128 scale tests |
 | `reports/cnot_phase_gate_report.json` | CNOT benchmark: 200 seeds, noise sweep |
 | `reports/phase_gate_universal_report.json` | All gates benchmark |
 | `reports/phase_full_adder_report.json` | FA: 8/8 1-bit, 20/20 4-bit ripple |
 | `reports/phase_analog_report.json` | Fuzzy: NOT err=0.002, AND=0.069, XOR=0.066 |
 | `reports/phase_hopfield_report.json` | Hopfield: 100% recall@10%, 80%@20% noise |
 | `reports/phase_oim_comparison_report.json` | OIM: conditional vs standard, novelty proof |
-| `reports/phase_dense_am_report.json` | Dense AM: capacity by F-type, discrete update |
+| `reports/phase_dense_am_report.json` | Dense AM N=32: capacity by F-type, discrete update |
+| `reports/phase_dense_am_N64_report.json` | Dense AM N=64: F=exp α*=1.000, F=x² α*=0.188 |
+| `reports/phase_dense_am_N128_report.json` | Dense AM N=128: F=exp α*=1.000 (384/384), 29942s |
 | `reports/phase_capacity_report.json` | Capacity sweep: α*(N=16)=0.188, α*(N=64)=0.109 |
 | `legacy/` | Old RLS/pure-mode experiments (kept for reference) |
 
@@ -211,20 +216,22 @@ Extension of [Krotov & Hopfield 2020](https://arxiv.org/abs/2008.06996) to conti
 
 **Overlap (phase inner product):** `m_μ = Σ_i cos(φ_i − ξ_i^μ)` ∈ [−N, N]
 
-| F(x) | Model | P* (N=32) | α* | Theory |
-|------|-------|-----------|----|--------|
-| x | XY/linear | **1** | 0.031 | 0.138·N |
-| x²/2 | Dense AM n=2 | **9** | 0.281 | ~N |
-| x³/3 | Dense AM n=3 | **32** | 1.000 | ~N² |
-| exp(x) | **Modern Hopfield S¹** | **32** | **1.000** | ~exp(N) |
+| F(x) | Model | N=32 α* | N=64 α* | N=128 α* | Theory |
+|------|-------|---------|---------|----------|--------|
+| x | XY/linear | 0.031 | 0.016 | 0.008 | 0.138·N |
+| x² | Dense AM n=2 | 0.281 | 0.188 | 0.156 | ~N |
+| x³ | Dense AM n=3 | **1.000** | unstable† | unstable† | ~N² |
+| exp(x) | **Modern Hopfield S¹** | **1.000** | **1.000** | **1.000** | ~exp(N) |
 
-**Modern Hopfield on S¹ (F=exp) stores P=N patterns with 100% recall.**
+† F=x³ is Euler-unstable at N≥64 (Δt·N²≫1); requires adaptive integrator.
+
+**Modern Hopfield on S¹ (F=exp) stores P=N patterns with 100% recall at N∈{32,64,128}.**
 
 **Discrete update (Phase Attention):**
 ```
 φ_i^new = circular_mean(ξ_i^μ, weights=softmax(m_μ))
 ```
-Recovers pattern in **1 step** (hamming 3→0 immediately).
+Recovers pattern in **1 step**: Hamming 3→0 at N=32; Hamming 12→0 at N=128.
 
 **Connection to Transformer attention:**
 - Query = φ (current state), Keys = ξ^μ (stored patterns), Values = ξ^μ
@@ -323,7 +330,14 @@ python3 phase_oim_comparison.py
 ### Run Dense AM on S¹ (Modern Hopfield extension)
 
 ```bash
+# N=32 (~10 min)
 python3 phase_dense_am.py --N 32 --trials 3
+
+# N=64 (~97 min)
+python3 phase_dense_am.py --N 64 --trials 3
+
+# N=128 (~8.3 h) — pre-computed results in reports/phase_dense_am_N128_report.json
+python3 phase_dense_am.py --N 128 --trials 3
 ```
 
 ### Run capacity study (N=16,32,64)
