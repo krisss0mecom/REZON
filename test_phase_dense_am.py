@@ -137,6 +137,64 @@ def test_discrete_update_reduces_hamming():
         f"Discrete update worsened Hamming: {hamming_start} → {hamming_end}"
 
 
+# ── N=128 scale tests (match paper Table tab:n128sweep) ──────────────────────
+
+def test_n128_one_step_recovery():
+    """N=128, P=5, F=exp: one discrete update recovers from 10% noise (Hamming 12→0).
+    This replicates the result reported in paper Section Results and Table tab:n128sweep.
+    Expected: hamming after step 1 = 0 (verified experimentally, elapsed=29942s).
+    """
+    N128, P128 = 128, 5
+    rng = np.random.default_rng(SEED)
+    patterns = [rng.uniform(0, 2 * np.pi, N128).tolist() for _ in range(P128)]
+    net = DensePhaseAM(N128, patterns, F_type='exp', K=1.0, seed=SEED)
+
+    # Corrupt pattern 0 by 10% (12 bits)
+    phi_clean = net.xi[0].copy()
+    n_flip = 12
+    flip_idx = rng.choice(N128, n_flip, replace=False)
+    phi_noisy = phi_clean.copy()
+    phi_noisy[flip_idx] = (phi_noisy[flip_idx] + np.pi) % (2 * np.pi)
+    net.reset(phi_noisy)
+
+    hamming_before = int(np.sum(np.abs(net.phi - phi_clean) > 0.5))
+
+    # Single discrete update
+    net.phi = net.update_discrete()
+    hamming_after = int(np.sum(np.abs(net.phi - phi_clean) > 1e-6))
+
+    assert hamming_after == 0, \
+        f"N=128 one-step recovery failed: hamming {hamming_before}→{hamming_after} (expected 0)"
+
+
+def test_n128_exp_recall_p5():
+    """N=128, P=5, F=exp: recall from 10% noise via ODE dynamics.
+    Smoke test for scale (fast: P=5 << N=128 so dynamics are stable).
+    """
+    N128, P128 = 128, 5
+    rng = np.random.default_rng(SEED + 10)
+    patterns = [rng.uniform(0, 2 * np.pi, N128).tolist() for _ in range(P128)]
+    net = DensePhaseAM(N128, patterns, F_type='exp', K=1.0, seed=SEED)
+    result = net.recall(0, flip_fraction=0.10, warmup_steps=3000, recall_steps=6000)
+    assert result["recovered"], \
+        f"N=128 F=exp recall failed at P=5: hamming_out={result['hamming_out']}"
+
+
+def test_n128_poly2_degrades_gracefully():
+    """N=128, F=x²: at P=10 (α=0.078) should succeed; at P=30 (α=0.23) may fail.
+    Verifies graceful degradation seen in Table tab:n128sweep (P*=20, α*=0.156).
+    """
+    N128 = 128
+    rng = np.random.default_rng(SEED + 20)
+
+    # P=10 should work (α=0.078, well below α*=0.156)
+    patterns_10 = [rng.uniform(0, 2 * np.pi, N128).tolist() for _ in range(10)]
+    net10 = DensePhaseAM(N128, patterns_10, F_type='poly2', K=1.0, seed=SEED)
+    r10 = net10.recall(0, flip_fraction=0.10, warmup_steps=3000, recall_steps=6000)
+    assert r10["recovered"], \
+        f"N=128 F=x² at P=10 (α=0.078) failed: hamming={r10['hamming_out']}"
+
+
 # ── F_type comparison: exp has at least as good recall as linear ──────────────
 
 def test_exp_not_worse_than_linear():

@@ -64,6 +64,45 @@ Expected:
 - pass-rate summaries with 95% Wilson intervals
 - failure envelope section for latch/register/automaton/turing_demo
 
+6. Reproduce Dense AM capacity sweep — N=32 (fast, ~10 min):
+
+```bash
+python phase_dense_am.py --N 32 --trials 3 --out-json reports/phase_dense_am_N32_report.json
+```
+
+Expected:
+- `F=exp: P*=32, α*=1.000`
+- `F=poly3: P*=32, α*=1.000` (94.8% trials)
+- `F=poly2: P*=9, α*=0.281`
+- `F=linear: P*=1, α*=0.031`
+
+7. Reproduce Dense AM capacity sweep — N=64 (~97 min):
+
+```bash
+python phase_dense_am.py --N 64 --trials 3 --out-json reports/phase_dense_am_N64_report.json
+```
+
+Expected:
+- `F=exp: P*=64, α*=1.000`
+- `F=poly2: P*=12, α*=0.188`
+- `F=poly3: P*=6, α*=0.094` (Euler-unstable at higher P)
+- `F=linear: P*=1, α*=0.016`
+
+8. Reproduce Dense AM capacity sweep — N=128 (long, ~8.3 h):
+
+```bash
+python phase_dense_am.py --N 128 --trials 3 --out-json reports/phase_dense_am_N128_report.json
+```
+
+Expected (verified, elapsed=29942s):
+- `F=exp: P*=128, α*=1.000` (384/384 trials, 100% success at every P)
+- `F=poly2: P*=20, α*=0.156` (graceful degradation: 0.97 at P=12, 0.57 at P=20)
+- `F=poly3: P*=0, α*=0.000` (Euler-unstable: Δt·N²=16.4 >> 1)
+- `F=linear: P*=1, α*=0.008`
+- Discrete update (Phase Attention): Hamming 12→0 in 1 step at N=128, P=5
+
+Pre-computed results are stored in `reports/phase_dense_am_N128_report.json`.
+
 ## Claim Scope
 
 Interpret results under assumptions and non-claims in `TURING_FORMALISM.md`.

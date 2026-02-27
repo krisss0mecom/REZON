@@ -425,6 +425,37 @@ Notably, at $N=128$ with $P=5$ stored patterns, a corrupted pattern
 in a \emph{single} discrete update step (Hamming distance $0$ after step 1),
 demonstrating the sharpness of the energy landscape at scale.
 
+Table~\ref{tab:n128sweep} shows the full capacity sweep for $N=128$,
+reporting success rate at each tested load $\alpha = P/N$.
+
+\begin{table}[h]
+\centering
+\caption{Full capacity sweep for $N=128$ (3 trials per point, flip=10\%).
+$F=\exp$ maintains perfect recall at every tested load up to $\alpha=1.0$.
+$F=x^2$ degrades gracefully; $F=x^3$ is Euler-unstable (all zeros);
+$F=x$ fails beyond $\alpha=0.008$.}
+\label{tab:n128sweep}
+\begin{tabular}{rrrrr}
+\toprule
+$P$ & $\alpha$ & $F=x$ & $F=x^2$ & $F=e^x$ \\
+\midrule
+  1 & 0.01 & 1.00 & 1.00 & 1.00 \\
+  6 & 0.05 & 0.00 & 1.00 & 1.00 \\
+ 10 & 0.08 & 0.00 & 1.00 & 1.00 \\
+ 12 & 0.09 & 0.00 & 0.97 & 1.00 \\
+ 16 & 0.12 & 0.00 & 0.92 & 1.00 \\
+ 17 & 0.13 & 0.00 & 0.74 & 1.00 \\
+ 20 & 0.16 & 0.00 & 0.57 & 1.00 \\
+ 24 & 0.19 & 0.00 & 0.43 & 1.00 \\
+ 25 & 0.20 & 0.00 & 0.36 & 1.00 \\
+ 38 & 0.30 & 0.00 & 0.18 & 1.00 \\
+128 & 1.00 & 0.00 & 0.00 & \textbf{1.00} \\
+\midrule
+$P^*$ & $\alpha^*$ & 1 / 0.008 & 20 / 0.156 & \textbf{128 / 1.000} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{Baseline Verification}
 
 We verified that Phase Hopfield restricted to $\{0,\pi\}^N$
