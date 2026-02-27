@@ -770,7 +770,8 @@ def build_pdf(fig_paths):
         "circular inner products, establishing a bridge between physical oscillator dynamics "
         "and modern attention mechanisms. "
         "The same dynamics implement universal Boolean gates (NOT, AND, XOR, OR, NAND, NOR) "
-        "at 100% accuracy, and a cascaded half-adder, proving Turing completeness. "
+        "at 100% accuracy, and a cascaded half-adder, demonstrating computational universality "
+        "(Turing completeness under standard unbounded-memory assumptions). "
         "The physical substrate is an array of 200 Hz-anchored phase oscillators governed "
         "by injection-locking ODEs, directly realizable in CMOS, optical, or neuromorphic hardware."
     )
@@ -815,7 +816,8 @@ def build_pdf(fig_paths):
                "\u03b1* = 1.0 for N \u2208 {32, 64, 128} \u2014 a 7.2-fold improvement over classical Hopfield "
                "(\u03b1* \u2248 0.138). F = x\u00b3 achieves \u03b1* = 1.0 at N=32 but is Euler-unstable at N \u2265 64.")
     pdf.bullet("Identifies the F = exp update as circular Transformer attention.")
-    pdf.bullet("Proves Turing completeness via universal Boolean phase gates (NOT, AND, XOR).")
+    pdf.bullet("Proves functional completeness (universal Boolean phase gates: NOT, AND, XOR) "
+               "and Turing completeness under standard unbounded-memory assumptions.")
     pdf.bullet("Presents the REZON physical substrate: 200 Hz-anchored oscillators, "
                "CMOS/optical/neuromorphic realizable.")
 
@@ -906,12 +908,15 @@ def build_pdf(fig_paths):
 
     pdf.subsection("3.3 Fixed-Point Stability Theorem")
     pdf.theorem_box(
-        "Theorem 1. Fixed-Point Stability",
-        "Every stored pattern \u03be\u03bc is a fixed point of the dynamics (3).\n\n"
-        "Proof. At \u03c6 = \u03be\u03bc, we have sin(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc) = sin(0) = 0 for all i. "
-        "Therefore d\u03c6\u1d62/dt = 0.  \u25a1\n\n"
-        "Corollary. In the K \u2192 \u221e limit, basin size grows with F': "
-        "F = exp creates exponentially sharper energy wells than F = x."
+        "Theorem 1. Fixed Points and Local Asymptotic Stability",
+        "Every stored pattern \u03be\u03bc is a (i) fixed point and (ii) local minimum "
+        "of E, hence (iii) locally asymptotically stable equilibrium of (3).\n\n"
+        "Proof. (i) Fixed point: At \u03c6 = \u03be\u03bc, sin(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc) = 0 for all i, so d\u03c6\u1d62/dt = 0.\n\n"
+        "(ii) Local minimum: The Hessian at \u03be\u03bc satisfies H_ii \u2265 F'(N) \u2212 P\u00b7F'(0) > 0 "
+        "for P < F'(N)/F'(0), holding with probability \u2192 1 under P/N \u2192 0.\n\n"
+        "(iii) Asymptotic stability: Since (3) is a gradient flow \u03c6\u0307 = \u2212\u2207E, "
+        "the Jacobian at \u03be\u03bc equals \u2212H. Positive-definiteness of H implies all "
+        "Jacobian eigenvalues are negative, hence local asymptotic stability.  \u25a1"
     )
 
     pdf.subsection("3.4 Connection to Krotov-Hopfield 2020")
@@ -951,7 +956,9 @@ def build_pdf(fig_paths):
         "for N = 32 phase oscillators. Patterns \u03be\u03bc are drawn uniformly from [0, 2\u03c0)^N. "
         "For each (P, F) pair, 3 trials perturb one stored pattern by 10% (\u2248 0.1N oscillators "
         "shifted by \u03c0\u00b7noise), then evolve for 5000 warmup and 10000 recall steps. "
-        "Recovery is declared when Hamming distance to the target equals zero."
+        "Recovery is declared when Hamming distance to the target equals zero. "
+        "Explicitly: bit b\u1d62 = 1[cos(\u03c6\u1d62) < 0] (so \u03c6=0 \u2192 bit=0, \u03c6=\u03c0 \u2192 bit=1), "
+        "Hamming = \u03a3\u1d62 1[b\u1d62 \u2260 \u03be\u1d62^binary]. This quantization matches the binary {0,\u03c0} encoding."
     )
 
     pdf.subsection("4.2 Main Results: Capacity Table")
@@ -1033,7 +1040,9 @@ def build_pdf(fig_paths):
         "This establishes a direct formal equivalence between DAM on S\u00b9 and "
         "Transformer self-attention (Vaswani et al., 2017), extending the result of "
         "Ramsauer et al. (2020) from discrete Hopfield to continuous-phase dynamics. "
-        "The 200 Hz anchor plays the role of positional encoding."
+        "The 200 Hz anchor serves a function analogous to positional encoding "
+        "(breaking translational symmetry), but enters as a bounded non-autonomous "
+        "perturbation to the gradient flow (Proposition 1), not as an additive embedding."
     )
 
     # Figure 3
@@ -1093,15 +1102,20 @@ def build_pdf(fig_paths):
 
     pdf.subsection("6.3 Turing Completeness")
     pdf.theorem_box(
-        "Theorem 2. Turing Completeness",
-        "The phase-gate framework is Turing complete.\n\n"
+        "Theorem 2. Computational Universality (Turing Completeness)",
+        "The phase-gate framework is computationally universal (Turing complete under "
+        "standard unbounded-memory assumptions).\n\n"
         "Proof sketch:\n"
         "(i) NOT and AND are implemented by Lemmas A1-A2 (see Appendix).\n"
-        "(ii) {NOT, AND} is a Shannon-complete basis (Lemma B1).\n"
+        "(ii) {NOT, AND} is a Shannon-complete basis (Lemma B1) \u2014 functional completeness "
+        "is the empirically verified claim.\n"
         "(iii) A bistable D-latch provides addressable binary memory (Lemma C1):\n"
         "      d\u03c6_Q/dt = \u2212K_hold\u00b7sin(2\u03c6_Q) + anchor, stable at {0, \u03c0}.\n"
         "(iv) Gate outputs compose into arbitrary sequential circuits (Lemmas D1-D2).\n"
-        "Hence the system simulates arbitrary sequential Boolean computation.  \u25a1"
+        "Hence the system simulates arbitrary sequential Boolean computation, "
+        "constituting Turing completeness under standard unbounded-memory assumptions.  \u25a1\n\n"
+        "Remark: Functional completeness (i-ii) is verified empirically; "
+        "Turing completeness (iii-iv) additionally requires an unbounded memory abstraction."
     )
     pdf.body(
         "The XOR gate is particularly significant: it implements the quantum-computing "
@@ -1160,7 +1174,7 @@ def build_pdf(fig_paths):
         "and identified the connection to Transformer attention. Our work extends both "
         "results to S\u00b9: the circular inner product is more natural for phase oscillators "
         "than binary cosine similarities, and the anchor provides a built-in reference "
-        "frame analogous to positional encoding. "
+        "frame analogous (functionally, not mechanistically) to positional encoding. "
         "Maass, Natschl\u00e4ger & Markram (2002) introduced liquid state machines; "
         "our REZON architecture is the Dense AM analog: instead of random projections, "
         "the recurrent coupling implements structured DAM retrieval."
@@ -1185,7 +1199,8 @@ def build_pdf(fig_paths):
                "Transformer self-attention with circular inner products.")
     pdf.bullet("Universal Boolean logic (NOT, AND, XOR, OR, NAND, NOR, half-adder) "
                "at 100% accuracy via injection-locking phase dynamics.")
-    pdf.bullet("Turing completeness proved constructively from NOT + AND + bistable memory.")
+    pdf.bullet("Turing completeness proved constructively from NOT + AND + bistable memory "
+               "(under standard unbounded-memory assumptions; functional completeness empirically verified).")
     pdf.bullet("Physical realization via 200 Hz-anchored REZON oscillator arrays, "
                "compatible with CMOS, photonic, and neuromorphic hardware.")
     pdf.ln(2)

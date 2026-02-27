@@ -57,8 +57,11 @@ attention mechanisms.
 We demonstrate statistically robust operation across 20 random seeds with Wilson 95\% confidence intervals, achieving 100\% pass rate on the CNOT gate at noise amplitudes up to $a=1.0$.
 The same phase-coherent dynamics implement universal Boolean gates
 (NOT, AND, XOR, OR, NAND, NOR) at 100\% accuracy, and a cascaded
-half-adder, proving Turing completeness via injection-locking dynamics---a
-result with no precedent in the Hopfield or Kuramoto literature.
+half-adder, demonstrating computational universality
+(functional completeness in the Boolean sense; Turing completeness under
+standard unbounded-memory assumptions)
+via injection-locking dynamics---a result with no precedent in the
+Hopfield or Kuramoto literature.
 The physical substrate is an array of 200\,Hz-anchored phase oscillators
 governed by injection-locking ordinary differential equations,
 directly realizable in CMOS, optical, or neuromorphic hardware.
@@ -107,8 +110,9 @@ In this paper we:
   (Section~\ref{sec:results}).
 \item Identify the $F=\exp$ update as circular Transformer attention
   (Section~\ref{sec:attention}).
-\item Demonstrate universal Boolean logic via phase-coherent coupling,
-  proving Turing completeness (Section~\ref{sec:gates}).
+\item Demonstrate universal Boolean logic (functional completeness) via
+  phase-coherent coupling, and prove Turing completeness under standard
+  unbounded-memory assumptions (Section~\ref{sec:gates}).
 \item Show the physical substrate: 200\,Hz-anchored oscillators with
   injection-locking dynamics (Section~\ref{sec:hardware}).
 \end{enumerate}
@@ -265,7 +269,14 @@ Therefore:
 For superlinear $F$ (e.g.\ $F=\exp$: $F'(N)/F'(0) = e^N$;
 $F=x^3$: $F'(N)/F'(0) = N^2$), this condition holds for $P \ll N$.
 Under the assumption $P/N\to 0$, positive definiteness of $H$ holds
-with probability $\to 1$, confirming local asymptotic stability.
+with probability $\to 1$.
+
+(iii)~Asymptotic stability: since \eqref{eq:dynamics} is a gradient
+flow $\dot{\bm{\varphi}} = -\nabla_{\bm{\varphi}} E$, the Jacobian of
+the right-hand side at $\bm{\xi}^\nu$ equals $-H$.
+Positive-definiteness of $H$ implies all eigenvalues of the Jacobian
+are strictly negative, hence $\bm{\xi}^\nu$ is a locally asymptotically
+stable equilibrium of the autonomous system.
 \hfill$\square$
 
 \textbf{Proposition 1.} \emph{(Robustness under periodic anchor forcing.)
@@ -352,8 +363,11 @@ For each $(P, F, N)$ combination we run 3 independent trials:
 each trial perturbs one stored pattern by $\delta\varphi = 10\%\pi$
 on a random subset of $0.1N$ oscillators, then evolves for 5000 warmup
 and 10000 recall steps.
-Recovery is declared if the Hamming distance to the target pattern
-(after quantization to $\{0, \pi\}$) equals zero.
+Recovery is declared if the Hamming distance to the target pattern equals zero.
+Explicitly: we decode each oscillator via $b_i = \mathbf{1}[\cos\varphi_i < 0]
+\in \{0,1\}$ (so $\varphi=0 \to b=0$, $\varphi=\pi \to b=1$),
+and Hamming distance = $\sum_i \mathbf{1}[b_i \neq \xi_i^{\rm binary}]$.
+This quantization matches the binary $\{0,\pi\}$ pattern encoding used throughout.
 We report $\alpha^* = P^*/N$ as the highest load with $\ge 85\%$ success rate.
 
 \subsection{Storage Capacity}
@@ -456,6 +470,27 @@ $P^*$ & $\alpha^*$ & 1 / 0.008 & 20 / 0.156 & \textbf{128 / 1.000} \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[h]
+\begin{verbatim}
+Success rate vs. load alpha = P/N  (N=128, F=exp vs F=x^2)
+1.0 |****************************  exp (F=e^x)
+    |############                  poly2 (F=x^2)
+0.5 |#######
+    |####
+0.0 +--+--+--+--+--+--+--+--+->
+  0.0 0.08 0.13 0.16 0.19 0.30 1.0   alpha
+       ^ graceful        ^
+       degradation     poly2 critical load
+\end{verbatim}
+\caption{Capacity curves at $N=128$ for $F=\exp$ and $F=x^2$.
+$F=\exp$ maintains 100\% success rate at every tested load up to $\alpha=1.0$
+(stars, from Table~\ref{tab:n128sweep}).
+$F=x^2$ degrades from 100\% at $\alpha=0.08$ to 57\% at $\alpha=0.16$ ($P^*=20$)
+then approaches 0\% (hashes, proportional to measured success rate).
+$F=x^3$ is excluded (Euler-unstable at $N=128$).}
+\label{fig:capacity_n128}
+\end{figure}
+
 \subsection{Baseline Verification}
 
 We verified that Phase Hopfield restricted to $\{0,\pi\}^N$
@@ -530,15 +565,23 @@ of seed selection.
 
 \subsection{Functional Completeness and Turing Completeness}
 
-\textbf{Theorem 2.} \emph{The phase-gate framework is Turing complete.}
+\textbf{Theorem 2.} \emph{The phase-gate framework is computationally universal
+(Turing complete under standard unbounded-memory assumptions).}
 
 \textit{Proof sketch.}
 (i) NOT and AND are implemented by Lemmas A1--A2 (Appendix);
-(ii) $\{$NOT, AND$\}$ is a Shannon-complete basis (Lemma B1);
+(ii) $\{$NOT, AND$\}$ is a Shannon-complete basis (Lemma B1),
+hence the framework is \emph{functionally complete} (universal Boolean logic);
 (iii) a bistable D-latch provides addressable binary memory (Lemma C1);
 (iv) gate outputs can be composed into arbitrarily long sequential circuits
 (Lemmas D1--D2).
-Hence the system simulates arbitrary sequential Boolean computation. \hfill$\square$
+Hence the system simulates arbitrary sequential Boolean computation,
+constituting Turing completeness assuming unbounded external memory
+(as standard in constructive Turing completeness proofs for physical systems). \hfill$\square$
+
+\emph{Remark:} Functional completeness (items i--ii) is the empirically verified claim;
+Turing completeness (items iii--iv) additionally requires an unbounded memory abstraction
+that is not physically realized in any finite hardware implementation.
 
 The XOR gate is particularly significant: it realizes the
 quantum-computing CNOT interaction in classical continuous-phase dynamics,
@@ -604,7 +647,12 @@ of transformers~\cite{vaswani2017} without discretization artifacts.
 Equation~\eqref{eq:rc_dynamics} is the gradient flow of a Dense AM energy on $S^1$
 (with input injection and anchor replacing the memory patterns).
 The anchor at 200\,Hz enforces a single reference frame across all oscillators,
-analogous to the positional encoding in Transformers.
+serving a function \emph{analogous} to positional encoding in Transformers
+(both break translational symmetry).
+Crucially, however, the anchor enters the dynamics as a bounded non-autonomous
+perturbation to the gradient flow (Proposition~1), not as an additive embedding;
+the gradient-flow interpretation of the memory energy is unaffected by this
+small forcing term ($a_{\rm anc}=0.08 \ll 1$).
 This suggests that physical reservoir computing networks are implicitly
 implementing Dense AM retrieval at each timestep.
 
@@ -682,7 +730,9 @@ The key results are:
   at 100\% accuracy via injection-locking dynamics.
 \item Statistically robust CNOT operation: 100\% pass rate across 20 seeds
   at noise amplitudes up to $a=1.0$ (Wilson 95\% CI).
-\item Turing completeness proved constructively from NOT+AND+memory.
+\item Turing completeness proved constructively from NOT+AND+memory
+  (under standard unbounded-memory assumptions; functional completeness
+  is empirically verified without that assumption).
 \item Physical realization via 200\,Hz-anchored oscillator arrays
   (REZON architecture), compatible with CMOS, photonic, and
   neuromorphic hardware.
