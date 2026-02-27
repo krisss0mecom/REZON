@@ -763,9 +763,9 @@ def build_pdf(fig_paths):
         "The energy function E = \u2212\u03a3\u03bc F(\u03a3\u1d62 cos(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc)) generalizes the "
         "Krotov-Hopfield Dense AM framework from {\u00b11}^N to S^{1N}. "
         "We prove fixed-point stability analytically and show empirically that "
-        "F = exp achieves storage capacity \u03b1* = P*/N = 1.0 for both N = 32 and N = 64 oscillators "
-        "\u2014 a 7.2\u00d7 improvement over the classical Hopfield limit (\u03b1* \u2248 0.138), "
-        "confirmed at two independent system sizes. "
+        "F(m) = e^m achieves storage capacity \u03b1* = P*/N = 1.0 at N \u2208 {32, 64, 128} oscillators "
+        "\u2014 a 7.2-fold improvement over the classical Hopfield limit (\u03b1* \u2248 0.138), "
+        "confirmed at three independent system sizes. "
         "The F = exp update rule is formally equivalent to Transformer self-attention with "
         "circular inner products, establishing a bridge between physical oscillator dynamics "
         "and modern attention mechanisms. "
@@ -811,8 +811,9 @@ def build_pdf(fig_paths):
     pdf.body("This work makes the following contributions:")
     pdf.bullet("Extends Dense AM from {\u00b11}^N to S\u00b9^N with circular overlap "
                "m\u03bc = \u03a3\u1d62 cos(\u03c6\u1d62 \u2212 \u03be\u1d62\u03bc) and proves fixed-point stability analytically.")
-    pdf.bullet("Demonstrates empirically that F = exp and F = x\u00b3 achieve "
-               "\u03b1* = 1.0 for N = 32 \u2014 a 7.2\u00d7 improvement over classical Hopfield.")
+    pdf.bullet("Demonstrates empirically that F = exp achieves "
+               "\u03b1* = 1.0 for N \u2208 {32, 64, 128} \u2014 a 7.2-fold improvement over classical Hopfield "
+               "(\u03b1* \u2248 0.138). F = x\u00b3 achieves \u03b1* = 1.0 at N=32 but is Euler-unstable at N \u2265 64.")
     pdf.bullet("Identifies the F = exp update as circular Transformer attention.")
     pdf.bullet("Proves Turing completeness via universal Boolean phase gates (NOT, AND, XOR).")
     pdf.bullet("Presents the REZON physical substrate: 200 Hz-anchored oscillators, "
@@ -926,7 +927,7 @@ def build_pdf(fig_paths):
         [
             ["State space", "{+1,\u22121}^N", "S\u00b9^N"],
             ["Overlap m\u03bc", "\u03c3\u00b7\u03be\u03bc (dot product)", "\u03a3cos(\u03c6\u1d62\u2212\u03be\u1d62\u03bc) (circular)"],
-            ["F=exp capacity", "Exponential in N", "\u03b1*=1.0 (empirical, N=32)"],
+            ["F=exp capacity", "Exponential in N", "\u03b1*=1.0 (empirical, N\u2208{32,64,128})"],
             ["Physical substrate", "Abstract binary spins", "200 Hz oscillator arrays"],
             ["Computation", "Memory only", "Memory + universal logic"],
             ["Attention analog", "Hopfield network", "Circular Transformer attention"],
@@ -955,20 +956,21 @@ def build_pdf(fig_paths):
 
     pdf.subsection("4.2 Main Results: Capacity Table")
     pdf.col_table(
-        ["Interaction F", "P*(N=32)", "\u03b1*(N=32)", "P*(N=64)", "\u03b1*(N=64)"],
+        ["Interaction F", "P*(N=32)", "\u03b1*(N=32)", "P*(N=64)", "\u03b1*(N=64)", "P*(N=128)", "\u03b1*(N=128)"],
         [
-            ["Linear (F = x)",       "1",  "0.031", "1",  "0.016"],
-            ["Quadratic (F = x\u00b2)","9",  "0.281", "12", "0.188"],
-            ["Cubic (F = x\u00b3)",   "32", "1.000", "6",  "0.094"],
-            ["Exponential (F = e^x)","32", "1.000", "64", "1.000 \u2605"],
-            ["Classical Hopfield",   "~4", "0.138", "~9", "0.141"],
+            ["Linear (F = x)",        "1",   "0.031", "1",   "0.016", "1",   "0.008"],
+            ["Quadratic (F = x\u00b2)","9",   "0.281", "12",  "0.188", "20",  "0.156"],
+            ["Cubic (F = x\u00b3)",    "32",  "1.000", "—",   "unstable\u2020", "—", "unstable\u2020"],
+            ["Exponential (F = e^x)", "32",  "1.000", "64",  "1.000\u2605", "128", "1.000\u2605"],
+            ["Classical Hopfield",    "~4",  "0.138", "~9",  "0.141", "~18", "0.141"],
         ],
-        col_widths=[48, 24, 30, 24, 44]
+        col_widths=[42, 20, 24, 20, 28, 22, 28]
     )
     pdf.set_font("sans", "", 8.5)
     pdf.set_text_color(*pdf.GREY_COL)
     pdf.cell(0, 5,
-             "Table 3. Storage capacity at N=32 and N=64. \u2605 = 100% recall at P=N for F=exp.",
+             "Table 3. Storage capacity at N=32, N=64, N=128. \u2605 = 100% recall at P=N. "
+             "\u2020 F=x\u00b3 Euler-unstable at N\u226564 (\u0394t\u00b7N\u00b2\u003e1).",
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_text_color(*pdf.TEXT_COL)
     pdf.ln(2)
@@ -977,7 +979,7 @@ def build_pdf(fig_paths):
     pdf.figure(fig_paths[0],
                "Figure 1. (a) Success rate vs. load \u03b1 = P/N for N=32. "
                "(b) Summary of \u03b1* per interaction function. "
-               "F = exp achieves perfect recall at \u03b1 = 1.0, 7.2\u00d7 above classical Hopfield.")
+               "F = exp achieves perfect recall at \u03b1 = 1.0, 7.2-fold above classical Hopfield.")
 
     pdf.subsection("4.3 One-Step Recall")
     pdf.body(
@@ -1177,8 +1179,8 @@ def build_pdf(fig_paths):
         "for memory, logic, and learning in continuous-phase oscillator networks. "
         "Key contributions:"
     )
-    pdf.bullet("Storage capacity \u03b1* = 1.0 for F = exp and F = x\u00b3 (N=32), "
-               "a 7.2\u00d7 improvement over classical Hopfield (\u03b1* \u2248 0.138).")
+    pdf.bullet("Storage capacity \u03b1* = 1.0 for F = exp at N \u2208 {32, 64, 128} "
+               "(and F = x\u00b3 at N=32), a 7.2-fold improvement over classical Hopfield (\u03b1* \u2248 0.138).")
     pdf.bullet("Formal equivalence between F = exp DAM on S\u00b9 and "
                "Transformer self-attention with circular inner products.")
     pdf.bullet("Universal Boolean logic (NOT, AND, XOR, OR, NAND, NOR, half-adder) "
